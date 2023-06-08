@@ -1,4 +1,4 @@
-package com.buffett.hrms.payroll.model;
+package com.buffett.hrms.model.payroll;
 
 /**
  * Represents an hourly employee

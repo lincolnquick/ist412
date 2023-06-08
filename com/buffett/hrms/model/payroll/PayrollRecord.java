@@ -1,6 +1,8 @@
-package com.buffett.hrms.payroll.model;
+package com.buffett.hrms.model.payroll;
 
 import java.util.List;
+
+import com.buffett.hrms.payroll.model.payroll.PayPeriod;
 
 /**
  * Represents a payroll record for an employee.
