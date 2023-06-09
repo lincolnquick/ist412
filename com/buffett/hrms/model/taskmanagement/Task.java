@@ -7,6 +7,9 @@ import com.buffett.hrms.model.Employee;
 
 /**
  * Represents a task in the HRMS to be created, modified, and assigned by a manager to an employee.
+ * 
+ * @author Group 5
+ * @version 1.0.0
  */
 public class Task {
     private UUID taskId;

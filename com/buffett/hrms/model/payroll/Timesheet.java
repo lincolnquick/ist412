@@ -3,6 +3,9 @@ import java.time.LocalDate;
 
 /**
  * Represents a timesheet for an employee for one pay period.
+ * 
+ * @author Group 5
+ * @version 1.0.0
  */
 public class Timesheet {
     private LocalDate startDate;

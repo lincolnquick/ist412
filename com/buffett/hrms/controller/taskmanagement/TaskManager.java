@@ -7,6 +7,12 @@ import java.util.List;
 import com.buffett.hrms.model.taskmanagement.Task;
 import com.buffett.hrms.model.Employee;
 
+/**
+ * This class is responsible for handling the logic related to the task management system. 
+ *
+ * @author Group 5
+ * @version 1.0.0
+ */
 public class TaskManager {
     private List<Task> tasks;
 

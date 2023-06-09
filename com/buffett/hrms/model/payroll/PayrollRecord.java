@@ -4,7 +4,10 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Represents a payroll record for an employee.
+ * Represents a payroll record for an employee, consisted of a list of timesheets.
+ * 
+ * @author Group 5
+ * @version 1.0.0
  */
 public class PayrollRecord {
     private UUID employeeId;
