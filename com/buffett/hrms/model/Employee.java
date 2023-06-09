@@ -1,4 +1,6 @@
-package com.buffett.hrms.model.payroll;
+package com.buffett.hrms.model;
+
+import java.util.UUID;
 
 /**
  * Represents a single hourly employee in the HRMS.
@@ -11,7 +13,7 @@ public class Employee {
     /**
      * The employee's unique identifier.
      */
-    private String employeeId;
+    private UUID employeeId;
 
     /**
      * The employee's first name.
@@ -35,8 +37,8 @@ public class Employee {
      * @param lastName the employee's last name
      * @param hourlyRate the employee's hourly rate of pay in USD
      */
-    public Employee(String employeeId, String firstName, String lastName, double hourlyRate) {
-        this.employeeId = employeeId;
+    public Employee(String firstName, String lastName, double hourlyRate) {
+        this.employeeId = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;
         this.hourlyRate = hourlyRate;
@@ -46,7 +48,7 @@ public class Employee {
      * Returns the employee's unique identifier.
      * @return  the employee's unique identifier
      */
-    public String getEmployeeId() {
+    public UUID getEmployeeId() {
         return employeeId;
     }
 
@@ -54,7 +56,7 @@ public class Employee {
      * Sets the employee's unique identifier.
      * @param employeeId the employee's unique identifier
      */
-    public void setEmployeeId(String employeeId) {
+    public void setEmployeeId(UUID employeeId) {
         this.employeeId = employeeId;
     }
 

@@ -1,27 +1,26 @@
 package com.buffett.hrms.model.payroll;
 
 import java.util.List;
-
-import com.buffett.hrms.payroll.model.payroll.PayPeriod;
+import java.util.UUID;
 
 /**
  * Represents a payroll record for an employee.
  */
 public class PayrollRecord {
-    private String employeeId;
-    private List<PayPeriod> payPeriods;
+    private UUID employeeId;
+    private List<Timesheet> timesheets;
 
-    public String getEmployeeId() {
+    public UUID getEmployeeId() {
         return employeeId;
     }
-    public void setEmployeeId(String employeeId) {
+    public void setEmployeeId(UUID employeeId) {
         this.employeeId = employeeId;
     }
-    public List<PayPeriod> getPayPeriods() {
-        return payPeriods;
+    public List<Timesheet> getTimesheets() {
+        return timesheets;
     }
-    public void setPayPeriods(List<PayPeriod> payPeriods) {
-        this.payPeriods = payPeriods;
+    public void setTimesheets(List<Timesheet> timesheets) {
+        this.timesheets = timesheets;
     }
 
     

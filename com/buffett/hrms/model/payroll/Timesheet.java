@@ -1,16 +1,16 @@
-package com.buffett.hrms.payroll.model;
+package com.buffett.hrms.model.payroll;
 import java.time.LocalDate;
 
 /**
- * Represents a pay period for an employee
+ * Represents a timesheet for an employee for one pay period.
  */
-public class PayPeriod {
+public class Timesheet {
     private LocalDate startDate;
     private LocalDate endDate;
     private double hoursWorked;
     private double hourlyRate;
 
-    public PayPeriod(LocalDate startDate, LocalDate endDate, double hoursWorked, double hourlyRate) {
+    public Timesheet(LocalDate startDate, LocalDate endDate, double hoursWorked, double hourlyRate) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.hoursWorked = hoursWorked;
