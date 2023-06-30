@@ -4,20 +4,20 @@ import java.time.*;
 import java.util.*;
 
 public class Timesheet {
-    private int employeeNumber;
+    private UUID employeeID;
     private LocalDate periodStart;
     private LocalDate periodEnd;
     private ArrayList<ShiftEntry> shifts;
     private boolean isApproved;
-    private int approverID;
+    private UUID approverID;
 
-    public Timesheet(int employeeNumber, LocalDate periodStart, LocalDate periodEnd) {
-        this.employeeNumber = employeeNumber;
+    public Timesheet(UUID employeeID, LocalDate periodStart, LocalDate periodEnd) {
+        this.employeeID = employeeID;
         this.periodStart = periodStart;
         this.periodEnd = periodEnd;
         this.shifts = new ArrayList<>();
         this.isApproved = false;
-        this.approverID = -1;
+        this.approverID = null;
     }
 
     public void addShift(ShiftEntry shift){
@@ -28,17 +28,17 @@ public class Timesheet {
         shifts.remove(shift);
     }
 
-    public void approveTimesheet(int managerID){
+    public void approveTimesheet(UUID managerID){
         this.isApproved = true;
         this.approverID = managerID;
     }
 
-    public int getEmployeeNumber() {
-        return employeeNumber;
+    public UUID getEmployeeID() {
+        return employeeID;
     }
 
-    public void setEmployeeNumber(int employeeNumber) {
-        this.employeeNumber = employeeNumber;
+    public void setEmployeeID(UUID employeeID) {
+        this.employeeID = employeeID;
     }
 
     public LocalDate getPeriodStart() {
@@ -73,11 +73,11 @@ public class Timesheet {
         isApproved = approved;
     }
 
-    public int getApproverID() {
+    public UUID getApproverID() {
         return approverID;
     }
 
-    public void setApproverID(int approverID) {
+    public void setApproverID(UUID approverID) {
         this.approverID = approverID;
     }
 }

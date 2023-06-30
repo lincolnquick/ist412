@@ -1,6 +1,7 @@
 package com.buffettinc.hrms.model;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class Payment {
     private String institution;
@@ -8,15 +9,15 @@ public class Payment {
     private String accountNumber;
     private LocalDate postedDate;
     private float amount;
-    private int employeeNumber;
+    private UUID employeeID;
 
-    public Payment(String institution, String routingNumber, String accountNumber, LocalDate postedDate, float amount, int employeeNumber) {
+    public Payment(String institution, String routingNumber, String accountNumber, LocalDate postedDate, float amount, UUID employeeID) {
         this.institution = institution;
         this.routingNumber = routingNumber;
         this.accountNumber = accountNumber;
         this.postedDate = postedDate;
         this.amount = amount;
-        this.employeeNumber = employeeNumber;
+        this.employeeID = employeeID;
     }
 
     public String getInstitution() {
@@ -59,12 +60,12 @@ public class Payment {
         this.amount = amount;
     }
 
-    public int getEmployeeNumber() {
-        return employeeNumber;
+    public UUID getEmployeeID() {
+        return employeeID;
     }
 
-    public void setEmployeeNumber(int employeeNumber) {
-        this.employeeNumber = employeeNumber;
+    public void setEmployeeID(UUID employeeID) {
+        this.employeeID = employeeID;
     }
 
     public void directDepositTransfer(){

@@ -2,9 +2,10 @@ package com.buffettinc.hrms.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class Employee {
-    private int employeeNumber;
+    private UUID employeeID;
     private String firstName;
     private String lastName;
     private String streetAddress;
@@ -13,18 +14,37 @@ public class Employee {
     private String zip;
     private String phone;
     private String email;
+    private LocalDate hireDate;
     private String department;
     private String position;
-    private String manager;
-    private float hourlyRate;
-    private String routingNumber;
+    private UUID manager;
+    private PTOBalance ptoBalance;
+    private Payroll payrollInfo;
 
-    public int getEmployeeNumber() {
-        return employeeNumber;
+    public Employee(String firstName, String lastName, String streetAddress, String city, String state, String zip, String phone, String email, LocalDate hireDate, String department, String position, UUID manager, float hourlyRate) {
+        this.employeeID = UUID.randomUUID();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.streetAddress = streetAddress;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.phone = phone;
+        this.email = email;
+        this.hireDate = hireDate;
+        this.department = department;
+        this.position = position;
+        this.manager = manager;
+        this.ptoBalance = new PTOBalance(0,0,0);
+        this.payrollInfo = new Payroll(employeeID, hourlyRate, null, null, null);
     }
 
-    public void setEmployeeNumber(int employeeNumber) {
-        this.employeeNumber = employeeNumber;
+    public UUID getEmployeeID() {
+        return employeeID;
+    }
+
+    public void setEmployeeNumber(UUID employeeID) {
+        this.employeeID = employeeID;
     }
 
     public String getFirstName() {
@@ -107,32 +127,36 @@ public class Employee {
         this.position = position;
     }
 
-    public String getManager() {
+    public UUID getManager() {
         return manager;
     }
 
-    public void setManager(String manager) {
+    public void setManager(UUID manager) {
         this.manager = manager;
     }
 
-    public float getHourlyRate() {
-        return hourlyRate;
+    public void setEmployeeID(UUID employeeID) {
+        this.employeeID = employeeID;
     }
 
-    public void setHourlyRate(float hourlyRate) {
-        this.hourlyRate = hourlyRate;
+    public LocalDate getHireDate() {
+        return hireDate;
     }
 
-    public String getRoutingNumber() {
-        return routingNumber;
+    public void setHireDate(LocalDate hireDate) {
+        this.hireDate = hireDate;
     }
 
-    public void setRoutingNumber(String routingNumber) {
-        this.routingNumber = routingNumber;
+    public PTOBalance getPtoBalance() {
+        return ptoBalance;
+    }
+
+    public void setPtoBalance(PTOBalance ptoBalance) {
+        this.ptoBalance = ptoBalance;
     }
 
     public Timesheet createTimesheet(LocalDate periodStart, LocalDate periodEnd){
-        return new Timesheet(employeeNumber, periodStart, periodEnd);
+        return new Timesheet(employeeID, periodStart, periodEnd);
     }
     public ShiftEntry enterTime(LocalDateTime startTime, LocalDateTime endTime){
         return new ShiftEntry(startTime, endTime);
