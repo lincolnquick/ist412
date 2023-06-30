@@ -1,5 +1,8 @@
 package com.buffettinc.hrms.model;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class Employee {
     private int employeeNumber;
     private String firstName;
@@ -128,15 +131,18 @@ public class Employee {
         this.routingNumber = routingNumber;
     }
 
-    public void enterTime(){
-
+    public Timesheet createTimesheet(LocalDate periodStart, LocalDate periodEnd){
+        return new Timesheet(employeeNumber, periodStart, periodEnd);
+    }
+    public ShiftEntry enterTime(LocalDateTime startTime, LocalDateTime endTime){
+        return new ShiftEntry(startTime, endTime);
     }
 
-    public void viewPTOBalance(){
-
+    public PTOCalendar viewPTOBalance(){
+        return null;
     }
 
-    public void requestPTO(){
-
+    public PTORequest requestPTO(LocalDate startDate, LocalDate endDate, PTOReason reason){
+        return new PTORequest(startDate, endDate, reason);
     }
 }
