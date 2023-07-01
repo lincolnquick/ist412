@@ -4,6 +4,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * This class represents an Employee for Buffett Inc.
+ * Each employee has an employeeID, first name, last name, address and contact info, a hire date,
+ * department, position, and a reference to their manager, as well as PTOBalance and Payroll objects to manager
+ * PTO balances and payroll information.
+ */
 public class Employee {
     private UUID employeeID;
     private String firstName;
@@ -21,7 +27,7 @@ public class Employee {
     private PTOBalance ptoBalance;
     private Payroll payrollInfo;
 
-    public Employee(String firstName, String lastName, String streetAddress, String city, String state, String zip, String phone, String email, LocalDate hireDate, String department, String position, UUID manager, float hourlyRate) {
+    public Employee(String firstName, String lastName, String streetAddress, String city, String state, String zip, String phone, String email, LocalDate hireDate, String department, String position, UUID manager) {
         this.employeeID = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -35,9 +41,29 @@ public class Employee {
         this.department = department;
         this.position = position;
         this.manager = manager;
-        this.ptoBalance = new PTOBalance(0,0,0);
-        this.payrollInfo = new Payroll(employeeID, hourlyRate, null, null, null);
+        this.ptoBalance = new PTOBalance(employeeID, 0,0,0);
+        this.payrollInfo = new Payroll(employeeID, 0, null, null, null);
     }
+
+    public Employee(){
+        this.employeeID = UUID.randomUUID();
+        this.firstName = "";
+        this.lastName = "";
+        this.streetAddress = "";
+        this.city = "";
+        this.state = "";
+        this.zip = "";
+        this.phone = "";
+        this.email = "";
+        this.hireDate = LocalDate.now();
+        this.department = "";
+        this.position = "";
+        this.manager = null;
+        this.ptoBalance = new PTOBalance(employeeID, 0,0,0);
+        this.payrollInfo = new Payroll(employeeID, 0, null, null, null);
+    }
+
+
 
     public UUID getEmployeeID() {
         return employeeID;
@@ -167,6 +193,6 @@ public class Employee {
     }
 
     public PTORequest requestPTO(LocalDate startDate, LocalDate endDate, PTOReason reason){
-        return new PTORequest(startDate, endDate, reason);
+        return new PTORequest(employeeID, startDate, endDate, reason);
     }
 }

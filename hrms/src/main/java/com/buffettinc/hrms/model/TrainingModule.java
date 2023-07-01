@@ -4,6 +4,11 @@ import java.net.URL;
 import java.time.Duration;
 import java.util.UUID;
 
+/**
+ * This class represents a Training Module to be used by employees of Buffett Inc.
+ * Each TrainingModule consists of a trainingID, a name, description, the URL to view the training, its estimated
+ * duration (time to complete by an employee), and the employeeID of the author.
+ */
 public class TrainingModule {
     private UUID trainingID;
     private String trainingName;

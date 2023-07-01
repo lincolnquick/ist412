@@ -3,6 +3,13 @@ package com.buffettinc.hrms.model;
 import java.time.*;
 import java.util.*;
 
+/**
+ * This class represents a Timesheet to be used by Employees of Buffett Inc.
+ * Each timesheet consists of a reference to the Employee with their employeeID, the pay period start date, end date,
+ * a list of ShiftEntries representing individual shifts by a single Employee, whether the Timesheet was approved,
+ * and the employeeID of the approver.
+ *
+ */
 public class Timesheet {
     private UUID employeeID;
     private LocalDate periodStart;

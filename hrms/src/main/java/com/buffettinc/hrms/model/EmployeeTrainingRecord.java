@@ -3,6 +3,11 @@ package com.buffettinc.hrms.model;
 import java.time.LocalDate;
 import java.util.UUID;
 
+/**
+ * This class represents a single record to keep track of an employee's completion status of a training module.
+ * Each EmployeeTrainingRecord consists of a recordID, a reference to the employeeID and trainingModuleID,
+ * a completion date, and whether the training was completed.
+ */
 public class EmployeeTrainingRecord {
     private UUID recordID;
     private UUID employeeID;

@@ -3,6 +3,11 @@ package com.buffettinc.hrms.model;
 import java.time.LocalDate;
 import java.util.UUID;
 
+/**
+ * This class represents a Payment made for a Paycheck for an Employee of Buffett Inc.
+ * Payment objects include a name of the receiving banking institution, a routing number, an account number, and amount,
+ * a postedDate, and the employeeID of the recipient.
+ */
 public class Payment {
     private String institution;
     private String routingNumber;

@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
+/**
+ * This class represents a calendar of all Employee's PTO requests.
+ * The PTOCalendar contains a reference to view the calendar as well as a collection of all
+ * PTORequests for each EmployeeID.
+ */
 public class PTOCalendar {
     private String calendarURL;
     private HashMap<UUID, ArrayList<PTORequest>> employeePTO;
