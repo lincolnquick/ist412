@@ -2,6 +2,7 @@ package com.buffettinc.hrms.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.UUID;
 
 /**
@@ -26,6 +27,7 @@ public class Employee {
     private UUID manager;
     private PTOBalance ptoBalance;
     private Payroll payrollInfo;
+    private HashMap<UUID, Message> messages;
 
     public Employee(String firstName, String lastName, String streetAddress, String city, String state, String zip, String phone, String email, LocalDate hireDate, String department, String position, UUID manager) {
         this.employeeID = UUID.randomUUID();
@@ -43,6 +45,7 @@ public class Employee {
         this.manager = manager;
         this.ptoBalance = new PTOBalance(employeeID, 0,0,0);
         this.payrollInfo = new Payroll(employeeID, 0, null, null, null);
+        this.messages = new HashMap<>();
     }
 
     public Employee(){
@@ -61,10 +64,12 @@ public class Employee {
         this.manager = null;
         this.ptoBalance = new PTOBalance(employeeID, 0,0,0);
         this.payrollInfo = new Payroll(employeeID, 0, null, null, null);
+        this.messages = new HashMap<>();
     }
 
-
-
+    public Message sendMessage(UUID recipientID, String title, String message){
+        return new Message(employeeID, recipientID, title, message);
+    }
     public UUID getEmployeeID() {
         return employeeID;
     }
@@ -195,4 +200,5 @@ public class Employee {
     public PTORequest requestPTO(LocalDate startDate, LocalDate endDate, PTOReason reason){
         return new PTORequest(employeeID, startDate, endDate, reason);
     }
+
 }

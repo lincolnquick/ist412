@@ -17,8 +17,8 @@ public class TrainingModule {
     private Duration estimatedDuration;
     private UUID authorID;
 
-    public TrainingModule(UUID trainingID, String trainingName, String description, URL trainingURL, Duration estimatedDuration, UUID authorID) {
-        this.trainingID = trainingID;
+    public TrainingModule(String trainingName, String description, URL trainingURL, Duration estimatedDuration, UUID authorID) {
+        this.trainingID = UUID.randomUUID();
         this.trainingName = trainingName;
         this.description = description;
         this.trainingURL = trainingURL;

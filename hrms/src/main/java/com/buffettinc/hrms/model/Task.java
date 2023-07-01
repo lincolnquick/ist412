@@ -17,8 +17,8 @@ public class Task {
     private UUID assignedTo;
     private boolean isCompleted;
 
-    public Task(UUID taskID, String name, String description, LocalDate dueDate, UUID assignedBy, UUID assignedTo) {
-        this.taskID = taskID;
+    public Task(String name, String description, LocalDate dueDate, UUID assignedBy, UUID assignedTo) {
+        this.taskID = UUID.randomUUID();
         this.name = name;
         this.description = description;
         this.dueDate = dueDate;
