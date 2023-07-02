@@ -15,8 +15,8 @@ public class EmployeeTrainingRecord {
     private LocalDate completionDate;
     private boolean isCompleted;
 
-    public EmployeeTrainingRecord(UUID recordID, UUID employeeID, UUID trainingModuleID) {
-        this.recordID = recordID;
+    public EmployeeTrainingRecord(UUID employeeID, UUID trainingModuleID) {
+        this.recordID = UUID.randomUUID();
         this.employeeID = employeeID;
         this.trainingModuleID = trainingModuleID;
         this.completionDate = null;

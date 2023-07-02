@@ -16,11 +16,11 @@ public class Applicant {
     private String zip;
     private String phone;
     private String email;
-    private String status; // Status of the application
+    private JobApplication.JobApplicationStatus status; // Status of the application
     private UUID jobID; // ID of the job applied for
     private URL resume; // Link of the applicant's resume
 
-    public Applicant(String firstName, String lastName, String streetAddress, String city, String state, String zip, String phone, String email, String status, UUID jobID, URL resume) {
+    public Applicant(String firstName, String lastName, String streetAddress, String city, String state, String zip, String phone, String email, JobApplication.JobApplicationStatus status, UUID jobID, URL resume) {
         this.applicantID = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -107,11 +107,11 @@ public class Applicant {
         this.email = email;
     }
 
-    public String getStatus() {
+    public JobApplication.JobApplicationStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(JobApplication.JobApplicationStatus status) {
         this.status = status;
     }
 

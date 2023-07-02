@@ -2,6 +2,7 @@ package com.buffettinc.hrms.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -27,7 +28,9 @@ public class Employee {
     private UUID manager;
     private PTOBalance ptoBalance;
     private Payroll payrollInfo;
-    private HashMap<UUID, Message> messages;
+    private ArrayList<Message> messages;
+    private ArrayList<Notification> notifications;
+    private ArrayList<EmployeeTrainingRecord> trainingRecords;
 
     public Employee(String firstName, String lastName, String streetAddress, String city, String state, String zip, String phone, String email, LocalDate hireDate, String department, String position, UUID manager) {
         this.employeeID = UUID.randomUUID();
@@ -45,7 +48,9 @@ public class Employee {
         this.manager = manager;
         this.ptoBalance = new PTOBalance(employeeID, 0,0,0);
         this.payrollInfo = new Payroll(employeeID, 0, null, null, null);
-        this.messages = new HashMap<>();
+        this.messages = new ArrayList<>();
+        this.notifications = new ArrayList<>();
+        this.trainingRecords = new ArrayList<>();
     }
 
     public Employee(){
@@ -64,12 +69,29 @@ public class Employee {
         this.manager = null;
         this.ptoBalance = new PTOBalance(employeeID, 0,0,0);
         this.payrollInfo = new Payroll(employeeID, 0, null, null, null);
-        this.messages = new HashMap<>();
+        this.messages = new ArrayList<>();
+        this.notifications = new ArrayList<>();
+        this.trainingRecords = new ArrayList<>();
     }
 
     public Message sendMessage(UUID recipientID, String title, String message){
-        return new Message(employeeID, recipientID, title, message);
+        Message newMessage = new Message(employeeID, recipientID, title, message);
+        messages.add(newMessage);
+        return newMessage;
     }
+
+    public Notification newNotification(String message){
+        Notification newNotification = new Notification(this.getEmployeeID(), message);
+        notifications.add(newNotification);
+        return newNotification;
+    }
+
+    public EmployeeTrainingRecord completeTraining(UUID trainingID){
+        EmployeeTrainingRecord newTrainingRecord = new EmployeeTrainingRecord(this.getEmployeeID(), trainingID);
+        this.trainingRecords.add(newTrainingRecord);
+        return newTrainingRecord;
+    }
+
     public UUID getEmployeeID() {
         return employeeID;
     }

@@ -1,6 +1,7 @@
 package com.buffettinc.hrms.model;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.UUID;
 
 /**
@@ -9,17 +10,25 @@ import java.util.UUID;
  */
 public class Manager extends Employee{
     private String permissionLevel;
+    private HashMap<UUID, Task> tasks;
 
     public Manager() {
         super();
         this.permissionLevel = "";
+        tasks = new HashMap<>();
     }
 
     public Task assignTask(UUID employeeID, String name, String description, LocalDate dueDate){
-        return new Task(name, description, dueDate, this.getEmployeeID(), employeeID);
+        Task newTask = new Task(name, description, dueDate, this.getEmployeeID(), employeeID);
+        tasks.put(employeeID, newTask);
+        return newTask;
     }
     public void reviewJobApplication(JobApplication application){
 
+    }
+
+    public JobApplication approveJobApplication (JobApplication application){
+        return null;
     }
 
     public void approveHours(Timesheet timesheet){
