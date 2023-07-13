@@ -2,6 +2,7 @@ package com.buffettinc.hrms.service.pto;
 
 import com.buffettinc.hrms.model.pto.PTOCalendar;
 import com.buffettinc.hrms.model.pto.PTORequest;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;

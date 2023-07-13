@@ -1,6 +1,7 @@
 package com.buffettinc.hrms.service.pto;
 
 import com.buffettinc.hrms.model.pto.PTOBalance;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
@@ -12,6 +13,7 @@ import java.util.UUID;
  * @version 1.0
  * @since 2023-07-13
  */
+@Service
 public class PTOBalanceServiceImpl implements PTOBalanceService {
 
     @Override

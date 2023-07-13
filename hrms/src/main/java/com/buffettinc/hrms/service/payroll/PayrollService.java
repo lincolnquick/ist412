@@ -2,6 +2,7 @@ package com.buffettinc.hrms.service.payroll;
 
 import com.buffettinc.hrms.model.payroll.Payroll;
 import com.buffettinc.hrms.model.time.Timesheet;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;

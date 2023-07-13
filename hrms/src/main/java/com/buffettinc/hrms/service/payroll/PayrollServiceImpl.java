@@ -5,6 +5,8 @@ import com.buffettinc.hrms.model.time.Timesheet;
 import com.buffettinc.hrms.repository.payroll.PayrollRepository;
 
 import jakarta.inject.Inject;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -16,6 +18,7 @@ import java.util.UUID;
  * @version 1.0
  * @since 2023-07-13
  */
+@Service
 public class PayrollServiceImpl implements PayrollService {
 
     @Inject

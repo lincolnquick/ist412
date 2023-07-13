@@ -63,6 +63,14 @@ public class PTORequest implements Serializable {
         this.ptoCalendar = null;
     }
 
+    public UUID getRequestID() {
+        return requestID;
+    }
+
+    public void setRequestID(UUID requestID) {
+        this.requestID = requestID;
+    }
+
     public Employee getEmployeeID() {
         return employee;
     }
