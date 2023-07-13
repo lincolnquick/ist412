@@ -1,5 +1,11 @@
 com.buffettinc.hrms
+com.buffettinc.hrms.controller.communication
 com.buffettinc.hrms.controller.employee
+com.buffettinc.hrms.controller.job
+com.buffettinc.hrms.controller.payroll
+com.buffettinc.hrms.controller.pto
+com.buffettinc.hrms.controller.time
+com.buffettinc.hrms.controller.training
 com.buffettinc.hrms.model.communication
 com.buffettinc.hrms.model.employee
 com.buffettinc.hrms.model.job
