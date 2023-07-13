@@ -3,6 +3,7 @@ package com.buffettinc.hrms.repository.payroll;
 import com.buffettinc.hrms.model.payroll.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -15,5 +16,6 @@ import java.util.UUID;
  * @since 2023-07-13
  */
 public interface PaymentRepository extends JpaRepository<Payment, UUID> {
+    List<Payment> findByEmployeeID(UUID employeeID);
     // custom methods if necessary
 }
