@@ -1,7 +1,6 @@
 package com.buffettinc.hrms.repository;
 
-import com.buffettinc.hrms.model.Employee;
-import com.buffettinc.hrms.model.Payment;
+import com.buffettinc.hrms.model.payroll.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

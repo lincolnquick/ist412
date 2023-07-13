@@ -1,7 +1,6 @@
 package com.buffettinc.hrms.repository;
 
-import com.buffettinc.hrms.model.Employee;
-import com.buffettinc.hrms.model.EmployeeTrainingRecord;
+import com.buffettinc.hrms.model.training.EmployeeTrainingRecord;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

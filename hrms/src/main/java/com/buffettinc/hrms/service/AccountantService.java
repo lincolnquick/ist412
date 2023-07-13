@@ -1,6 +1,6 @@
 package com.buffettinc.hrms.service;
 
-import com.buffettinc.hrms.model.Accountant;
+import com.buffettinc.hrms.model.employee.Accountant;
 import org.springframework.data.domain.Page;
 
 import java.util.List;

@@ -1,7 +1,6 @@
 package com.buffettinc.hrms.repository;
 
-import com.buffettinc.hrms.model.Employee;
-import com.buffettinc.hrms.model.PTORequest;
+import com.buffettinc.hrms.model.pto.PTORequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

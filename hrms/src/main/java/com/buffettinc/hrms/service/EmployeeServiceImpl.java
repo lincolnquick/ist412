@@ -1,6 +1,6 @@
 package com.buffettinc.hrms.service;
 
-import com.buffettinc.hrms.model.Employee;
+import com.buffettinc.hrms.model.employee.Employee;
 import com.buffettinc.hrms.repository.EmployeeRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
