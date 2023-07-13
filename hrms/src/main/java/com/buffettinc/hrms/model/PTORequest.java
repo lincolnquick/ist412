@@ -17,8 +17,9 @@ public class PTORequest implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID requestID;
-    @Column(name="employee")
-    private UUID employeeID;
+    @ManyToOne
+    @JoinColumn(name="employeeID")
+    private Employee employee;
     @Column(name="start")
     private LocalDate startDate;
     @Column(name="end")
@@ -30,9 +31,9 @@ public class PTORequest implements Serializable {
     @Column(name="approver")
     private UUID approverID;
 
-    public PTORequest(UUID employeeID, LocalDate startDate, LocalDate endDate, PTOReason reason) {
+    public PTORequest(Employee employee, LocalDate startDate, LocalDate endDate, PTOReason reason) {
         this.requestID = UUID.randomUUID();
-        this.employeeID = employeeID;
+        this.employee = employee;
         this.startDate = startDate;
         this.endDate = endDate;
         this.reason = reason;
@@ -42,7 +43,7 @@ public class PTORequest implements Serializable {
 
     public PTORequest() {
         this.requestID = UUID.randomUUID();
-        this.employeeID = null;
+        this.employee = null;
         this.startDate = LocalDate.MIN;
         this.endDate = LocalDate.MIN;
         this.reason = null;
@@ -50,12 +51,12 @@ public class PTORequest implements Serializable {
         this.approverID = null;
     }
 
-    public UUID getEmployeeID() {
-        return employeeID;
+    public Employee getEmployeeID() {
+        return employee;
     }
 
-    public void setEmployeeID(UUID employeeID) {
-        this.employeeID = employeeID;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public UUID getApproverID() {

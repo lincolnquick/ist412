@@ -246,7 +246,7 @@ public class Employee implements Serializable{
     }
 
     public PTORequest requestPTO(LocalDate startDate, LocalDate endDate, PTOReason reason){
-        return new PTORequest(employeeID, startDate, endDate, reason);
+        return new PTORequest(this, startDate, endDate, reason);
     }
 
 }

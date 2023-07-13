@@ -17,39 +17,25 @@ public class PTOCalendar implements Serializable {
     private UUID calendarID;
     @Column(name="url")
     private String calendarURL;
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name = "employee_ptocalendar",
-        joinColumns = {@JoinColumn(name="employeeID")},
-            inverseJoinColumns = {@JoinColumn(name = "employeeID")})
 
-    private HashMap<UUID, List<PTORequest>> employeePTO;
+    @OneToMany(mappedBy = "employeePTO", cascade = CascadeType.ALL)
+    private List<PTORequest> employeePTO;
 
     public PTOCalendar(){
         this.calendarID = UUID.randomUUID();
-        this.employeePTO = new HashMap<>();
+        this.employeePTO = new ArrayList<>();
     }
 
     public void addPTORequest(UUID employeeID, PTORequest request){
-        ArrayList<PTORequest> requests = this.employeePTO.getOrDefault(employeeID, new ArrayList<>());
-        requests.add(request);
-        this.employeePTO.put(employeeID, requests);
+
     }
 
     public void removePTORequest(UUID employeeID, PTORequest request){
-        ArrayList<PTORequest> requests = this.employeePTO.get(employeeID);
-        if (requests != null){
-            requests.remove(request);
-            this.employeePTO.put(employeeID, requests);
-        }
+
     }
 
     public void updatePTORequest(UUID employeeID, PTORequest previousRequest, PTORequest newRequest){
-        ArrayList<PTORequest> requests = this.employeePTO.get(employeeID);
-        if (requests != null && requests.contains(previousRequest)) {
-            int index = requests.indexOf(previousRequest);
-            requests.set(index, newRequest);
-            this.employeePTO.put(employeeID, requests);
-        }
+
     }
 
 }
