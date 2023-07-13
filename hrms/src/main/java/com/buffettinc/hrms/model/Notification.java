@@ -15,23 +15,24 @@ public class Notification implements Serializable {
     @Id
     @GeneratedValue (strategy = GenerationType.UUID)
     private UUID notificationID;
-    @Column(name="employee")
-    private UUID employeeID;
+    @ManyToOne
+    @JoinColumn(name="employee", referencedColumnName = "employeeID")
+    private Employee employee;
     @Column(name="message")
     private String message;
     @Column(name="timestamp")
     private LocalDateTime timestamp;
 
-    public Notification(UUID employeeID, String message) {
+    public Notification(Employee employee, String message) {
         this.notificationID = UUID.randomUUID();
-        this.employeeID = employeeID;
+        this.employee = employee;
         this.message = message;
         this.timestamp = LocalDateTime.now();
     }
 
     public Notification() {
         this.notificationID = UUID.randomUUID();
-        this.employeeID = null;
+        this.employee = null;
         this.message = null;
         this.timestamp = LocalDateTime.now();
     }
@@ -44,12 +45,12 @@ public class Notification implements Serializable {
         this.notificationID = notificationID;
     }
 
-    public UUID getEmployeeID() {
-        return employeeID;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeID(UUID employeeID) {
-        this.employeeID = employeeID;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public String getMessage() {

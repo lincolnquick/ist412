@@ -18,7 +18,7 @@ public class PTOCalendar implements Serializable {
     @Column(name="url")
     private String calendarURL;
 
-    @OneToMany(mappedBy = "employeePTO", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "ptoCalendar", cascade = CascadeType.ALL)
     private List<PTORequest> employeePTO;
 
     public PTOCalendar(){

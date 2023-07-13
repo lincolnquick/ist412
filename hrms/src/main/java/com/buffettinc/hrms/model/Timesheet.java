@@ -17,39 +17,53 @@ import java.util.*;
 public class Timesheet implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID employeeID;
+    private UUID timesheetID;
+    @ManyToOne
+    @JoinColumn(name="payrollID")
+    private Payroll payroll;
     @Column(name = "start")
     private LocalDate periodStart;
     @Column(name = "end")
     private LocalDate periodEnd;
     @ManyToMany(cascade = CascadeType.MERGE)
-
-    @JoinTable(name = "timesheet_shifts",
-        joinColumns = {@JoinColumn(name="employeeID")},
-            inverseJoinColumns = {@JoinColumn(name = "employeeID")})
-
-    private ArrayList<ShiftEntry> shifts;
+    @JoinTable(
+            name = "timesheet_shifts",
+            joinColumns = {@JoinColumn(name="timesheet_id", referencedColumnName = "timesheetID")},
+            inverseJoinColumns = {@JoinColumn(name = "shift_id", referencedColumnName = "shiftID")}
+    )
+    private List<ShiftEntry> shifts;
     @Column(name="approved")
     private boolean isApproved;
-    @Column(name = "approverID")
-    private UUID approverID;
+    @ManyToOne
+    @JoinColumn(name = "approverID")
+    private Employee approver;
 
-    public Timesheet(UUID employeeID, LocalDate periodStart, LocalDate periodEnd) {
-        this.employeeID = employeeID;
+    public Timesheet(Payroll payroll, LocalDate periodStart, LocalDate periodEnd) {
+        this.timesheetID = UUID.randomUUID();
+        this.payroll = payroll;
         this.periodStart = periodStart;
         this.periodEnd = periodEnd;
         this.shifts = new ArrayList<>();
         this.isApproved = false;
-        this.approverID = null;
+        this.approver = null;
     }
 
     public Timesheet() {
-        this.employeeID = null;
+        this.timesheetID = UUID.randomUUID();
+        this.payroll = null;
         this.periodStart = null;
         this.periodEnd = null;
         this.shifts = new ArrayList<>();
         this.isApproved = false;
-        this.approverID = null;
+        this.approver = null;
+    }
+
+    public UUID getTimesheetID() {
+        return timesheetID;
+    }
+
+    public void setTimesheetID(UUID timesheetID) {
+        this.timesheetID = timesheetID;
     }
 
     public void addShift(ShiftEntry shift){
@@ -60,17 +74,21 @@ public class Timesheet implements Serializable{
         shifts.remove(shift);
     }
 
-    public void approveTimesheet(UUID managerID){
+    public void approveTimesheet(Employee manager){
         this.isApproved = true;
-        this.approverID = managerID;
+        this.approver = manager;
     }
 
-    public UUID getEmployeeID() {
-        return employeeID;
+    public Payroll getPayroll() {
+        return payroll;
     }
 
-    public void setEmployeeID(UUID employeeID) {
-        this.employeeID = employeeID;
+    public void setPayroll(Payroll payroll) {
+        this.payroll = payroll;
+    }
+
+    public void setShifts(List<ShiftEntry> shifts) {
+        this.shifts = shifts;
     }
 
     public LocalDate getPeriodStart() {
@@ -89,7 +107,7 @@ public class Timesheet implements Serializable{
         this.periodEnd = periodEnd;
     }
 
-    public ArrayList<ShiftEntry> getShifts() {
+    public List<ShiftEntry> getShifts() {
         return shifts;
     }
 
@@ -105,11 +123,11 @@ public class Timesheet implements Serializable{
         isApproved = approved;
     }
 
-    public UUID getApproverID() {
-        return approverID;
+    public Employee getApprover() {
+        return approver;
     }
 
-    public void setApproverID(UUID approverID) {
-        this.approverID = approverID;
+    public void setApprover(Employee approver) {
+        this.approver = approver;
     }
 }

@@ -28,8 +28,13 @@ public class PTORequest implements Serializable {
     private PTOReason reason;
     @Column(name="status")
     private PTOStatus status;
-    @Column(name="approver")
-    private UUID approverID;
+    @ManyToOne
+    @JoinColumn(name="approver")
+    private Employee approver;
+
+    @ManyToOne
+    @JoinColumn(name="calendarID")
+    private PTOCalendar ptoCalendar;
 
     public PTORequest(Employee employee, LocalDate startDate, LocalDate endDate, PTOReason reason) {
         this.requestID = UUID.randomUUID();
@@ -38,7 +43,8 @@ public class PTORequest implements Serializable {
         this.endDate = endDate;
         this.reason = reason;
         this.status = PTOStatus.PENDING;
-        this.approverID = null;
+        this.approver = null;
+        this.ptoCalendar = null;
     }
 
     public PTORequest() {
@@ -48,7 +54,8 @@ public class PTORequest implements Serializable {
         this.endDate = LocalDate.MIN;
         this.reason = null;
         this.status = PTOStatus.PENDING;
-        this.approverID = null;
+        this.approver = null;
+        this.ptoCalendar = null;
     }
 
     public Employee getEmployeeID() {
@@ -59,12 +66,12 @@ public class PTORequest implements Serializable {
         this.employee = employee;
     }
 
-    public UUID getApproverID() {
-        return approverID;
+    public Employee getApprover() {
+        return approver;
     }
 
-    public void setApproverID(UUID approverID) {
-        this.approverID = approverID;
+    public void setApprover(Employee approver) {
+        this.approver = approver;
     }
 
     public LocalDate getStartDate() {
@@ -97,6 +104,14 @@ public class PTORequest implements Serializable {
 
     public void setStatus(PTOStatus status) {
         this.status = status;
+    }
+
+    public PTOCalendar getPtoCalendar() {
+        return ptoCalendar;
+    }
+
+    public void setPtoCalendar(PTOCalendar ptoCalendar) {
+        this.ptoCalendar = ptoCalendar;
     }
 }
  enum PTOReason {

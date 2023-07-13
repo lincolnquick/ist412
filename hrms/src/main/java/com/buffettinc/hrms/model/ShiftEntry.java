@@ -4,6 +4,8 @@ import java.time.*;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -21,6 +23,9 @@ public class ShiftEntry implements Serializable{
     private LocalDateTime start;
     @Column (name = "end")
     private LocalDateTime end;
+
+    @ManyToMany(mappedBy = "shifts")
+    private List<Timesheet> timesheets = new ArrayList<>();
 
     public ShiftEntry(LocalDateTime start, LocalDateTime end) {
         this.start = start;

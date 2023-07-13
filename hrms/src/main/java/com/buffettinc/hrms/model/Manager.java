@@ -30,9 +30,9 @@ public class Manager extends Employee{
         tasks = new HashMap<>();
     }
 
-    public Task assignTask(UUID employeeID, String name, String description, LocalDate dueDate){
-        Task newTask = new Task(name, description, dueDate, this.getEmployeeID(), employeeID);
-        tasks.put(employeeID, newTask);
+    public Task assignTask(Employee employee, String name, String description, LocalDate dueDate){
+        Task newTask = new Task(name, description, dueDate, this, employee);
+        tasks.put(employee.getEmployeeID(), newTask);
         return newTask;
     }
 

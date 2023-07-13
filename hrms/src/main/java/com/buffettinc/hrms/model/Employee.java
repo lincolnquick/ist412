@@ -47,8 +47,8 @@ public class Employee implements Serializable{
     @JoinColumn(name="managerID")
     private Manager manager;
 
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PTORequest> ptoRequests;
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private List<PTORequest> ptoRequests = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ptobalance_emp", referencedColumnName = "employeeID")
@@ -60,13 +60,13 @@ public class Employee implements Serializable{
 
     @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Message> sentMessages = new ArrayList<>();
-
     @OneToMany(mappedBy = "recipient", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Message> receivedMessages = new ArrayList<>();
-    @OneToMany(mappedBy = "employeeID", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Notification> notifications = new ArrayList<>();
-    @OneToMany(mappedBy = "employeeID", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<EmployeeTrainingRecord> trainingRecords = new ArrayList<>();
+
 
     public Employee(String firstName, String lastName, String streetAddress, String city, String state, String zip,
                     String phone, String email, LocalDate hireDate, String department, String position,
@@ -109,13 +109,13 @@ public class Employee implements Serializable{
     }
 
     public Notification newNotification(String message){
-        Notification newNotification = new Notification(this.getEmployeeID(), message);
+        Notification newNotification = new Notification(this, message);
         notifications.add(newNotification);
         return newNotification;
     }
 
     public EmployeeTrainingRecord completeTraining(UUID trainingID){
-        EmployeeTrainingRecord newTrainingRecord = new EmployeeTrainingRecord(this.getEmployeeID(), trainingID);
+        EmployeeTrainingRecord newTrainingRecord = new EmployeeTrainingRecord(this, trainingID);
         this.trainingRecords.add(newTrainingRecord);
         return newTrainingRecord;
     }
@@ -237,7 +237,7 @@ public class Employee implements Serializable{
     }
 
     public Timesheet createTimesheet(LocalDate periodStart, LocalDate periodEnd){
-        return new Timesheet(employeeID, periodStart, periodEnd);
+        return new Timesheet(this.payrollInfo, periodStart, periodEnd);
     }
     public ShiftEntry enterTime(LocalDateTime startTime, LocalDateTime endTime){
         return new ShiftEntry(startTime, endTime);

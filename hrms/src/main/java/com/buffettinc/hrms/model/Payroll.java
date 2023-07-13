@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -18,7 +19,11 @@ import java.util.UUID;
 public class Payroll implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID employeeID;
+    private UUID payrollID;
+
+    @OneToOne
+    @JoinColumn(name="employeeID")
+    private Employee employee;
     @Column(name="hourlyRate")
     private float hourlyRate;
     @Column(name="institution")
@@ -27,15 +32,16 @@ public class Payroll implements Serializable {
     private String routingNumber;
     @Column(name="account")
     private String accountNumber;
-    @ManyToMany (cascade = CascadeType.MERGE)
-    @JoinTable(name = "payroll_timesheets",
-        joinColumns = {@JoinColumn(name= "employeeID")},
-            inverseJoinColumns = {@JoinColumn(name = "employeeID")})
 
-    private ArrayList<Timesheet> timesheetList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="payroll")
+    private List<Timesheet> timesheetList;
 
-    public Payroll(UUID employeeID, float hourlyRate, String institutionName, String routingNumber, String accountNumber) {
-        this.employeeID = employeeID;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="payroll")
+    private List<Timesheet> approvedTimesheetList;
+
+    public Payroll(Employee employee, float hourlyRate, String institutionName, String routingNumber, String accountNumber) {
+        this.payrollID = UUID.randomUUID();
+        this.employee = employee;
         this.hourlyRate = hourlyRate;
         this.institutionName = institutionName;
         this.routingNumber = routingNumber;
@@ -44,7 +50,8 @@ public class Payroll implements Serializable {
     }
 
     public Payroll() {
-        this.employeeID = null;
+        this.payrollID = UUID.randomUUID();
+        this.employee = null;
         this.hourlyRate = 0.0f;
         this.institutionName = null;
         this.routingNumber = null;
@@ -52,12 +59,36 @@ public class Payroll implements Serializable {
         this.timesheetList = new ArrayList<>();
     }
 
-    public UUID getEmployeeID() {
-        return employeeID;
+    public UUID getPayrollID() {
+        return payrollID;
     }
 
-    public void setEmployeeID(UUID employeeID) {
-        this.employeeID = employeeID;
+    public void setPayrollID(UUID payrollID) {
+        this.payrollID = payrollID;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public List<Timesheet> getTimesheetList() {
+        return timesheetList;
+    }
+
+    public void setTimesheetList(List<Timesheet> timesheetList) {
+        this.timesheetList = timesheetList;
+    }
+
+    public List<Timesheet> getApprovedTimesheetList() {
+        return approvedTimesheetList;
+    }
+
+    public void setApprovedTimesheetList(List<Timesheet> approvedTimesheetList) {
+        this.approvedTimesheetList = approvedTimesheetList;
     }
 
     public float getHourlyRate() {

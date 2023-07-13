@@ -17,8 +17,9 @@ public class EmployeeTrainingRecord implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID recordID;
-    @Column(name="employee")
-    private UUID employeeID;
+    @ManyToOne
+    @JoinColumn(name="employee", referencedColumnName = "employeeID")
+    private Employee employee;
     @Column(name="trainingModule")
     private UUID trainingModuleID;
     @Column(name="completionDate")
@@ -26,9 +27,9 @@ public class EmployeeTrainingRecord implements Serializable {
     @Column(name="isCompleted")
     private boolean isCompleted;
 
-    public EmployeeTrainingRecord(UUID employeeID, UUID trainingModuleID) {
+    public EmployeeTrainingRecord(Employee employee, UUID trainingModuleID) {
         this.recordID = UUID.randomUUID();
-        this.employeeID = employeeID;
+        this.employee = employee;
         this.trainingModuleID = trainingModuleID;
         this.completionDate = null;
         this.isCompleted = false;
@@ -36,7 +37,7 @@ public class EmployeeTrainingRecord implements Serializable {
 
     public EmployeeTrainingRecord() {
         this.recordID = UUID.randomUUID();
-        this.employeeID = null;
+        this.employee = null;
         this.trainingModuleID = null;
         this.completionDate = null;
         this.isCompleted = false;
@@ -50,12 +51,12 @@ public class EmployeeTrainingRecord implements Serializable {
         this.recordID = recordID;
     }
 
-    public UUID getEmployeeID() {
-        return employeeID;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeID(UUID employeeID) {
-        this.employeeID = employeeID;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public UUID getTrainingModuleID() {

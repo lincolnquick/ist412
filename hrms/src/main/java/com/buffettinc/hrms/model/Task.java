@@ -23,14 +23,16 @@ public class Task implements Serializable {
     private String description;
     @Column(name="due")
     private LocalDate dueDate;
-    @Column(name="assignedBy")
-    private UUID assignedBy;
-    @Column(name="assignedTo")
-    private UUID assignedTo;
+    @ManyToOne
+    @JoinColumn(name="assignedBy", referencedColumnName = "employeeID")
+    private Employee assignedBy;
+    @ManyToOne
+    @JoinColumn(name="assignedTo", referencedColumnName = "employeeID")
+    private Employee assignedTo;
     @Column(name="isCompleted")
     private boolean isCompleted;
 
-    public Task(String name, String description, LocalDate dueDate, UUID assignedBy, UUID assignedTo) {
+    public Task(String name, String description, LocalDate dueDate, Employee assignedBy, Employee assignedTo) {
         this.taskID = UUID.randomUUID();
         this.name = name;
         this.description = description;
@@ -82,19 +84,19 @@ public class Task implements Serializable {
         this.dueDate = dueDate;
     }
 
-    public UUID getAssignedBy() {
+    public Employee getAssignedBy() {
         return assignedBy;
     }
 
-    public void setAssignedBy(UUID assignedBy) {
+    public void setAssignedBy(Employee assignedBy) {
         this.assignedBy = assignedBy;
     }
 
-    public UUID getAssignedTo() {
+    public Employee getAssignedTo() {
         return assignedTo;
     }
 
-    public void setAssignedTo(UUID assignedTo) {
+    public void setAssignedTo(Employee assignedTo) {
         this.assignedTo = assignedTo;
     }
 
