@@ -15,10 +15,12 @@ public class Message implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID messageID;
-    @Column(name="sender")
-    private UUID senderID;
-    @Column(name="recipient")
-    private UUID recipientID;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sender")
+    private Employee sender;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "recipient")
+    private Employee recipient;
     @Column(name="timestamp")
     private LocalDateTime timestamp;
     @Column(name="title")
@@ -28,10 +30,10 @@ public class Message implements Serializable {
     @Column(name="isRead")
     private boolean isRead;
 
-    public Message(UUID senderID, UUID recipientID, String title, String message) {
+    public Message(Employee sender, Employee recipient, String title, String message) {
         this.messageID = UUID.randomUUID();
-        this.senderID = senderID;
-        this.recipientID = recipientID;
+        this.sender = sender;
+        this.recipient = recipient;
         this.title = title;
         this.message = message;
         this.isRead = false;
@@ -40,8 +42,8 @@ public class Message implements Serializable {
 
     public Message() {
         this.messageID = UUID.randomUUID();
-        this.senderID = null;
-        this.recipientID = null;
+        this.sender = null;
+        this.recipient = null;
         this.title = null;
         this.message = null;
         this.isRead = false;
@@ -56,20 +58,20 @@ public class Message implements Serializable {
         this.messageID = messageID;
     }
 
-    public UUID getSenderID() {
-        return senderID;
+    public Employee getSender() {
+        return sender;
     }
 
-    public void setSenderID(UUID senderID) {
-        this.senderID = senderID;
+    public void setSender(Employee sender) {
+        this.sender = sender;
     }
 
-    public UUID getRecipientID() {
-        return recipientID;
+    public Employee getRecipient() {
+        return recipient;
     }
 
-    public void setRecipientID(UUID recipientID) {
-        this.recipientID = recipientID;
+    public void setRecipient(Employee recipient) {
+        this.recipient = recipient;
     }
 
     public LocalDateTime getTimestamp() {

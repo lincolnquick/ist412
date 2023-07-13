@@ -3,7 +3,9 @@ package com.buffettinc.hrms.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -18,6 +20,10 @@ public class Manager extends Employee{
     @ManyToMany
     private HashMap<UUID, Task> tasks;
 
+    @OneToMany(mappedBy = "manager")
+    private List<Employee> subordinates = new ArrayList<>();
+
+
     public Manager() {
         super();
         this.permissionLevel = "";
@@ -28,6 +34,16 @@ public class Manager extends Employee{
         Task newTask = new Task(name, description, dueDate, this.getEmployeeID(), employeeID);
         tasks.put(employeeID, newTask);
         return newTask;
+    }
+
+    public void addSubordinate(Employee employee){
+        subordinates.add(employee);
+        employee.setManager(this);
+    }
+
+    public void removeSubordinate(Employee employee){
+        subordinates.remove(employee);
+        employee.setManager(null);
     }
     public void reviewJobApplication(JobApplication application){
 

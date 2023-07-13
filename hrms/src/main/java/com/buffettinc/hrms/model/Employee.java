@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.io.Serializable;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -42,23 +43,34 @@ public class Employee implements Serializable{
    private String department;
     @Column(name="position")
    private String position;
-    @Column(name="manager")
-    private UUID manager;
+    @ManyToOne
+    @JoinColumn(name="managerID")
+    private Manager manager;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PTORequest> ptoRequests;
 
-    @JoinTable(name = "employee_ptobalance",
-            joinColumns = {@JoinColumn(name = "employeeID")},
-            inverseJoinColumns = {@JoinColumn(name = "employeeID")})
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ptobalance_emp", referencedColumnName = "employeeID")
     private PTOBalance ptoBalance;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "payroll_emp", referencedColumnName = "employeeID")
     private Payroll payrollInfo;
-    private ArrayList<Message> messages;
-    private ArrayList<Notification> notifications;
-    private ArrayList<EmployeeTrainingRecord> trainingRecords;
 
-    public Employee(String firstName, String lastName, String streetAddress, String city, String state, String zip, String phone, String email, LocalDate hireDate, String department, String position, UUID manager) {
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Message> sentMessages = new ArrayList<>();
+
+    @OneToMany(mappedBy = "recipient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Message> receivedMessages = new ArrayList<>();
+    @OneToMany(mappedBy = "employeeID", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Notification> notifications = new ArrayList<>();
+    @OneToMany(mappedBy = "employeeID", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<EmployeeTrainingRecord> trainingRecords = new ArrayList<>();
+
+    public Employee(String firstName, String lastName, String streetAddress, String city, String state, String zip,
+                    String phone, String email, LocalDate hireDate, String department, String position,
+                    Manager manager) {
         this.employeeID = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -72,11 +84,6 @@ public class Employee implements Serializable{
         this.department = department;
         this.position = position;
         this.manager = manager;
-        this.ptoBalance = new PTOBalance(employeeID, 0,0,0);
-        this.payrollInfo = new Payroll(employeeID, 0, null, null, null);
-        this.messages = new ArrayList<>();
-        this.notifications = new ArrayList<>();
-        this.trainingRecords = new ArrayList<>();
     }
 
     public Employee(){
@@ -93,16 +100,11 @@ public class Employee implements Serializable{
         this.department = "";
         this.position = "";
         this.manager = null;
-        this.ptoBalance = new PTOBalance(employeeID, 0,0,0);
-        this.payrollInfo = new Payroll(employeeID, 0, null, null, null);
-        this.messages = new ArrayList<>();
-        this.notifications = new ArrayList<>();
-        this.trainingRecords = new ArrayList<>();
     }
 
-    public Message sendMessage(UUID recipientID, String title, String message){
-        Message newMessage = new Message(employeeID, recipientID, title, message);
-        messages.add(newMessage);
+    public Message sendMessage(Employee recipient, String title, String message){
+        Message newMessage = new Message(this, recipient, title, message);
+        sentMessages.add(newMessage);
         return newMessage;
     }
 
@@ -206,11 +208,11 @@ public class Employee implements Serializable{
         this.position = position;
     }
 
-    public UUID getManager() {
+    public Manager getManager() {
         return manager;
     }
 
-    public void setManager(UUID manager) {
+    public void setManager(Manager manager) {
         this.manager = manager;
     }
 
