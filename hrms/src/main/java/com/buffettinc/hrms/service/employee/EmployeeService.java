@@ -15,7 +15,7 @@ import java.util.List;
  * @since 2023-07-13
  */
 public interface EmployeeService {
-    Employee saveEmployee(Employee employee);
+    Employee createEmployee(Employee employee);
 
     List<Employee> getAllEmployees();
 

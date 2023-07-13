@@ -35,7 +35,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     /**
      * {@inheritDoc}
      */
-    public Employee saveEmployee(Employee employee) {
+    public Employee updateEmployee(Employee employee) {
+        return this.employeeRepository.save(employee);
+    }
+
+    @Override
+    /**
+     * {@inheritDoc}
+     */
+    public Employee createEmployee(Employee employee) {
         return this.employeeRepository.save(employee);
     }
 
@@ -55,13 +63,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         return this.employeeRepository.findById(id).orElse(null);
     }
 
-    @Override
-    /**
-     * {@inheritDoc}
-     */
-    public Employee updateEmployee(Employee employee) {
-        return this.employeeRepository.save(employee);
-    }
 
     @Override
     /**
