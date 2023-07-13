@@ -14,6 +14,9 @@ import java.util.UUID;
  * Each employee has an employeeID, first name, last name, address and contact info, a hire date,
  * department, position, and a reference to their manager, as well as PTOBalance and Payroll objects to manager
  * PTO balances and payroll information.
+ * @author IST 412 Group 5
+ * @version 1.0
+ * @since 2023-07-13
  */
 @Entity
 @Table(name="employee")

@@ -7,9 +7,13 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 /**
- * This class represents a PTORequest to be used by Employees of Buffett Inc.
+ * This class represents a PTORequest to be used by {@link Employee} of Buffett Inc.
  * Each PTORequest consists of a reference to the employee with their employeeID,
  * the start date of the request, end date, a reason, a status, and a reference to the approver.
+ *
+ * @author IST 412 Group 5
+ * @version 1.0
+ * @since 2023-07-13
  */
 @Entity
 @Table(name="ptorequest")

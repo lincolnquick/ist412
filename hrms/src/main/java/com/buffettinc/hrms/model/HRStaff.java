@@ -9,8 +9,12 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 /**
- * This class represents an HR Staff employee. This class contains all the properties and methods of the Employee class
+ * This class represents an HR Staff employee. This class contains all the properties and methods of the {@link Employee}
  * as well as a permissionLevel.
+ *
+ * @author IST 412 Group 5
+ * @version 1.0
+ * @since 2023-07-13
  */
 @Entity
 @Table(name="hrstaff")

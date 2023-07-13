@@ -8,10 +8,14 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * This class represents the Payroll information for an Employee of Buffett Inc.
+ * This class represents the Payroll information for an {@link Employee} of Buffett Inc.
  * Each Payroll object consists of a reference to the employee with an employeeID,
  * the employee's hourly rate, their direct deposit information including the institution name, routing number,
- * and account number, and a list of all the employee's timesheets.
+ * and account number, and a list of all the employee's {@link Timesheet}.
+ *
+ * @author IST 412 Group 5
+ * @version 1.0
+ * @since 2023-07-13
  */
 
 @Entity

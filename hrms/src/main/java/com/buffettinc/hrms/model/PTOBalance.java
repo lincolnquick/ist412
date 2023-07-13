@@ -6,10 +6,13 @@ import java.util.UUID;
 import java.io.Serializable;
 
 /**
- * This class represents an object to keep track of an Employee's PTO (paid time off) balances for Buffett Inc.
+ * This class represents an object to keep track of an {@link Employee}'s PTO (paid time off) balances for Buffett Inc.
  * Each PTOBalance object consists of a reference to the employee with the employeeID,
  * vacationTime, personalTime, and sickTime, as well as methods to accrue and use each time.
  *
+ * @author IST 412 Group 5
+ * @version 1.0
+ * @since 2023-07-13
  */
 
 @Entity

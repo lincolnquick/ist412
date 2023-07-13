@@ -6,11 +6,14 @@ import java.time.*;
 import java.util.*;
 
 /**
- * This class represents a Timesheet to be used by Employees of Buffett Inc.
+ * This class represents a Timesheet to be used by {@link Employee} of Buffett Inc.
  * Each timesheet consists of a reference to the Employee with their employeeID, the pay period start date, end date,
- * a list of ShiftEntries representing individual shifts by a single Employee, whether the Timesheet was approved,
- * and the employeeID of the approver.
+ * a list of ShiftEntries representing individual {@link ShiftEntry} by a single Employee, whether the Timesheet
+ * was approved, and a reference of the approver.
  *
+ * @author IST 412 Group 5
+ * @version 1.0
+ * @since 2023-07-13
  */
 @Entity
 @Table(name="timesheet")

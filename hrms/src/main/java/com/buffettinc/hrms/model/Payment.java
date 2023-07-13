@@ -7,9 +7,13 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 /**
- * This class represents a Payment made for a Paycheck for an Employee of Buffett Inc.
+ * This class represents a Payment made for a Paycheck for an {@link Employee} of Buffett Inc.
  * Payment objects include a name of the receiving banking institution, a routing number, an account number, and amount,
  * a postedDate, and the employeeID of the recipient.
+ *
+ * @author IST 412 Group 5
+ * @version 1.0
+ * @since 2023-07-13
  */
 @Entity
 @Table(name="payment")

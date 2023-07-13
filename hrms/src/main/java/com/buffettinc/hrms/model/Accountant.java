@@ -6,6 +6,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * This class represents an Accountant for Buffett Inc. An accountant is a specialized type of {@link Employee}.
+ *
+ * @author IST 412 Group 5
+ * @version 1.0
+ * @since 2023-07-13
+ */
 @Entity
 @Table(name="accountant")
 public class Accountant extends Employee{

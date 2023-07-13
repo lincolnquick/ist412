@@ -7,9 +7,13 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 /**
- * This class represents a single record to keep track of an employee's completion status of a training module.
- * Each EmployeeTrainingRecord consists of a recordID, a reference to the employeeID and trainingModuleID,
+ * This class represents a single record to keep track of an {@link Employee}'s completion status of a training module.
+ * Each EmployeeTrainingRecord consists of a recordID, a reference to the employeeID and {@link TrainingModule},
  * a completion date, and whether the training was completed.
+ *
+ * @author IST 412 Group 5
+ * @version 1.0
+ * @since 2023-07-13
  */
 @Entity
 @Table(name="trainingRecord")

@@ -7,7 +7,11 @@ import java.util.UUID;
 import java.time.LocalDateTime;
 
 /**
- * Class used to represent a Message sent or received by an Employee of Buffett Inc.
+ * Class used to represent a Message sent or received by an {@link Employee} of Buffett Inc.
+ *
+ * @author IST 412 Group 5
+ * @version 1.0
+ * @since 2023-07-13
  */
 @Entity
 @Table(name = "message")

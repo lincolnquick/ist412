@@ -10,7 +10,11 @@ import java.util.UUID;
 
 /**
  * This class represents a Manager employee for Buffett Inc. This class consists of all the properties and methods
- * of the Employee class as well as a permissionLevel.
+ * of the {@link Employee} class as well as a permissionLevel.
+ *
+ * @author IST 412 Group 5
+ * @version 1.0
+ * @since 2023-07-13
  */
 @Entity
 @Table(name="manager")

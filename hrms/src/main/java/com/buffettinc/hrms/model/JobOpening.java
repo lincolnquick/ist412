@@ -8,6 +8,10 @@ import java.time.LocalDate;
 /**
  * This class represents a job opening for Buffett Inc.
  * A job opening consists of a jobID, a title, department, description, and posting date.
+ *
+ * @author IST 412 Group 5
+ * @version 1.0
+ * @since 2023-07-13
  */
 @Entity
 @Table(name="jobOpening")

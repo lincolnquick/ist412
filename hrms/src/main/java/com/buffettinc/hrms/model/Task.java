@@ -7,9 +7,13 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 /**
- * This class represents a Task to be assigned by a Manager to an Employee of Buffett Inc.
+ * This class represents a Task to be assigned by a {@link Manager} to an {@link Employee} of Buffett Inc.
  * Each Task consists of a taskID, a name, description, dueDate, a reference to the assigned, and to the assigned employee,
  * and whether the task was completed.
+ *
+ * @author IST 412 Group 5
+ * @version 1.0
+ * @since 2023-07-13
  */
 @Entity
 @Table(name="task")

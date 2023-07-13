@@ -9,9 +9,14 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * This class represents a single shift of hours worked for an Employee of Buffett Inc to be saved in a Timesheet.
+ * This class represents a single shift of hours worked for an {@link Employee} of Buffett Inc to be saved
+ * in a {@link Timesheet}.
  * Each shiftEntry object consists of a start time and an end time, as well as a method
  * to calculate the hours of the shift.
+ *
+ * @author IST 412 Group 5
+ * @version 1.0
+ * @since 2023-07-13
  */
 @Entity
 @Table(name = "shiftEntry")

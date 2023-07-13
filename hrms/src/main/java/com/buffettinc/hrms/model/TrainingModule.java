@@ -8,9 +8,13 @@ import java.time.Duration;
 import java.util.UUID;
 
 /**
- * This class represents a Training Module to be used by employees of Buffett Inc.
+ * This class represents a Training Module to be used by {@link Employee} of Buffett Inc.
  * Each TrainingModule consists of a trainingID, a name, description, the URL to view the training, its estimated
  * duration (time to complete by an employee), and the employeeID of the author.
+ *
+ * @author IST 412 Group 5
+ * @version 1.0
+ * @since 2023-07-13
  */
 @Entity
 @Table(name="trainingModule")

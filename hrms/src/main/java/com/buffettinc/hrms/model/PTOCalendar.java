@@ -6,9 +6,13 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
- * This class represents a calendar of all Employee's PTO requests.
+ * This class represents a calendar of all {@link Employee}'s {@link PTORequest}s.
  * The PTOCalendar contains a reference to view the calendar as well as a collection of all
  * PTORequests for each EmployeeID.
+ *
+ * @author IST 412 Group 5
+ * @version 1.0
+ * @since 2023-07-13
  */
 @Entity
 public class PTOCalendar implements Serializable {

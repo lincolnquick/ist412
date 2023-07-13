@@ -8,6 +8,10 @@ import java.util.UUID;
 
 /**
  * This class represents a prospective Employee of Buffett Inc. who has submitted a job application.
+ *
+ * @author IST 412 Group 5
+ * @version 1.0
+ * @since 2023-07-13
  */
 @Entity
 @Table(name="applicant")

@@ -7,7 +7,11 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
- * This class represents a Notification sent within Buffett Inc's HRMS to an Employee.
+ * This class represents a Notification sent within Buffett Inc's HRMS to an {@link Employee}.
+ *
+ * @author IST 412 Group 5
+ * @version 1.0
+ * @since 2023-07-13
  */
 @Entity
 @Table(name="notification")

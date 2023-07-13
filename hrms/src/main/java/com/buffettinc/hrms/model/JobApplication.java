@@ -9,6 +9,10 @@ import java.util.UUID;
 /**
  * This class represents a single Job Application submited for a prospective Employee of Buffett Inc.
  * Each JobApplication consists of an applicationID, jobID, applicantID, applicationDate, and ApplicationStatus.
+ *
+ * @author IST 412 Group 5
+ * @version 1.0
+ * @since 2023-07-13
  */
 @Entity
 @Table(name="jobApplication")
