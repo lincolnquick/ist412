@@ -1,23 +1,41 @@
 package com.buffettinc.hrms.model;
 
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.net.URL;
 import java.util.UUID;
 
 /**
  * This class represents a prospective Employee of Buffett Inc. who has submitted a job application.
  */
-public class Applicant {
+@Entity
+@Table(name="applicant")
+public class Applicant implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID applicantID;
+    @Column(name="firstName")
     private String firstName;
+    @Column(name="lastName")
     private String lastName;
+    @Column(name="streetAddress")
     private String streetAddress;
+    @Column(name="city")
     private String city;
+    @Column(name="state")
     private String state;
+    @Column(name="zip")
     private String zip;
+    @Column(name="phone")
     private String phone;
+    @Column(name="email")
     private String email;
+    @Column(name="status")
     private JobApplication.JobApplicationStatus status; // Status of the application
+    @Column(name="job")
     private UUID jobID; // ID of the job applied for
+    @Column(name="resume")
     private URL resume; // Link of the applicant's resume
 
     public Applicant(String firstName, String lastName, String streetAddress, String city, String state, String zip, String phone, String email, JobApplication.JobApplicationStatus status, UUID jobID, URL resume) {
@@ -33,6 +51,21 @@ public class Applicant {
         this.status = status;
         this.jobID = jobID;
         this.resume = resume;
+    }
+
+    public Applicant() {
+        this.applicantID = UUID.randomUUID();
+        this.firstName = null;
+        this.lastName = null;
+        this.streetAddress = null;
+        this.city = null;
+        this.state = null;
+        this.zip = null;
+        this.phone = null;
+        this.email = null;
+        this.status = JobApplication.JobApplicationStatus.SUBMITTED;
+        this.jobID = null;
+        this.resume = null;
     }
 
     public UUID getApplicantID() {

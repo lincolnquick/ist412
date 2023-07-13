@@ -1,16 +1,27 @@
 package com.buffettinc.hrms.model;
 
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.util.UUID;
 import java.time.LocalDate;
 /**
  * This class represents a job opening for Buffett Inc.
  * A job opening consists of a jobID, a title, department, description, and posting date.
  */
-public class JobOpening {
+@Entity
+@Table(name="jobOpening")
+public class JobOpening implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID jobID;
+    @Column(name="title")
     private String title;
+    @Column(name="deptartment")
     private String department;
+    @Column(name="description")
     private String description;
+    @Column(name="date")
     private LocalDate postingDate;
 
     public JobOpening(String title, String department, String description, LocalDate postingDate) {
@@ -19,6 +30,14 @@ public class JobOpening {
         this.department = department;
         this.description = description;
         this.postingDate = postingDate;
+    }
+
+    public JobOpening() {
+        this.jobID = UUID.randomUUID();
+        this.title = null;
+        this.department = null;
+        this.description = null;
+        this.postingDate = LocalDate.MIN;
     }
 
     public UUID getJobID() {

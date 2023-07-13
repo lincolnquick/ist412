@@ -1,18 +1,31 @@
 package com.buffettinc.hrms.model;
 
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.util.UUID;
 import java.time.LocalDateTime;
 
 /**
  * Class used to represent a Message sent or received by an Employee of Buffett Inc.
  */
-public class Message {
+@Entity
+@Table(name = "message")
+public class Message implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID messageID;
+    @Column(name="sender")
     private UUID senderID;
+    @Column(name="recipient")
     private UUID recipientID;
+    @Column(name="timestamp")
     private LocalDateTime timestamp;
+    @Column(name="title")
     private String title;
+    @Column(name="message")
     private String message;
+    @Column(name="isRead")
     private boolean isRead;
 
     public Message(UUID senderID, UUID recipientID, String title, String message) {
@@ -22,6 +35,17 @@ public class Message {
         this.title = title;
         this.message = message;
         this.isRead = false;
+        this.timestamp = LocalDateTime.now();
+    }
+
+    public Message() {
+        this.messageID = UUID.randomUUID();
+        this.senderID = null;
+        this.recipientID = null;
+        this.title = null;
+        this.message = null;
+        this.isRead = false;
+        this.timestamp = LocalDateTime.now();
     }
 
     public UUID getMessageID() {

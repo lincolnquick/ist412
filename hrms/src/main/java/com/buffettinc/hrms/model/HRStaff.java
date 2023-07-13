@@ -1,5 +1,7 @@
 package com.buffettinc.hrms.model;
 
+import jakarta.persistence.*;
+
 import java.net.URL;
 import java.time.Duration;
 import java.time.LocalDate;
@@ -10,11 +12,18 @@ import java.util.UUID;
  * This class represents an HR Staff employee. This class contains all the properties and methods of the Employee class
  * as well as a permissionLevel.
  */
+@Entity
+@Table(name="hrstaff")
 public class HRStaff extends Employee{
+    @Column(name="permission")
     private String permissionLevel;
+    @ManyToMany
     private ArrayList<JobApplication> jobApplications;
+    @ManyToMany
     private ArrayList<Applicant> applicants;
+    @ManyToMany
     private ArrayList<JobOpening> jobOpenings;
+    @ManyToMany
     private ArrayList<TrainingModule> trainingModules;
 
     public HRStaff(){

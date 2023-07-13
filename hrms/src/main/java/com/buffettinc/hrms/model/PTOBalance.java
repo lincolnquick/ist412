@@ -1,6 +1,9 @@
 package com.buffettinc.hrms.model;
 
+import jakarta.persistence.*;
+
 import java.util.UUID;
+import java.io.Serializable;
 
 /**
  * This class represents an object to keep track of an Employee's PTO (paid time off) balances for Buffett Inc.
@@ -8,10 +11,19 @@ import java.util.UUID;
  * vacationTime, personalTime, and sickTime, as well as methods to accrue and use each time.
  *
  */
-public class PTOBalance {
+
+@Entity
+@Table(name="ptobalance")
+public class PTOBalance implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID employeeID;
+
+    @Column(name="vacation")
     private float vacationTime;
+    @Column(name="personal")
     private float personalTime;
+    @Column(name="sick")
     private float sickTime;
 
     public PTOBalance(UUID employeeID, float vacationTime, float personalTime, float sickTime) {
@@ -20,6 +32,14 @@ public class PTOBalance {
         this.personalTime = personalTime;
         this.sickTime = sickTime;
     }
+
+    public PTOBalance() {
+        this.employeeID = null;
+        this.vacationTime = 0.0f;
+        this.personalTime = 0.0f;
+        this.sickTime = 0.0f;
+    }
+
     public UUID getEmployeeID() {
         return employeeID;
     }

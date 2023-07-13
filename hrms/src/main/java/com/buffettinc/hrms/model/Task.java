@@ -1,5 +1,8 @@
 package com.buffettinc.hrms.model;
 
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -8,13 +11,23 @@ import java.util.UUID;
  * Each Task consists of a taskID, a name, description, dueDate, a reference to the assigned, and to the assigned employee,
  * and whether the task was completed.
  */
-public class Task {
+@Entity
+@Table(name="task")
+public class Task implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID taskID;
+    @Column(name="name")
     private String name;
+    @Column(name="description")
     private String description;
+    @Column(name="due")
     private LocalDate dueDate;
+    @Column(name="assignedBy")
     private UUID assignedBy;
+    @Column(name="assignedTo")
     private UUID assignedTo;
+    @Column(name="isCompleted")
     private boolean isCompleted;
 
     public Task(String name, String description, LocalDate dueDate, UUID assignedBy, UUID assignedTo) {
@@ -24,6 +37,16 @@ public class Task {
         this.dueDate = dueDate;
         this.assignedBy = assignedBy;
         this.assignedTo = assignedTo;
+        this.isCompleted = false;
+    }
+
+    public Task() {
+        this.taskID = UUID.randomUUID();
+        this.name = null;
+        this.description = null;
+        this.dueDate = LocalDate.MIN;
+        this.assignedBy = null;
+        this.assignedTo = null;
         this.isCompleted = false;
     }
 

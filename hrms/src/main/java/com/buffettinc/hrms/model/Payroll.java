@@ -1,5 +1,8 @@
 package com.buffettinc.hrms.model;
 
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -9,12 +12,26 @@ import java.util.UUID;
  * the employee's hourly rate, their direct deposit information including the institution name, routing number,
  * and account number, and a list of all the employee's timesheets.
  */
-public class Payroll {
+
+@Entity
+@Table(name="payroll")
+public class Payroll implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID employeeID;
+    @Column(name="hourlyRate")
     private float hourlyRate;
+    @Column(name="institution")
     private String institutionName;
+    @Column(name="routing")
     private String routingNumber;
+    @Column(name="account")
     private String accountNumber;
+    @ManyToMany (cascade = CascadeType.MERGE)
+    @JoinTable(name = "payroll_timesheets",
+        joinColumns = {@JoinColumn(name= "employeeID")},
+            inverseJoinColumns = {@JoinColumn(name = "employeeID")})
+
     private ArrayList<Timesheet> timesheetList;
 
     public Payroll(UUID employeeID, float hourlyRate, String institutionName, String routingNumber, String accountNumber) {
@@ -23,6 +40,15 @@ public class Payroll {
         this.institutionName = institutionName;
         this.routingNumber = routingNumber;
         this.accountNumber = accountNumber;
+        this.timesheetList = new ArrayList<>();
+    }
+
+    public Payroll() {
+        this.employeeID = null;
+        this.hourlyRate = 0.0f;
+        this.institutionName = null;
+        this.routingNumber = null;
+        this.accountNumber = null;
         this.timesheetList = new ArrayList<>();
     }
 

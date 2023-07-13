@@ -1,5 +1,8 @@
 package com.buffettinc.hrms.model;
 
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -7,12 +10,19 @@ import java.util.UUID;
  * This class represents a single Job Application submited for a prospective Employee of Buffett Inc.
  * Each JobApplication consists of an applicationID, jobID, applicantID, applicationDate, and ApplicationStatus.
  */
-public class JobApplication {
-
+@Entity
+@Table(name="jobApplication")
+public class JobApplication implements Serializable {
+    @Id
+    @GeneratedValue (strategy = GenerationType.UUID)
     private UUID applicationID;
+    @Column(name="job")
     private UUID jobID;
+    @Column(name="applicant")
     private UUID applicantID;
+    @Column(name="date")
     private LocalDate applicationDate;
+    @Column(name="status")
     private JobApplicationStatus status;
 
     public JobApplication(UUID jobID, UUID applicantID, LocalDate applicationDate, JobApplicationStatus status) {
@@ -21,6 +31,14 @@ public class JobApplication {
         this.applicantID = applicantID;
         this.applicationDate = applicationDate;
         this.status = status;
+    }
+
+    public JobApplication() {
+        this.applicationID = UUID.randomUUID();
+        this.jobID = null;
+        this.applicantID = null;
+        this.applicationDate = null;
+        this.status = JobApplicationStatus.SUBMITTED;
     }
 
     public UUID getApplicationID() {

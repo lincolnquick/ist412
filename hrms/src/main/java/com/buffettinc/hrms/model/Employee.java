@@ -1,9 +1,11 @@
 package com.buffettinc.hrms.model;
 
+import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
@@ -12,21 +14,45 @@ import java.util.UUID;
  * department, position, and a reference to their manager, as well as PTOBalance and Payroll objects to manager
  * PTO balances and payroll information.
  */
-public class Employee {
+@Entity
+@Table(name="employee")
+public class Employee implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID employeeID;
+    @Column(name="firstName")
     private String firstName;
+    @Column(name="lastName")
     private String lastName;
+    @Column(name="streetAddress")
     private String streetAddress;
+    @Column(name="city")
     private String city;
+    @Column(name="state")
     private String state;
+    @Column(name="zip")
     private String zip;
+    @Column(name="phone")
     private String phone;
+    @Column(name="email")
     private String email;
+    @Column(name="hireDate")
     private LocalDate hireDate;
-    private String department;
-    private String position;
+    @Column(name="department")
+   private String department;
+    @Column(name="position")
+   private String position;
+    @Column(name="manager")
     private UUID manager;
+
+    @OneToOne(cascade = CascadeType.MERGE)
+
+    @JoinTable(name = "employee_ptobalance",
+            joinColumns = {@JoinColumn(name = "employeeID")},
+            inverseJoinColumns = {@JoinColumn(name = "employeeID")})
     private PTOBalance ptoBalance;
+
+    @OneToOne
     private Payroll payrollInfo;
     private ArrayList<Message> messages;
     private ArrayList<Notification> notifications;

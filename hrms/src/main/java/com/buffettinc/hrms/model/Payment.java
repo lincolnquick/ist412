@@ -1,5 +1,8 @@
 package com.buffettinc.hrms.model;
 
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -8,21 +11,43 @@ import java.util.UUID;
  * Payment objects include a name of the receiving banking institution, a routing number, an account number, and amount,
  * a postedDate, and the employeeID of the recipient.
  */
-public class Payment {
+@Entity
+@Table(name="payment")
+public class Payment implements Serializable {
+    @Id
+    @GeneratedValue(strategy=GenerationType.UUID)
+    private UUID paymentID;
+    @Column(name="institution")
     private String institution;
+    @Column(name="routing")
     private String routingNumber;
+    @Column(name="account")
     private String accountNumber;
+    @Column(name="postedDate")
     private LocalDate postedDate;
+    @Column(name="amount")
     private float amount;
+    @Column(name="employee")
     private UUID employeeID;
 
     public Payment(String institution, String routingNumber, String accountNumber, LocalDate postedDate, float amount, UUID employeeID) {
+        this.paymentID = UUID.randomUUID();
         this.institution = institution;
         this.routingNumber = routingNumber;
         this.accountNumber = accountNumber;
         this.postedDate = postedDate;
         this.amount = amount;
         this.employeeID = employeeID;
+    }
+
+    public Payment() {
+        this.paymentID = UUID.randomUUID();
+        this.institution = null;
+        this.routingNumber = null;
+        this.accountNumber = null;
+        this.postedDate = LocalDate.MIN;
+        this.amount = 0.0f;
+        this.employeeID = null;
     }
 
     public String getInstitution() {

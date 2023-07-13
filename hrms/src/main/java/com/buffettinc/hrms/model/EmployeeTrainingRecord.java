@@ -1,5 +1,8 @@
 package com.buffettinc.hrms.model;
 
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -8,17 +11,33 @@ import java.util.UUID;
  * Each EmployeeTrainingRecord consists of a recordID, a reference to the employeeID and trainingModuleID,
  * a completion date, and whether the training was completed.
  */
-public class EmployeeTrainingRecord {
+@Entity
+@Table(name="trainingRecord")
+public class EmployeeTrainingRecord implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID recordID;
+    @Column(name="employee")
     private UUID employeeID;
+    @Column(name="trainingModule")
     private UUID trainingModuleID;
+    @Column(name="completionDate")
     private LocalDate completionDate;
+    @Column(name="isCompleted")
     private boolean isCompleted;
 
     public EmployeeTrainingRecord(UUID employeeID, UUID trainingModuleID) {
         this.recordID = UUID.randomUUID();
         this.employeeID = employeeID;
         this.trainingModuleID = trainingModuleID;
+        this.completionDate = null;
+        this.isCompleted = false;
+    }
+
+    public EmployeeTrainingRecord() {
+        this.recordID = UUID.randomUUID();
+        this.employeeID = null;
+        this.trainingModuleID = null;
         this.completionDate = null;
         this.isCompleted = false;
     }

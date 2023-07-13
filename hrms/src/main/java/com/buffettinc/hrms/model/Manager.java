@@ -1,5 +1,7 @@
 package com.buffettinc.hrms.model;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.UUID;
@@ -8,8 +10,12 @@ import java.util.UUID;
  * This class represents a Manager employee for Buffett Inc. This class consists of all the properties and methods
  * of the Employee class as well as a permissionLevel.
  */
+@Entity
+@Table(name="manager")
 public class Manager extends Employee{
+    @Column(name="permission")
     private String permissionLevel;
+    @ManyToMany
     private HashMap<UUID, Task> tasks;
 
     public Manager() {

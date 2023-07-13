@@ -1,5 +1,7 @@
 package com.buffettinc.hrms.model;
+import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.time.*;
 import java.util.*;
 
@@ -10,18 +12,41 @@ import java.util.*;
  * and the employeeID of the approver.
  *
  */
-public class Timesheet {
+@Entity
+@Table(name="timesheet")
+public class Timesheet implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID employeeID;
+    @Column(name = "start")
     private LocalDate periodStart;
+    @Column(name = "end")
     private LocalDate periodEnd;
+    @ManyToMany(cascade = CascadeType.MERGE)
+
+    @JoinTable(name = "timesheet_shifts",
+        joinColumns = {@JoinColumn(name="employeeID")},
+            inverseJoinColumns = {@JoinColumn(name = "employeeID")})
+
     private ArrayList<ShiftEntry> shifts;
+    @Column(name="approved")
     private boolean isApproved;
+    @Column(name = "approverID")
     private UUID approverID;
 
     public Timesheet(UUID employeeID, LocalDate periodStart, LocalDate periodEnd) {
         this.employeeID = employeeID;
         this.periodStart = periodStart;
         this.periodEnd = periodEnd;
+        this.shifts = new ArrayList<>();
+        this.isApproved = false;
+        this.approverID = null;
+    }
+
+    public Timesheet() {
+        this.employeeID = null;
+        this.periodStart = null;
+        this.periodEnd = null;
         this.shifts = new ArrayList<>();
         this.isApproved = false;
         this.approverID = null;
