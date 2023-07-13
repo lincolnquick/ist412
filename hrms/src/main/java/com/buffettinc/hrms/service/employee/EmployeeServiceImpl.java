@@ -24,36 +24,57 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
 
+    /**
+     * {@inheritDoc}
+     */
     public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
 
     @Override
+    /**
+     * {@inheritDoc}
+     */
     public Employee saveEmployee(Employee employee) {
         return this.employeeRepository.save(employee);
     }
 
     @Override
+    /**
+     * {@inheritDoc}
+     */
     public List<Employee> getAllEmployees() {
         return this.employeeRepository.findAll();
     }
 
     @Override
+    /**
+     * {@inheritDoc}
+     */
     public Employee getEmployeeById(UUID id) {
         return this.employeeRepository.findById(id).orElse(null);
     }
 
     @Override
+    /**
+     * {@inheritDoc}
+     */
     public Employee updateEmployee(Employee employee) {
         return this.employeeRepository.save(employee);
     }
 
     @Override
+    /**
+     * {@inheritDoc}
+     */
     public void deleteEmployee(UUID id) {
         this.employeeRepository.deleteById(id);
     }
 
     @Override
+    /**
+     * {@inheritDoc}
+     */
     public Page<Employee> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
         Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
                 Sort.by(sortField).descending();

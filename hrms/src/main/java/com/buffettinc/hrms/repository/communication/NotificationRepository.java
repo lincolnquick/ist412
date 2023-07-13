@@ -1,8 +1,10 @@
 package com.buffettinc.hrms.repository.communication;
 
 import com.buffettinc.hrms.model.communication.Notification;
+import com.buffettinc.hrms.model.employee.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -15,5 +17,6 @@ import java.util.UUID;
  * @since 2023-07-13
  */
 public interface NotificationRepository extends JpaRepository<Notification, UUID> {
+    List<Notification> findByEmployee(Employee recipient);
     // custom methods if necessary
 }

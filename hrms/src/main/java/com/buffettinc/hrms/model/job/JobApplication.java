@@ -20,8 +20,8 @@ public class JobApplication implements Serializable {
     @Id
     @GeneratedValue (strategy = GenerationType.UUID)
     private UUID applicationID;
-    @Column(name="job")
-    private UUID jobID;
+    @Column(name="jobOpeningID")
+    private UUID jobOpeningID;
     @Column(name="applicant")
     private UUID applicantID;
     @Column(name="date")
@@ -29,9 +29,9 @@ public class JobApplication implements Serializable {
     @Column(name="status")
     private JobApplicationStatus status;
 
-    public JobApplication(UUID jobID, UUID applicantID, LocalDate applicationDate, JobApplicationStatus status) {
+    public JobApplication(UUID jobOpeningID, UUID applicantID, LocalDate applicationDate, JobApplicationStatus status) {
         this.applicationID = UUID.randomUUID();
-        this.jobID = jobID;
+        this.jobOpeningID = jobOpeningID;
         this.applicantID = applicantID;
         this.applicationDate = applicationDate;
         this.status = status;
@@ -39,7 +39,7 @@ public class JobApplication implements Serializable {
 
     public JobApplication() {
         this.applicationID = UUID.randomUUID();
-        this.jobID = null;
+        this.jobOpeningID = null;
         this.applicantID = null;
         this.applicationDate = null;
         this.status = JobApplicationStatus.SUBMITTED;
@@ -53,12 +53,12 @@ public class JobApplication implements Serializable {
         this.applicationID = applicationID;
     }
 
-    public UUID getJobID() {
-        return jobID;
+    public UUID getJobOpeningID() {
+        return jobOpeningID;
     }
 
-    public void setJobID(UUID jobID) {
-        this.jobID = jobID;
+    public void setJobOpeningID(UUID jobID) {
+        this.jobOpeningID = jobID;
     }
 
     public UUID getApplicantID() {

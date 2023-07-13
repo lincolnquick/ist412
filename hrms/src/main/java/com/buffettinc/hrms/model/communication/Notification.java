@@ -28,11 +28,15 @@ public class Notification implements Serializable {
     @Column(name="timestamp")
     private LocalDateTime timestamp;
 
+    @Column(name="isRead")
+    private boolean isRead;
+
     public Notification(Employee employee, String message) {
         this.notificationID = UUID.randomUUID();
         this.employee = employee;
         this.message = message;
         this.timestamp = LocalDateTime.now();
+        this.isRead = false;
     }
 
     public Notification() {
@@ -40,6 +44,15 @@ public class Notification implements Serializable {
         this.employee = null;
         this.message = null;
         this.timestamp = LocalDateTime.now();
+        this.isRead = false;
+    }
+
+    public boolean isRead() {
+        return isRead;
+    }
+
+    public void setRead(boolean read) {
+        isRead = read;
     }
 
     public UUID getNotificationID() {

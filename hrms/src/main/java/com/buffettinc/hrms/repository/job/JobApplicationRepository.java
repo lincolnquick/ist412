@@ -3,6 +3,7 @@ package com.buffettinc.hrms.repository.job;
 import com.buffettinc.hrms.model.job.JobApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -15,5 +16,6 @@ import java.util.UUID;
  * @since 2023-07-13
  */
 public interface JobApplicationRepository extends JpaRepository<JobApplication, UUID> {
+    Optional<Object> findByJobOpeningIDAndApplicantID(UUID jobOpeningID, UUID applicantID);
     // custom methods if necessary
 }

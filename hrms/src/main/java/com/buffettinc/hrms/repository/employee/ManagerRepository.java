@@ -3,6 +3,7 @@ package com.buffettinc.hrms.repository.employee;
 import com.buffettinc.hrms.model.employee.Manager;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -15,5 +16,6 @@ import java.util.UUID;
  * @since 2023-07-13
  */
 public interface ManagerRepository extends JpaRepository<Manager, UUID> {
+    Optional<Object> findByEmployeeID(UUID employeeID);
     // custom methods if necessary
 }
