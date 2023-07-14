@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Add New Employee</h1>
-<form th:action="@{/employees}" th:object="${employee}" method="post">
+<form th:action="@{/employee}" th:object="${employee}" method="post">
   <!-- Add input fields as needed -->
   <input type="text" th:field="*{firstName}" placeholder="First Name" class="form-control">
   <!-- Submit button -->
