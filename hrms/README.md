@@ -19,7 +19,7 @@ Run the HrmsApplication.java file from IntelliJ IDEA. The server will start and 
 Once the server is running, go to http://localhost:8080 in your web browser.
 
 ## Running the Unit Tests
-Unit tests are located in the test directory of the project. You can run them from IntelliJ IDEA or by running `mvn test` in the project's src.test directory.
+Unit tests are located in the test directory of the project (hrms/src/test). You can run them from IntelliJ IDEA or by running `mvn test` from the project's root directory.
 
 ## Authentication
 The username required to login to the application is "user". The password is randomly generated each time the server starts and is output to the terminal.
