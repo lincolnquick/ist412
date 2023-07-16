@@ -26,6 +26,14 @@ public class NotificationController {
     @Autowired
     private EmployeeService employeeService;
 
+    public NotificationController() {
+    }
+
+    public NotificationController(NotificationService notificationService, EmployeeService employeeService) {
+        this.notificationService = notificationService;
+        this.employeeService = employeeService;
+    }
+
     /**
      * Sends a notification to an employee.
      *

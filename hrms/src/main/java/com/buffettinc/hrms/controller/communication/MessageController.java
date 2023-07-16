@@ -27,6 +27,14 @@ public class MessageController {
     @Autowired
     private EmployeeService employeeService;
 
+    public MessageController() {
+    }
+
+    public MessageController(MessageService messageService, EmployeeService employeeService) {
+        this.messageService = messageService;
+        this.employeeService = employeeService;
+    }
+
     /**
      * Handles sending a new message.
      *
