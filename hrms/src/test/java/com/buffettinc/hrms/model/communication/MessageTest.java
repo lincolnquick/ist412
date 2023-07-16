@@ -1,8 +1,6 @@
-package com.buffettinc.hrms;
+package com.buffettinc.hrms.model.communication;
 
-import com.buffettinc.hrms.model.communication.Message;
 import com.buffettinc.hrms.model.employee.Employee;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -22,7 +20,7 @@ class MessageTest {
         if (testID.equals(null)) {
             testResult = false;
         }
-        Assertions.assertEquals(true, testResult);
+        assertEquals(true, testResult);
     }
 
     @Test
@@ -33,7 +31,7 @@ class MessageTest {
         testMessage.setMessageID(testID);
 
         UUID testResult = testMessage.getMessageID();
-        Assertions.assertEquals(testID, testResult);
+        assertEquals(testID, testResult);
     }
 
     @Test
@@ -45,7 +43,7 @@ class MessageTest {
         if(testSender.equals(null)){
             testResult = false;
         }
-        Assertions.assertEquals(true, testResult);
+        assertEquals(true, testResult);
     }
 
     @Test
@@ -57,7 +55,7 @@ class MessageTest {
 
         Employee testResult = testMessage.getSender();
 
-        Assertions.assertEquals(testSender, testResult);
+        assertEquals(testSender, testResult);
     }
 
     @Test
@@ -69,7 +67,7 @@ class MessageTest {
         if(testRecipient.equals(null)){
             testResult = false;
         }
-        Assertions.assertEquals(true, testResult);
+        assertEquals(true, testResult);
     }
 
     @Test
@@ -81,7 +79,7 @@ class MessageTest {
 
         Employee testResult = testMessage.getRecipient();
 
-        Assertions.assertEquals(testRecipient, testResult);
+        assertEquals(testRecipient, testResult);
     }
 
     @Test
@@ -93,7 +91,7 @@ class MessageTest {
         if(testDateTime.equals(null)){
             testResult = false;
         }
-        Assertions.assertEquals(true, testResult);
+        assertEquals(true, testResult);
     }
 
     @Test
@@ -105,7 +103,7 @@ class MessageTest {
 
         LocalDateTime testResult = testMessage.getTimestamp();
 
-        Assertions.assertEquals(testDateTime, testResult);
+        assertEquals(testDateTime, testResult);
     }
 
     @Test
@@ -117,7 +115,7 @@ class MessageTest {
         if(testTitle.equals(null)){
             testResult = false;
         }
-        Assertions.assertEquals(true, testResult);
+        assertEquals(true, testResult);
     }
 
     @Test
@@ -129,7 +127,7 @@ class MessageTest {
 
         String testResult = testMessage.getTitle();
 
-        Assertions.assertEquals(testTitle, testResult);
+        assertEquals(testTitle, testResult);
     }
 
     @Test
@@ -141,7 +139,7 @@ class MessageTest {
         if(testWords.equals(null)){
             testResult = false;
         }
-        Assertions.assertEquals(true, testResult);
+        assertEquals(true, testResult);
     }
 
     @Test
@@ -153,7 +151,7 @@ class MessageTest {
 
         String testResult = testMessage.getMessage();
 
-        Assertions.assertEquals(testMessageNew, testResult);
+        assertEquals(testMessageNew, testResult);
 
     }
 
@@ -163,7 +161,7 @@ class MessageTest {
 
         boolean testRead = testMessage.isRead();
 
-        Assertions.assertEquals(false, testRead);
+        assertEquals(false, testRead);
     }
 
     @Test
@@ -174,6 +172,6 @@ class MessageTest {
         testMessage.setRead(testRead);
         boolean testResult = testMessage.isRead();
 
-        Assertions.assertEquals(testRead, testResult);
+        assertEquals(testRead, testResult);
     }
 }
