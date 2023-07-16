@@ -1,4 +1,4 @@
-package com.buffettinc.hrms.model.communication;
+package com.buffettinc.hrms.controller.communication;
 
 import com.buffettinc.hrms.controller.communication.MessageController;
 import com.buffettinc.hrms.model.communication.Message;

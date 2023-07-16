@@ -15,7 +15,6 @@
 /Users/lincolnquick/Documents/GitHub/IST412Project/hrms/src/main/java/com/buffettinc/hrms/controller/job/ApplicantController.java
 /Users/lincolnquick/Documents/GitHub/IST412Project/hrms/src/main/java/com/buffettinc/hrms/service/job/JobApplicationService.java
 /Users/lincolnquick/Documents/GitHub/IST412Project/hrms/src/main/java/com/buffettinc/hrms/repository/time/TimesheetRepository.java
-/Users/lincolnquick/Documents/GitHub/IST412Project/hrms/src/main/java/com/buffettinc/hrms/service/user/UserDetailsServiceImpl.java
 /Users/lincolnquick/Documents/GitHub/IST412Project/hrms/src/main/java/com/buffettinc/hrms/service/training/EmployeeTrainingRecordServiceImpl.java
 /Users/lincolnquick/Documents/GitHub/IST412Project/hrms/src/main/java/com/buffettinc/hrms/service/employee/AccountantService.java
 /Users/lincolnquick/Documents/GitHub/IST412Project/hrms/src/main/java/com/buffettinc/hrms/controller/time/ShiftEntryController.java
@@ -57,7 +56,6 @@
 /Users/lincolnquick/Documents/GitHub/IST412Project/hrms/src/main/java/com/buffettinc/hrms/repository/training/TaskRepository.java
 /Users/lincolnquick/Documents/GitHub/IST412Project/hrms/src/main/java/com/buffettinc/hrms/repository/payroll/PaymentRepository.java
 /Users/lincolnquick/Documents/GitHub/IST412Project/hrms/src/main/java/com/buffettinc/hrms/controller/payroll/PaymentController.java
-/Users/lincolnquick/Documents/GitHub/IST412Project/hrms/src/main/java/com/buffettinc/hrms/config/WebSecurityConfig.java
 /Users/lincolnquick/Documents/GitHub/IST412Project/hrms/src/main/java/com/buffettinc/hrms/service/job/ApplicantService.java
 /Users/lincolnquick/Documents/GitHub/IST412Project/hrms/src/main/java/com/buffettinc/hrms/controller/pto/PTOBalanceController.java
 /Users/lincolnquick/Documents/GitHub/IST412Project/hrms/src/main/java/com/buffettinc/hrms/service/pto/PTOCalendarService.java
@@ -84,7 +82,6 @@
 /Users/lincolnquick/Documents/GitHub/IST412Project/hrms/src/main/java/com/buffettinc/hrms/service/employee/ManagerServiceImpl.java
 /Users/lincolnquick/Documents/GitHub/IST412Project/hrms/src/main/java/com/buffettinc/hrms/controller/pto/PTORequestController.java
 /Users/lincolnquick/Documents/GitHub/IST412Project/hrms/src/main/java/com/buffettinc/hrms/service/training/TaskService.java
-/Users/lincolnquick/Documents/GitHub/IST412Project/hrms/src/main/java/com/buffettinc/hrms/service/user/UserDetailsService.java
 /Users/lincolnquick/Documents/GitHub/IST412Project/hrms/src/main/java/com/buffettinc/hrms/service/employee/HRStaffService.java
 /Users/lincolnquick/Documents/GitHub/IST412Project/hrms/src/main/java/com/buffettinc/hrms/repository/job/JobApplicationRepository.java
 /Users/lincolnquick/Documents/GitHub/IST412Project/hrms/src/main/java/com/buffettinc/hrms/controller/communication/NotificationController.java
