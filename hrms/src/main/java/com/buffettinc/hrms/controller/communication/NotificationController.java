@@ -1,0 +1,106 @@
+package com.buffettinc.hrms.controller.communication;
+
+import com.buffettinc.hrms.model.communication.Notification;
+import com.buffettinc.hrms.model.employee.Employee;
+import com.buffettinc.hrms.service.communication.NotificationService;
+import com.buffettinc.hrms.service.employee.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
+
+/**
+ * Controller for handling requests related to {@link Notification}s.
+ *
+ * @author IST 412 Group 5
+ * @version 1.0
+ * @since 2023-07-13
+ */
+@Controller
+@RequestMapping("/notifications")
+public class NotificationController {
+    @Autowired
+    private NotificationService notificationService;
+    @Autowired
+    private EmployeeService employeeService;
+
+    public NotificationController() {
+    }
+
+    public NotificationController(NotificationService notificationService, EmployeeService employeeService) {
+        this.notificationService = notificationService;
+        this.employeeService = employeeService;
+    }
+
+    /**
+     * Sends a notification to an employee.
+     *
+     * @param employeeID the ID of the employee
+     * @param message    the notification message
+     * @param model      the model
+     * @return the name of the view
+     */
+    @PostMapping("/send")
+    public String sendNotification(@RequestParam UUID employeeID,
+                                   @RequestParam String message,
+                                   Model model) {
+        Employee employee = employeeService.getEmployeeById(employeeID);
+        model.addAttribute("notification", notificationService.sendNotification(employee, message));
+        return "sendNotification";
+    }
+
+    /**
+     * Retrieves a notification by its ID.
+     *
+     * @param notificationID the ID of the notification
+     * @param model          the model
+     * @return the name of the view
+     */
+    @GetMapping("/{notificationID}")
+    public String getNotification(@PathVariable UUID notificationID,
+                                  Model model) {
+        model.addAttribute("notification", notificationService.getNotification(notificationID));
+        return "viewNotification";
+    }
+
+    /**
+     * Retrieves all notifications for an employee.
+     *
+     * @param employeeID the ID of the employee
+     * @param model      the model
+     * @return the name of the view
+     */
+    @GetMapping("/list/{employeeID}")
+    public String getNotificationsByEmployee(@PathVariable UUID employeeID,
+                                             Model model) {
+        Employee employee = employeeService.getEmployeeById(employeeID);
+        model.addAttribute("notifications", notificationService.getNotificationsByEmployee(employee));
+        return "listNotifications";
+    }
+
+    /**
+     * Marks a notification as read.
+     *
+     * @param notificationID the ID of the notification
+     * @return the name of the view
+     */
+    @PostMapping("/read/{notificationID}")
+    public String markNotificationAsRead(@PathVariable UUID notificationID) {
+        notificationService.markNotificationAsRead(notificationID);
+        return "notificationRead";
+    }
+
+    /**
+     * Deletes a notification.
+     *
+     * @param notificationID the ID of the notification
+     * @return the name of the view
+     */
+    @PostMapping("/delete/{notificationID}")
+    public String deleteNotification(@PathVariable UUID notificationID) {
+        notificationService.deleteNotification(notificationID);
+        return "notificationDeleted";
+    }
+}
