@@ -3,7 +3,6 @@ package com.buffettinc.hrms.controller.employee;
 import com.buffettinc.hrms.model.employee.Employee;
 import com.buffettinc.hrms.service.employee.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +32,7 @@ public class EmployeeController {
      *
      * @return String, name of the template file for displaying all employees.
      */
-    @GetMapping
+    @GetMapping("list")
     public String listAllEmployees(Model model) {
         model.addAttribute("employees", employeeService.getAllEmployees());
         return "employees/list"; // corresponds to a Thymeleaf template in "src/main/resources/templates/employees/list.html"
@@ -44,7 +43,7 @@ public class EmployeeController {
      *
      * @return String, name of the template file for creating a new employee.
      */
-    @GetMapping("/new")
+    @GetMapping("new")
     public String createEmployeeForm(Model model) {
         model.addAttribute("employee", new Employee());
         return "employees/new"; // corresponds to a Thymeleaf template in "src/main/resources/templates/employees/new.html"
@@ -56,10 +55,10 @@ public class EmployeeController {
      * @param employee, the employee to save.
      * @return String, the redirect URL.
      */
-    @PostMapping
+    @PostMapping("save")
     public String saveEmployee(Employee employee) {
         employeeService.createEmployee(employee);
-        return "redirect:/employees";
+        return "redirect:/employees/list";
     }
 
     /**
@@ -72,7 +71,7 @@ public class EmployeeController {
     @GetMapping("/edit/{id}")
     public String editEmployeeForm(@PathVariable UUID id, Model model) {
         model.addAttribute("employee", employeeService.getEmployeeById(id));
-        return "employees/edit"; // corresponds to a Thymeleaf template in "src/main/resources/templates/employees/edit.html"
+        return "redirect:/employees/list"; // corresponds to a Thymeleaf template in "src/main/resources/templates/employees/edit.html"
     }
 
     /**
@@ -96,6 +95,6 @@ public class EmployeeController {
     @GetMapping("/delete/{id}")
     public String deleteEmployee(@PathVariable UUID id) {
         employeeService.deleteEmployee(id);
-        return "redirect:/employees";
+        return "redirect:/employees/list";
     }
 }
