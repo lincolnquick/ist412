@@ -17,7 +17,7 @@ import java.util.UUID;
  * @since 2023-07-13
  */
 @Controller
-@RequestMapping("/trainingModule")
+@RequestMapping("/training")
 public class TrainingModuleController {
     @Autowired
     private TrainingModuleService trainingModuleService;
@@ -70,5 +70,15 @@ public class TrainingModuleController {
     public String deleteTrainingModule(@RequestParam UUID trainingID) {
         trainingModuleService.deleteTrainingModule(trainingID);
         return "redirect:/trainingModule/all";
+    }
+
+    /**
+     * Training Landing Page
+     *
+     * @return String name of Thymeleaf template.
+     */
+    @GetMapping("/training")
+    public String trainingLandingPage(){
+        return "training/training";
     }
 }

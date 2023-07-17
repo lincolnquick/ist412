@@ -103,4 +103,14 @@ public class NotificationController {
         notificationService.deleteNotification(notificationID);
         return "notificationDeleted";
     }
+
+    /**
+     * Notifications Landing Page
+     *
+     * @return String of name of Thymeleaf template.
+     */
+    @GetMapping("/notifications")
+    public String notificationsLandingPage(){
+        return "notifications/notifications";
+    }
 }
