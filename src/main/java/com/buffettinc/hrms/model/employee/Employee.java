@@ -10,6 +10,7 @@ import com.buffettinc.hrms.model.pto.PTORequest;
 import com.buffettinc.hrms.model.time.ShiftEntry;
 import com.buffettinc.hrms.model.time.Timesheet;
 import com.buffettinc.hrms.model.training.EmployeeTrainingRecord;
+import com.buffettinc.hrms.model.user.User;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -34,6 +35,10 @@ public class Employee implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID employeeID;
+
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    private User user;
+
     @Column(name="firstName")
     private String firstName;
     @Column(name="lastName")
@@ -137,8 +142,60 @@ public class Employee implements Serializable{
         return employeeID;
     }
 
-    public void setEmployeeNumber(UUID employeeID) {
-        this.employeeID = employeeID;
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<PTORequest> getPtoRequests() {
+        return ptoRequests;
+    }
+
+    public void setPtoRequests(List<PTORequest> ptoRequests) {
+        this.ptoRequests = ptoRequests;
+    }
+
+    public Payroll getPayrollInfo() {
+        return payrollInfo;
+    }
+
+    public void setPayrollInfo(Payroll payrollInfo) {
+        this.payrollInfo = payrollInfo;
+    }
+
+    public List<Message> getSentMessages() {
+        return sentMessages;
+    }
+
+    public void setSentMessages(List<Message> sentMessages) {
+        this.sentMessages = sentMessages;
+    }
+
+    public List<Message> getReceivedMessages() {
+        return receivedMessages;
+    }
+
+    public void setReceivedMessages(List<Message> receivedMessages) {
+        this.receivedMessages = receivedMessages;
+    }
+
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
+    }
+
+    public List<EmployeeTrainingRecord> getTrainingRecords() {
+        return trainingRecords;
+    }
+
+    public void setTrainingRecords(List<EmployeeTrainingRecord> trainingRecords) {
+        this.trainingRecords = trainingRecords;
     }
 
     public String getFirstName() {

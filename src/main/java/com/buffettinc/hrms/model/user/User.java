@@ -1,5 +1,6 @@
 package com.buffettinc.hrms.model.user;
 
+import com.buffettinc.hrms.model.employee.Employee;
 import jakarta.persistence.*;
 
 /**
@@ -23,14 +24,27 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employeeID", nullable = false)
+    private Employee employee;
+
     public User() {
         this.username = null;
         this.password = null;
     }
 
-    public User(String username, String password) {
+    public User(String username, String password, Employee employee) {
         this.username = username;
         this.password = password;
+        this.employee = employee;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public String getUsername() {
