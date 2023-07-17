@@ -4,6 +4,7 @@ import com.buffettinc.hrms.model.payroll.Payroll;
 import com.buffettinc.hrms.service.payroll.PayrollService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -17,7 +18,7 @@ import java.util.UUID;
  * @version 1.0
  * @since 2023-07-13
  */
-@RestController
+@Controller
 @RequestMapping("/payroll")
 public class PayrollController {
     private final PayrollService payrollService;
@@ -72,6 +73,11 @@ public class PayrollController {
     public String deletePayroll(@PathVariable UUID payrollID) {
         payrollService.deletePayroll(payrollID);
         return "redirect:/payrollList";
+    }
+
+    @GetMapping("/payroll")
+    public String payrollLandingPage(){
+        return "payroll/payroll";
     }
 
     // TODO: Additional methods
