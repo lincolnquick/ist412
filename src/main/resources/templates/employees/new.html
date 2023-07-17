@@ -3,6 +3,11 @@
 <head>
   <title>Add New Employee</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+  <script>
+    function clearForm() {
+      document.getElementById('employeeForm').reset();
+    }
+  </script>
 </head>
 <body>
 <div class="container">
@@ -19,7 +24,7 @@
     <li class="nav-item"> <a class="nav-link" th:href="@{/paystubs/paystubs}">Paystubs</a> </li>
   </ul>
   <h2 class="my-4">Add New Employee</h2>
-  <form th:action="@{/employees}" method="post" th:object="${employee}">
+  <form th:action="@{/employees/save}" method="post" th:object="${employee}" id="employeeForm">
     <div class="form-group">
       <label for="firstName">First Name:</label>
       <input type="text" id="firstName" class="form-control" th:field="*{firstName}" required/>
@@ -68,7 +73,9 @@
       </select>
     </div>
     <div class="form-group mt-4">
-      <button type="submit" class="btn btn-primary">Save Employee</button>
+      <button type="submit" class="btn btn-primary" th:href="@{'/employees/save'}">Save Employee</button>
+      <button type="button" class="btn btn-secondary ml-2" onclick="clearForm()">Clear All</button>
+      <a href="/employees/list" class="btn btn-danger ml-2">Cancel</a>
     </div>
   </form>
 </div>

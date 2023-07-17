@@ -56,7 +56,7 @@ public class EmployeeController {
      * @return String, the redirect URL.
      */
     @PostMapping("save")
-    public String saveEmployee(Employee employee) {
+    public String saveEmployee(@ModelAttribute("employee") Employee employee) {
         employeeService.createEmployee(employee);
         return "redirect:/employees/list";
     }
@@ -71,8 +71,9 @@ public class EmployeeController {
     @GetMapping("/edit/{id}")
     public String editEmployeeForm(@PathVariable UUID id, Model model) {
         model.addAttribute("employee", employeeService.getEmployeeById(id));
-        return "redirect:/employees/list"; // corresponds to a Thymeleaf template in "src/main/resources/templates/employees/edit.html"
+        return "employees/edit"; // returns the edit template, not a redirect
     }
+
 
     /**
      * Updates an existing employee and redirects to the list of employees.
@@ -81,10 +82,11 @@ public class EmployeeController {
      * @return String, the redirect URL.
      */
     @PostMapping("/edit")
-    public String updateEmployee(Employee employee) {
+    public String updateEmployee(@ModelAttribute("employee") Employee employee) {
         employeeService.updateEmployee(employee);
-        return "redirect:/employees";
+        return "redirect:/employees/list";
     }
+
 
     /**
      * Deletes an employee and redirects to the list of employees.

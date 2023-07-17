@@ -40,7 +40,7 @@
       <td th:text="${employee.position}"></td>
       <td>
         <a th:href="@{'/employees/edit/' + ${employee.employeeID}}" class="btn btn-warning">Edit</a>
-        <a th:href="@{'/employees/remove/' + ${employee.employeeID}}" class="btn btn-danger">Remove</a>
+        <a th:href="@{'/employees/delete/' + ${employee.employeeID}}" class="btn btn-danger">Remove</a>
       </td>
     </tr>
     </tbody>

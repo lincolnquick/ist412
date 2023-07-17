@@ -1,26 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title><!DOCTYPE html>
-      <html xmlns:th="http://www.thymeleaf.org">
-      <head>
-      <title>Edit Employee</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <title>Add New Employee</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-<h1>Edit Employee</h1>
-<form th:action="@{/employees/edit}" th:object="${employee}" method="post">
-  <!-- Add input fields as needed -->
-  <input type="text" th:field="*{firstName}" placeholder="First Name" class="form-control">
-  <!-- Submit button -->
-  <button type="submit" class="btn btn-success">Save</button>
-</form>
-</body>
-</html>
-</title>
-</head>
-<body>
-
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li class="nav-item"> <a class="nav-link" th:href="@{/}">Home</a> </li>
+        <li class="nav-item"> <a class="nav-link active" th:href="@{/employees/list}">Employees</a> </li>
+        <li class="nav-item"> <a class="nav-link" th:href="@{/payroll/payroll}">Payroll</a> </li>
+        <li class="nav-item"> <a class="nav-link" th:href="@{/pto/pto}">Paid Time Off</a> </li>
+        <li class="nav-item"> <a class="nav-link" th:href="@{/timesheets/timesheets}">Time Sheets</a> </li>
+        <li class="nav-item"> <a class="nav-link" th:href="@{/training/training}">Training</a> </li>
+        <li class="nav-item"> <a class="nav-link" th:href="@{/messages/messages}">Messages</a> </li>
+        <li class="nav-item"> <a class="nav-link" th:href="@{/notifications/notifications}">Notifications</a> </li>
+        <li class="nav-item"> <a class="nav-link" th:href="@{/tasks/tasks}">Tasks</a> </li>
+        <li class="nav-item"> <a class="nav-link" th:href="@{/paystubs/paystubs}">Paystubs</a> </li>
+    </ul>
+    <h2 class="my-4">Edit Employee</h2>
+    <form th:action="@{'/employees/edit'}" method="post" th:object="${employee}">
+        <input type="hidden" th:field="*{employeeID}">
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" class="form-control" th:field="*{firstName}" required/>
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" class="form-control" th:field="*{lastName}" required/>
+            <label for="streetAddress">Street Address:</label>
+            <input type="text" id="streetAddress" class="form-control" th:field="*{streetAddress}" required/>
+            <label for="city">City: </label>
+            <input type="text" id="city" class="form-control" th:field="*{city}" required/>
+            <label for="state">State:</label>
+            <input type="text" id="state" class="form-control" th:field="*{state}" required/>
+            <label for="zip">ZIP Code:</label>
+            <input type="text" id="zip" class="form-control" th:field="*{zip}" required/>
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" class="form-control" th:field="*{phone}" required/>
+            <label for="email">Email:</label>
+            <input type="text" id="email" class="form-control" th:field="*{email}" required/>
+            <label for="department">Department:</label>
+            <input type="text" id="department" class="form-control" th:field="*{department}" required/>
+            <label for="position">Position:</label>
+            <input type="text" id="position" class="form-control" th:field="*{position}" required/>
+            <div class="form-group">
+                <label for="manager">Manager:</label>
+                <select id="manager" class="form-control" th:field="*{manager}">
+                    <!-- Lists managers from the model -->
+                    <option th:each="manager : ${managers}" th:value="${manager}" th:text="${manager}"></option>
+                </select>
+            </div>
+        </div>
+        <!-- The rest of your fields -->
+        <div class="form-group mt-4">
+            <button type="submit" class="btn btn-primary">Update Employee</button>
+            <a href="/employees/list" class="btn btn-danger ml-2">Cancel</a>
+        </div>
+    </form>
+</div>
 </body>
 </html>
