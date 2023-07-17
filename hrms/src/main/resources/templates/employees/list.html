@@ -1,52 +1,29 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <title>Employees List</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buffett Inc. HRMS Employees</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+<style type="text/css">
+.Payroll {
+}
+</style>
 </head>
 <body>
-<h1>Employees List</h1>
-<table class="table">
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Address</th>
-    <th>City</th>
-    <th>State</th>
-    <th>ZIP</th>
-    <th>Phone</th>
-    <th>Email</th>
-    <th>Hire Date</th>
-    <th>Position</th>
-    <th>Manager</th>
-    <!-- Add other fields as needed -->
-    <th>Actions</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="employees : ${employees}">
-    <td th:text="${employee.employeeID}"></td>
-    <td th:text="${employee.firstName}"></td>
-    <td th:text="${employee.lastName}"></td>
-    <td th:text="${employee.streetAddress}"></td>
-    <td th:text="${employee.city}"></td>
-    <td th:text="${employee.state}"></td>
-    <td th:text="${employee.zip}"></td>
-    <td th:text="${employee.phone}"></td>
-    <td th:text="${employee.email}"></td>
-    <td th:text="${employee.hireDate}"></td>
-    <td th:text="${employee.position}"></td>
-    <td th:text="${employee.managerID}"></td>
-    <!-- Add other fields as needed -->
-    <td>
-      <a th:href="@{/employees/edit/{id}(id=${employee.employeeID})}" class="btn btn-primary">Edit</a>
-      <a th:href="@{/employees/delete/{id}(id=${employee.employeeID})}" class="btn btn-danger">Delete</a>
-    </td>
-  </tr>
-  </tbody>
-</table>
-<a href="/employees/new" class="btn btn-success">Add New Employee</a>
+<ul class="nav nav-tabs">
+  <li class="nav-item"> <a class="nav-link" th:href="@{/}">Home</a> </li>
+  <li class="nav-item"> <a class="nav-link active" th:href="@{/employees/list}">Employees</a> </li>
+  <li class="nav-item"> <a class="nav-link" th:href="@{/payroll/payroll}">Payroll</a> </li>
+  <li class="nav-item"> <a class="nav-link" th:href="@{/pto/pto}">Paid Time Off</a> </li>
+  <li class="nav-item"> <a class="nav-link" th:href="@{/timesheets/timesheets}">Time Sheets</a> </li>
+  <li class="nav-item"> <a class="nav-link" th:href="@{/training/training}">Training</a> </li>
+  <li class="nav-item"> <a class="nav-link" th:href="@{/messages/messages}">Messages</a> </li>
+  <li class="nav-item"> <a class="nav-link" th:href="@{/notifications/notifications}">Notifications</a> </li>
+  <li class="nav-item"> <a class="nav-link" th:href="@{/tasks/tasks}">Tasks</a> </li>
+  <li class="nav-item"> <a class="nav-link" th:href="@{/paystubs/paystubs}">Paystubs</a> </li>
+</ul>
+<h1 class="mt-5">Buffett Inc. HRMS Employees</h1>
+	<p>Coming Soon</p>
 </body>
 </html>

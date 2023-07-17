@@ -74,5 +74,9 @@ public class PayrollController {
         return "redirect:/payrollList";
     }
 
+    @GetMapping("/payroll")
+    public String payrollPage(){
+        return "payroll/payroll";
+    }
     // TODO: Additional methods
 }

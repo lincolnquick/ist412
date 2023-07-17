@@ -33,7 +33,7 @@ public class EmployeeController {
      *
      * @return String, name of the template file for displaying all employees.
      */
-    @GetMapping
+    @GetMapping("/list")
     public String listAllEmployees(Model model) {
         model.addAttribute("employees", employeeService.getAllEmployees());
         return "employees/list"; // corresponds to a Thymeleaf template in "src/main/resources/templates/employees/list.html"
