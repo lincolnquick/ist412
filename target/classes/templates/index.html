@@ -12,13 +12,13 @@
         <li class="nav-item"> <a class="nav-link active" th:href="@{/}">Home</a> </li>
         <li class="nav-item"> <a class="nav-link" th:href="@{/employees/list}">Employees</a> </li>
         <li class="nav-item"> <a class="nav-link" th:href="@{/payroll/payroll}">Payroll</a> </li>
-        <li class="nav-item"> <a class="nav-link" th:href="@{/pto/pto}">Paid Time Off</a> </li>
+        <li class="nav-item"> <a class="nav-link" th:href="@{/ptobalance/pto}">Paid Time Off</a> </li>
         <li class="nav-item"> <a class="nav-link" th:href="@{/timesheets/timesheets}">Time Sheets</a> </li>
         <li class="nav-item"> <a class="nav-link" th:href="@{/training/training}">Training</a> </li>
         <li class="nav-item"> <a class="nav-link" th:href="@{/messages/messages}">Messages</a> </li>
         <li class="nav-item"> <a class="nav-link" th:href="@{/notifications/notifications}">Notifications</a> </li>
         <li class="nav-item"> <a class="nav-link" th:href="@{/tasks/tasks}">Tasks</a> </li>
-        <li class="nav-item"> <a class="nav-link" th:href="@{/paystubs/paystubs}">Paystubs</a> </li>
+        <li class="nav-item"> <a class="nav-link" th:href="@{/payments/paystubs}">Paystubs</a> </li>
     </ul>
     <h1 class="mt-5">Buffett Inc. HRMS Dashboard</h1>
     <div class="row mt-5">
@@ -46,7 +46,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Paid Time Off (PTO)</h5>
                     <p class="card-text">Manage employee vacation and leave requests</p>
-                    <a href="/pto/pto" class="btn btn-primary">View PTO Requests</a>
+                    <a href="/ptobalance/pto" class="btn btn-primary">View PTO Requests</a>
                 </div>
             </div>
         </div>
@@ -101,7 +101,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Paystubs (Payments)</h5>
                     <p class="card-text">View paystubs</p>
-                    <a href="/paystubs/paystubs" class="btn btn-primary">View Paystubs</a>
+                    <a href="/payments/paystubs" class="btn btn-primary">View Paystubs</a>
                 </div>
             </div>
         </div>

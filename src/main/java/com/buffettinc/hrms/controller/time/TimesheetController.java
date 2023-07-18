@@ -17,7 +17,7 @@ import java.util.UUID;
  * @since 2023-07-13
  */
 @Controller
-@RequestMapping("/timesheet")
+@RequestMapping("/timesheets")
 public class TimesheetController {
     @Autowired
     private TimesheetService timesheetService;
@@ -70,5 +70,15 @@ public class TimesheetController {
     public String deleteTimesheet(@RequestParam UUID timesheetID) {
         timesheetService.deleteTimesheet(timesheetID);
         return "redirect:/timesheet/all";
+    }
+
+    /**
+     * Time sheets landing page
+     *
+     * @return Sting of Thymeleaf template file.
+     */
+    @GetMapping("/timesheets")
+    public String timesheetsLanding(){
+        return "timesheets/timesheets";
     }
 }

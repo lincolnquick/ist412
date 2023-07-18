@@ -71,4 +71,14 @@ public class PaymentController {
         paymentService.initiateCheckWriting(paymentID);
         return "checkWritingInitiated";
     }
+
+    /**
+     * Paystubs Landing Page
+     *
+     * @return String of Paystubs Thymeleaf template name.
+     */
+    @GetMapping("/paystubs")
+    public String paystubsLandingPage(){
+        return "paystubs/paystubs";
+    }
 }

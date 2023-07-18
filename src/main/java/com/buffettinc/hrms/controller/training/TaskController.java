@@ -19,7 +19,7 @@ import java.util.UUID;
  * @since 2023-07-13
  */
 @Controller
-@RequestMapping("/task")
+@RequestMapping("/tasks")
 public class TaskController {
     @Autowired
     private TaskService taskService;
@@ -72,5 +72,15 @@ public class TaskController {
     public String deleteTask(@RequestParam UUID taskID) {
         taskService.deleteTask(taskID);
         return "redirect:/task/all";
+    }
+
+    /**
+     * Tasks Landing Page
+     *
+     * @return String name of Thymeleaf template.
+     */
+    @GetMapping("/tasks")
+    public String tasksLandingPage(){
+        return "tasks/tasks";
     }
 }

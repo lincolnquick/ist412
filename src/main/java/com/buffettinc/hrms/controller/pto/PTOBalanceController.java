@@ -88,4 +88,15 @@ public class PTOBalanceController {
         ptobalanceService.deletePTOBalance(id);
         return "redirect:/ptobalance/";
     }
+
+    /**
+     * PTO Landing Page
+     *
+     * @return Sting of Thymeleaf html page to display
+     */
+    @GetMapping("/pto")
+    public String ptoLandingPage(){
+        return "pto/pto";
+    }
+
 }

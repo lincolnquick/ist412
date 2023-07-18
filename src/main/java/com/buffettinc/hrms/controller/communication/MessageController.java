@@ -109,4 +109,9 @@ public class MessageController {
         messageService.deleteMessage(messageID);
         return "deleteMessage";
     }
+
+    @GetMapping("/messages")
+    public String messagesLandingPage(){
+        return "messages/messages";
+    }
 }

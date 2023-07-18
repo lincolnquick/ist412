@@ -75,6 +75,11 @@ public class PayrollController {
         return "redirect:/payrollList";
     }
 
+    /**
+     * Payroll Landing Page
+     *
+     * @return String of Thymeleaf template's name.
+     */
     @GetMapping("/payroll")
     public String payrollLandingPage(){
         return "payroll/payroll";
