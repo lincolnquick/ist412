@@ -1,0 +1,7 @@
+com/buffettinc/hrms/service/communication/MessageServiceImplTest.class
+com/buffettinc/hrms/service/communication/NotificationServiceImplTest.class
+com/buffettinc/hrms/model/communication/NotificationTest.class
+com/buffettinc/hrms/model/communication/MessageTest.class
+com/buffettinc/hrms/HrmsApplicationTests.class
+com/buffettinc/hrms/controller/communication/MessageControllerTest.class
+com/buffettinc/hrms/controller/communication/NotificationControllerTest.class
