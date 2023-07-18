@@ -1,5 +1,12 @@
 package com.buffettinc.hrms.model.user;
 
+<<<<<<< Updated upstream:hrms/src/main/java/com/buffettinc/hrms/model/user/User.java
+=======
+import com.buffettinc.hrms.model.employee.Accountant;
+import com.buffettinc.hrms.model.employee.Employee;
+import com.buffettinc.hrms.model.employee.HRStaff;
+import com.buffettinc.hrms.model.employee.Manager;
+>>>>>>> Stashed changes:src/main/java/com/buffettinc/hrms/model/user/User.java
 import jakarta.persistence.*;
 
 /**
@@ -56,4 +63,17 @@ public class User {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getRole() {
+        if (employee instanceof Manager) {
+            return "Manager";
+        } else if (employee instanceof HRStaff) {
+            return "HRStaff";
+        } else if (employee instanceof Accountant) {
+            return "Accountant";
+        } else {
+            return "Employee";
+        }
+    }
+
 }

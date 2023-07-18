@@ -17,10 +17,13 @@
         <java.version>17</java.version>
     </properties>
     <dependencies>
+        <!-- Spring Security -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+
         <!-- Spring Security Core -->
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -89,6 +92,18 @@
             <version>5.9.3</version>
             <scope>test</scope>
         </dependency>
+<<<<<<< Updated upstream:hrms/pom.xml
+=======
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>6.1.1</version>
+        </dependency>
+>>>>>>> Stashed changes:pom.xml
     </dependencies>
 
     <build>

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0dfd6019-16b9-46c8-b909-f1255e3a2747" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/buffettinc/hrms/config/WebSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/buffettinc/hrms/controller/user/DashboardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/buffettinc/hrms/controller/user/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/buffettinc/hrms/service/user/CustomUserDetailsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/buffettinc/hrms/config/WebSecurityConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/buffettinc/hrms/controller/user/DashboardController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/buffettinc/hrms/controller/user/LoginController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/buffettinc/hrms/model/user/UserPrincipal.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/buffettinc/hrms/service/user/CustomUserDetailsService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms/JavaDoc/package-search-index.js" beforeDir="false" afterPath="$PROJECT_DIR$/hrms/JavaDoc/package-search-index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms/JavaDoc/type-search-index.js" beforeDir="false" afterPath="$PROJECT_DIR$/hrms/JavaDoc/type-search-index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/hrms/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms/src/main/java/com/buffettinc/hrms/model/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/hrms/src/main/java/com/buffettinc/hrms/model/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms/src/main/java/com/buffettinc/hrms/model/user/UserPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/hrms/src/main/java/com/buffettinc/hrms/model/user/UserPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms/src/main/resources/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/hrms/src/main/resources/templates/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/hrms/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/hrms/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms/target/classes/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/hrms/target/classes/templates/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/hrms/target/classes/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/hrms/target/classes/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms/target/test-classes/com/buffettinc/hrms/HrmsApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/hrms/target/test-classes/com/buffettinc/hrms/HrmsApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms/target/test-classes/com/buffettinc/hrms/controller/communication/MessageControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/hrms/target/test-classes/com/buffettinc/hrms/controller/communication/MessageControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms/target/test-classes/com/buffettinc/hrms/controller/communication/NotificationControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/hrms/target/test-classes/com/buffettinc/hrms/controller/communication/NotificationControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms/target/test-classes/com/buffettinc/hrms/model/communication/MessageTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/hrms/target/test-classes/com/buffettinc/hrms/model/communication/MessageTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms/target/test-classes/com/buffettinc/hrms/model/communication/NotificationTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/hrms/target/test-classes/com/buffettinc/hrms/model/communication/NotificationTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms/target/test-classes/com/buffettinc/hrms/service/communication/MessageServiceImplTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/hrms/target/test-classes/com/buffettinc/hrms/service/communication/MessageServiceImplTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms/target/test-classes/com/buffettinc/hrms/service/communication/NotificationServiceImplTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/hrms/target/test-classes/com/buffettinc/hrms/service/communication/NotificationServiceImplTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/buffettinc/hrms/model/user/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/buffettinc/hrms/model/user/User.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2SgA1SmxwFFKXBMOeZQZJbNTEAG" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/lincolnquick/Documents/GitHub/hrms/src/main/resources/templates/employees",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/templates/employees" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/templates" />
+      <recent name="$PROJECT_DIR$/src/main/resources/templates/employees" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.HrmsApplication">
+    <configuration name="MessageControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hrms" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.buffettinc.hrms.controller.communication.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.buffettinc.hrms.controller.communication" />
+      <option name="MAIN_CLASS_NAME" value="com.buffettinc.hrms.controller.communication.MessageControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MessageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hrms" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.buffettinc.hrms.model.communication.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.buffettinc.hrms.model.communication" />
+      <option name="MAIN_CLASS_NAME" value="com.buffettinc.hrms.model.communication.MessageTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificationControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hrms" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.buffettinc.hrms.controller.communication.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.buffettinc.hrms.controller.communication" />
+      <option name="MAIN_CLASS_NAME" value="com.buffettinc.hrms.controller.communication.NotificationControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificationServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hrms" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.buffettinc.hrms.service.communication.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.buffettinc.hrms.service.communication" />
+      <option name="MAIN_CLASS_NAME" value="com.buffettinc.hrms.service.communication.NotificationServiceImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hrms" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.buffettinc.hrms.model.communication.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.buffettinc.hrms.model.communication" />
+      <option name="MAIN_CLASS_NAME" value="com.buffettinc.hrms.model.communication.NotificationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HrmsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="hrms" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.buffettinc.hrms.HrmsApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.NotificationControllerTest" />
+        <item itemvalue="JUnit.MessageControllerTest" />
+        <item itemvalue="JUnit.MessageTest" />
+        <item itemvalue="JUnit.NotificationTest" />
+        <item itemvalue="JUnit.NotificationServiceImplTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0dfd6019-16b9-46c8-b909-f1255e3a2747" name="Changes" comment="" />
+      <created>1689557634804</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1689557634804</updated>
+      <workItem from="1689557636130" duration="12959000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
