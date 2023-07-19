@@ -5,11 +5,13 @@ import com.buffettinc.hrms.model.employee.Employee;
 import com.buffettinc.hrms.service.communication.MessageService;
 import com.buffettinc.hrms.service.employee.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -46,15 +48,16 @@ public class MessageController {
      * @return the name of the view
      */
     @PostMapping("/send")
-    public String sendMessage(@RequestParam UUID senderID,
-                              @RequestParam UUID recipientID,
-                              @RequestParam String title,
-                              @RequestParam String message,
+    public String sendMessage(@ModelAttribute Message message,
+                              @RequestParam("senderID") UUID senderID,
+                              @RequestParam("recipientID") UUID recipientID,
                               Model model) {
         Employee sender = employeeService.getEmployeeById(senderID);
         Employee recipient = employeeService.getEmployeeById(recipientID);
-        model.addAttribute("message", messageService.sendMessage(sender, recipient, title, message));
-        return "sendMessage";
+        message.setSender(sender);
+        message.setRecipient(recipient);
+        messageService.saveMessage(message);
+        return "redirect:/messages";
     }
 
     /**
@@ -85,6 +88,16 @@ public class MessageController {
         return "receivedMessages";
     }
 
+    @GetMapping("/received/{recipientID}")
+    @ResponseBody
+    public List<Message> getReceivedMessages(@PathVariable UUID recipientID) {
+        Employee recipient = employeeService.getEmployeeById(recipientID);
+        Page<Message> page = messageService.getReceivedMessages(recipient, PageRequest.of(0, 20));
+        return page.getContent();
+    }
+
+
+
     /**
      * Handles marking a message as read.
      *
@@ -111,7 +124,42 @@ public class MessageController {
     }
 
     @GetMapping("/messages")
-    public String messagesLandingPage(){
+    public String messagesLandingPage(Model model){
+        model.addAttribute("employees", employeeService.getAllEmployees());
         return "messages/messages";
     }
+
+    @GetMapping("/view/{id}")
+    public String viewMessage(@PathVariable("id") UUID messageID, Model model) {
+        Message message = messageService.getMessageById(messageID);
+        model.addAttribute("message", message);
+        return "viewMessage";
+    }
+
+    @GetMapping("/compose")
+    public String composeMessage(@RequestParam("senderID") UUID senderID, Model model) {
+        List<Employee> allEmployees = employeeService.getAllEmployees();
+        allEmployees.removeIf(e -> e.getEmployeeID().equals(senderID)); // Remove the sender from the list
+        model.addAttribute("employees", allEmployees);
+        model.addAttribute("senderID", senderID); // Add the sender ID to the model
+        model.addAttribute("message", new Message());
+        return "composeMessage";
+    }
+
+
+
+    @PostMapping("/reply")
+    public String replyMessage(@RequestParam UUID messageID, @RequestParam String content, Model model) {
+        Message oldMessage = messageService.getMessageById(messageID);
+        Message newMessage = new Message(oldMessage.getRecipient(), oldMessage.getSender(), "Re: " + oldMessage.getTitle(), content);
+        messageService.saveMessage(newMessage);
+        return "redirect:/messages";
+    }
+
+    @GetMapping
+    public String messagesPage(Model model) {
+        // Add any necessary logic to retrieve the messages or other data for the page
+        return "messages"; // Replace "messages" with the appropriate Thymeleaf template name
+    }
+
 }

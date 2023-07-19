@@ -59,4 +59,8 @@ public interface MessageService {
      * @param messageID  the ID of the message to delete
      */
     void deleteMessage(UUID messageID);
+
+    void saveMessage(Message newMessage);
+
+    Message getMessageById(UUID messageID);
 }

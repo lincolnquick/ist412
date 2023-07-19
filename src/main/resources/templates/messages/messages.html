@@ -25,8 +25,81 @@
         <li class="nav-item"><a class="nav-link" th:href="@{/tasks/tasks}">Tasks</a></li>
         <li class="nav-item"><a class="nav-link" th:href="@{/payments/paystubs}">Paystubs</a></li>
     </ul>
-    <h1 class="mt-5">Buffett Inc. HRMS Messages</h1>
-    <p>Coming Soon</p>
 </div>
+<div class="container">
+
+    <h1 class="mt-5">Buffett Inc. HRMS Messages</h1>
+
+    <h2 class="mt-5">Select an Employee</h2>
+    <select id="employeeSelect" name="employeeSelect" class="form-control mb-3">
+        <option th:each="employee : ${employees}" th:value="${employee.employeeID}" th:text="${employee.firstName + ' ' + employee.lastName}"></option>
+    </select>
+
+    <table id="messagesTable" class="table">
+        <thead>
+        <tr>
+            <th scope="col">Sender</th>
+            <th scope="col">Title</th>
+            <th scope="col">Date</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="message : ${messages}">
+            <td th:text="${message.sender.firstName + ' ' + message.sender.lastName}"></td>
+            <td th:text="${message.title}"></td>
+            <td th:text="${message.timestamp}"></td>
+            <td>
+                <a th:href="@{/messages/view/{messageID}(messageID=${message.messageID})}" class="btn btn-info">View</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Compose message button -->
+    <form id="composeForm" action="/messages/compose" method="get">
+        <input type="hidden" name="senderID" th:value="${selectedEmployeeId}">
+        <button type="submit" class="btn btn-primary">Compose Message</button>
+    </form>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#employeeSelect").change(function() {
+            var employeeID = $(this).val();
+
+            $.ajax({
+                url: '/messages/received/' + employeeID,
+                type: 'GET',
+                success: function(data) {
+                    // Clear the table
+                    $("#messagesTable tbody").empty();
+
+                    // Iterate over each message
+                    $.each(data, function(i, message) {
+                        // Append a new row to the table for each message
+                        $("#messagesTable tbody").append(
+                            '<tr>' +
+                            '<td>' + message.title + '</td>' +
+                            '<td>' + message.sender.name + '</td>' +
+                            '<td>' + message.recipient.name + '</td>' +
+                            '</tr>'
+                        );
+                    });
+
+                    // Update the form action URL with the senderID
+                    var formAction = '/messages/compose?senderID=' + employeeID;
+                    $("#composeForm").attr("action", formAction);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+
+</script>
+
+
 </body>
 </html>

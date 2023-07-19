@@ -31,7 +31,7 @@ class MessageControllerTest {
         when(employeeService.getEmployeeById(recipientId)).thenReturn(recipient);
         when(messageService.sendMessage(sender, recipient, "Title", "Message")).thenReturn(message);
 
-        controller.sendMessage(senderId, recipientId, "Title", "Message", model);
+        controller.sendMessage(message, senderId, recipientId,  model);
 
         verify(messageService).sendMessage(sender, recipient, "Title", "Message");
         verify(model).addAttribute("message", message);
