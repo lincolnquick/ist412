@@ -1,7 +1,6 @@
 package com.buffettinc.hrms.controller.employee;
 
 import com.buffettinc.hrms.model.employee.Employee;
-import com.buffettinc.hrms.repository.employee.EmployeeRepository;
 import com.buffettinc.hrms.service.employee.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,13 +16,11 @@ import java.util.UUID;
  * @version 1.0
  * @since 2023-07-13
  */
-@RestController
+@Controller
 @RequestMapping("/employees")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
-    @Autowired
-    private EmployeeRepository employeeRepository;
 
     @Autowired
     public EmployeeController(EmployeeService employeeService) {
@@ -103,8 +100,4 @@ public class EmployeeController {
         return "redirect:/employees/list";
     }
 
-    @GetMapping("/all")
-    public Iterable<Employee> getAllEmployeesDebug() {
-        return employeeRepository.findAll();
-    }
 }
