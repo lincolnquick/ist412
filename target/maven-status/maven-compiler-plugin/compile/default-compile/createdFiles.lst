@@ -1,5 +1,6 @@
 com/buffettinc/hrms/repository/job/JobOpeningRepository.class
 com/buffettinc/hrms/repository/pto/PTORequestRepository.class
+com/buffettinc/hrms/controller/user/UserController.class
 com/buffettinc/hrms/repository/time/ShiftEntryRepository.class
 com/buffettinc/hrms/controller/communication/MessageController.class
 com/buffettinc/hrms/model/employee/Accountant.class
@@ -46,12 +47,14 @@ com/buffettinc/hrms/repository/communication/MessageRepository.class
 com/buffettinc/hrms/model/pto/PTOStatus.class
 com/buffettinc/hrms/repository/training/TrainingModuleRepository.class
 com/buffettinc/hrms/controller/employee/ManagerController.class
+com/buffettinc/hrms/config/LoadDatabase.class
 com/buffettinc/hrms/service/job/JobOpeningService.class
 com/buffettinc/hrms/service/time/TimesheetServiceImpl.class
 com/buffettinc/hrms/service/pto/PTOBalanceServiceImpl.class
 com/buffettinc/hrms/service/employee/HRStaffService.class
 com/buffettinc/hrms/service/training/TrainingModuleService.class
 com/buffettinc/hrms/model/job/Applicant.class
+com/buffettinc/hrms/SecurityConfiguration.class
 com/buffettinc/hrms/service/training/EmployeeTrainingRecordServiceImpl.class
 com/buffettinc/hrms/model/time/ShiftEntry.class
 com/buffettinc/hrms/service/payroll/PaymentServiceImpl.class
@@ -80,9 +83,11 @@ com/buffettinc/hrms/model/training/TrainingModule.class
 com/buffettinc/hrms/repository/training/TaskRepository.class
 com/buffettinc/hrms/model/job/JobOpening.class
 com/buffettinc/hrms/repository/employee/AccountantRepository.class
+com/buffettinc/hrms/service/user/CustomUserDetails.class
 com/buffettinc/hrms/model/employee/Manager.class
 com/buffettinc/hrms/service/employee/ManagerService.class
 com/buffettinc/hrms/repository/pto/PTOBalanceRepository.class
+com/buffettinc/hrms/service/user/CustomUserDetailsService.class
 com/buffettinc/hrms/model/pto/PTORequest.class
 com/buffettinc/hrms/model/payroll/Payroll.class
 com/buffettinc/hrms/service/employee/EmployeeService.class

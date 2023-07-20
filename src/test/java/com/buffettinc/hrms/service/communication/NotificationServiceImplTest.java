@@ -40,7 +40,7 @@ class NotificationServiceImplTest {
         Employee employee = new Employee();
         String message = "Test Notification for you, IST 412 Student!";
 
-        when(employeeRepository.findById(any(UUID.class))).thenReturn(Optional.of(employee));
+        //when(employeeRepository.findById(any(UUID.class))).thenReturn(Optional.of(employee));
 
         Notification expectedNotification = new Notification(employee, message);
         when(notificationRepository.save(any(Notification.class))).thenReturn(expectedNotification);

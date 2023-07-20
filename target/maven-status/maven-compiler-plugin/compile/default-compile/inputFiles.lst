@@ -15,9 +15,11 @@
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/service/job/JobOpeningService.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/service/communication/MessageService.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/service/training/TrainingModuleService.java
+/Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/config/LoadDatabase.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/controller/time/ShiftEntryController.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/service/training/EmployeeTrainingRecordService.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/repository/user/UserRepository.java
+/Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/service/user/CustomUserDetails.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/controller/employee/EmployeeController.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/repository/employee/EmployeeRepository.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/repository/job/ApplicantRepository.java
@@ -36,6 +38,7 @@
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/model/communication/Message.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/service/employee/AccountantService.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/controller/job/JobApplicationController.java
+/Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/SecurityConfiguration.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/service/payroll/PayrollServiceImpl.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/controller/pto/PTOCalendarController.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/controller/job/JobOpeningController.java
@@ -50,6 +53,7 @@
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/controller/payroll/PaymentController.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/service/employee/AccountantServiceImpl.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/controller/communication/NotificationController.java
+/Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/service/user/CustomUserDetailsService.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/repository/job/JobApplicationRepository.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/service/employee/ManagerService.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/repository/training/EmployeeTrainingRecordRepository.java
@@ -70,6 +74,7 @@
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/service/time/ShiftEntryServiceImpl.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/controller/training/TrainingModuleController.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/service/employee/HRStaffServiceImpl.java
+/Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/controller/user/UserController.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/model/training/TrainingModule.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/model/training/EmployeeTrainingRecord.java
 /Users/lincolnquick/Documents/GitHub/hrms/src/main/java/com/buffettinc/hrms/HrmsApplication.java

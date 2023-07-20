@@ -27,7 +27,7 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
+
                 .authorizeRequests(authorize -> authorize
 
                                 .requestMatchers("/index").permitAll() // Unlocks index page
@@ -44,7 +44,8 @@ public class SecurityConfiguration {
                         .loginProcessingUrl("/register_success")
                         .loginPage("/login")
                 )
-                .httpBasic(Customizer.withDefaults());
+                .httpBasic(Customizer.withDefaults())
+                .csrf().disable();
          return http.build();
     }
 

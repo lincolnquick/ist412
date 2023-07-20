@@ -39,7 +39,7 @@ public class Employee implements Serializable{
     @NonNull
     private Long employeeID;
 
-    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private User user;
 
     @Column(name="firstName")

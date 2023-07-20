@@ -49,9 +49,12 @@ public class LoadDatabase {
 
                     User user = new User(username, password, employee);
 
-                    employeeRepository.save(employee);
+                    // set user to employee and employee to user
+                    user.setEmployee(employee);
+                    employee.setUser(user);
 
-                    userRepository.save(user);
+                    // save employee (and thus user because of CascadeType.ALL)
+                    employeeRepository.save(employee);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
