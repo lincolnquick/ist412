@@ -5,7 +5,9 @@ import com.buffettinc.hrms.model.employee.Manager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -20,4 +22,8 @@ import java.util.UUID;
 public interface EmployeeRepository extends JpaRepository<Employee, UUID> {
 
     Page<Employee> findByManager(Manager manager, Pageable pageable);
+
+    @Query("SELECT e FROM Employee e WHERE e.employeeID NOT IN (SELECT u.employee.employeeID FROM User u)")
+    List<Employee> findUnregisteredEmployees();
 }
+

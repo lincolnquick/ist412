@@ -19,6 +19,8 @@ public interface EmployeeService {
 
     List<Employee> getAllEmployees();
 
+    List<Employee> getUnregisteredEmployees();
+
     Employee getEmployeeById(UUID id);
 
     Employee updateEmployee(Employee employee);

@@ -83,4 +83,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         PageRequest pageRequest = PageRequest.of(pageNo - 1, pageSize, sort);
         return this.employeeRepository.findAll(pageRequest);
     }
+
+    @Override
+    public List<Employee> getUnregisteredEmployees() {
+        return employeeRepository.findUnregisteredEmployees();
+    }
 }

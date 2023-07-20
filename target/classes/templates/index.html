@@ -8,104 +8,20 @@
 </head>
 <body>
 <div class="container">
-    <ul class="nav nav-tabs">
-        <li class="nav-item"> <a class="nav-link active" th:href="@{/}">Home</a> </li>
-        <li class="nav-item"> <a class="nav-link" th:href="@{/employees/list}">Employees</a> </li>
-        <li class="nav-item"> <a class="nav-link" th:href="@{/payroll/payroll}">Payroll</a> </li>
-        <li class="nav-item"> <a class="nav-link" th:href="@{/ptobalance/pto}">Paid Time Off</a> </li>
-        <li class="nav-item"> <a class="nav-link" th:href="@{/timesheets/timesheets}">Time Sheets</a> </li>
-        <li class="nav-item"> <a class="nav-link" th:href="@{/training/training}">Training</a> </li>
-        <li class="nav-item"> <a class="nav-link" th:href="@{/messages/messages}">Messages</a> </li>
-        <li class="nav-item"> <a class="nav-link" th:href="@{/notifications/notifications}">Notifications</a> </li>
-        <li class="nav-item"> <a class="nav-link" th:href="@{/tasks/tasks}">Tasks</a> </li>
-        <li class="nav-item"> <a class="nav-link" th:href="@{/payments/paystubs}">Paystubs</a> </li>
-    </ul>
-    <h1 class="mt-5">Buffett Inc. HRMS Dashboard</h1>
-    <div class="row mt-5">
-        <div class="col-lg-4 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Employees</h5>
-                    <p class="card-text">Manage employee information</p>
-                    <a href="/employees/list" class="btn btn-primary">View Employees</a>
-                    <a href="/employees/new" class="btn btn-success">Add Employee</a>
+    <h1 class="mt-5 text-center">Welcome to Buffett Inc. HRMS</h1>
+    <p class="text-center">Your one-stop solution for HR management</p>
+
+    <div class="d-flex justify-content-center">
+        <div class="card mt-5" style="width: 20rem;">
+            <div class="card-body">
+                <h5 class="card-title text-center">Access Your Account</h5>
+                <p class="card-text text-center">If you already have an account, click on login. If you are a new user, please register.</p>
+                <div class="d-grid gap-2">
+                    <a class="btn btn-primary" th:href="@{/login}">Login</a>
+                    <a class="btn btn-secondary" th:href="@{/register}">Register</a>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Payroll</h5>
-                    <p class="card-text">Manage payroll and salaries</p>
-                    <a href="/payroll/payroll" class="btn btn-primary">View Payroll</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Paid Time Off (PTO)</h5>
-                    <p class="card-text">Manage employee vacation and leave requests</p>
-                    <a href="/ptobalance/pto" class="btn btn-primary">View PTO Requests</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Timesheets</h5>
-                    <p class="card-text">Track employee working hours</p>
-                    <a href="/timesheets/timesheets" class="btn btn-primary">View Timesheets</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Training</h5>
-                    <p class="card-text">Manage employee training modules</p>
-                    <a href="/training/training" class="btn btn-primary">View Training Modules</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Messages</h5>
-                    <p class="card-text">View and send messages</p>
-                    <a href="/messages/messages" class="btn btn-primary">View Messages</a>
-                    <a href="/compose" class="btn btn-success">Compose Message</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Notifications</h5>
-                    <p class="card-text">View notifications</p>
-                    <a href="/notifications/notifications" class="btn btn-primary">View Notifications</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Tasks</h5>
-                    <p class="card-text">Manage tasks</p>
-                    <a href="/tasks/tasks" class="btn btn-primary">View Tasks</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Paystubs (Payments)</h5>
-                    <p class="card-text">View paystubs</p>
-                    <a href="/payments/paystubs" class="btn btn-primary">View Paystubs</a>
-                </div>
-            </div>
-        </div>
-        <!-- Add more cards for additional items -->
     </div>
 </div>
 </body>
