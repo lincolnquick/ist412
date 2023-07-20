@@ -139,7 +139,7 @@ public class MessageController {
     @GetMapping("/compose")
     public String composeMessage(Model model) {
         List<Employee> allEmployees = employeeService.getAllEmployees();
-        UUID senderID = allEmployees.get(0).getEmployeeID();
+        Long senderID = allEmployees.get(0).getEmployeeID();
         allEmployees.removeIf(e -> e.getEmployeeID().equals(senderID)); // Remove the sender from the list
         model.addAttribute("employees", allEmployees);
         model.addAttribute("senderID", senderID); // Add the sender ID to the model
