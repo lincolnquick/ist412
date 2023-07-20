@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -40,7 +41,7 @@ class NotificationServiceImplTest {
         Employee employee = new Employee();
         String message = "Test Notification for you, IST 412 Student!";
 
-        //when(employeeRepository.findById(any(UUID.class))).thenReturn(Optional.of(employee));
+        //when(employeeRepository.findById(any(Long.class))).thenReturn(Optional.of(employee));
 
         Notification expectedNotification = new Notification(employee, message);
         when(notificationRepository.save(any(Notification.class))).thenReturn(expectedNotification);
@@ -51,7 +52,7 @@ class NotificationServiceImplTest {
 
     @Test
     void getNotification() {
-        UUID id = UUID.randomUUID();
+        Long id = ThreadLocalRandom.current().nextLong(1, 1000);
         Notification expectedNotification = new Notification();
         when(notificationRepository.findById(id)).thenReturn(Optional.of(expectedNotification));
 
@@ -63,7 +64,7 @@ class NotificationServiceImplTest {
     void getNotificationsByEmployee() {
         Employee employee = new Employee();
         List<Notification> expectedNotifications = new ArrayList<>();
-        when(employeeRepository.findById(any(UUID.class))).thenReturn(Optional.of(employee));
+        when(employeeRepository.findById(any(Long.class))).thenReturn(Optional.of(employee));
         when(notificationRepository.findByEmployee(any(Employee.class))).thenReturn(expectedNotifications);
 
         List<Notification> actualNotifications = notificationService.getNotificationsByEmployee(employee);
@@ -72,7 +73,7 @@ class NotificationServiceImplTest {
 
     @Test
     void markNotificationAsRead() {
-        UUID id = UUID.randomUUID();
+        Long id = ThreadLocalRandom.current().nextLong(1, 1000);
         Notification expectedNotification = new Notification();
         expectedNotification.setRead(true);
         when(notificationRepository.findById(id)).thenReturn(Optional.of(expectedNotification));
@@ -84,7 +85,7 @@ class NotificationServiceImplTest {
 
     @Test
     void deleteNotification() {
-        UUID id = UUID.randomUUID();
+        Long id = ThreadLocalRandom.current().nextLong(1, 1000);
         Notification notification = new Notification();
         when(notificationRepository.findById(id)).thenReturn(Optional.of(notification));
 

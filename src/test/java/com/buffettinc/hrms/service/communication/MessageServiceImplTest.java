@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -67,7 +68,7 @@ class MessageServiceImplTest {
 
     @Test
     void markMessageAsRead() {
-        UUID id = UUID.randomUUID();
+        Long id = ThreadLocalRandom.current().nextLong(1, 1000);
         Message expectedMessage = new Message();
         expectedMessage.setRead(true);
         when(messageRepository.findById(id)).thenReturn(Optional.of(expectedMessage));
@@ -80,7 +81,7 @@ class MessageServiceImplTest {
 
     @Test
     void deleteMessage() {
-        UUID id = UUID.randomUUID();
+        Long id = ThreadLocalRandom.current().nextLong(1, 1000);
         messageService.deleteMessage(id);
         verify(messageRepository, times(1)).deleteById(id);
     }

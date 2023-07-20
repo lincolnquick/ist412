@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.ui.Model;
 
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static org.mockito.Mockito.*;
 
@@ -20,7 +21,7 @@ class NotificationControllerTest {
 
     @Test
     void sendNotification() {
-        UUID employeeId = UUID.randomUUID();
+        Long employeeId = ThreadLocalRandom.current().nextLong(1, 1000);
         Employee employee = new Employee();
         Notification notification = new Notification();
 
@@ -35,7 +36,7 @@ class NotificationControllerTest {
 
     @Test
     void getNotification() {
-        UUID notificationId = UUID.randomUUID();
+        Long notificationId = ThreadLocalRandom.current().nextLong(1, 1000);
         Notification notification = new Notification();
 
         when(notificationService.getNotification(notificationId)).thenReturn(notification);
@@ -48,7 +49,7 @@ class NotificationControllerTest {
 
     @Test
     void getNotificationsByEmployee() {
-        UUID employeeId = UUID.randomUUID();
+        Long employeeId = ThreadLocalRandom.current().nextLong(1, 1000);
         Employee employee = new Employee();
 
         when(employeeService.getEmployeeById(employeeId)).thenReturn(employee);
@@ -61,7 +62,7 @@ class NotificationControllerTest {
 
     @Test
     void markNotificationAsRead() {
-        UUID notificationId = UUID.randomUUID();
+        Long notificationId = ThreadLocalRandom.current().nextLong(1, 1000);
 
         controller.markNotificationAsRead(notificationId);
 
@@ -70,7 +71,7 @@ class NotificationControllerTest {
 
     @Test
     void deleteNotification() {
-        UUID notificationId = UUID.randomUUID();
+        Long notificationId = ThreadLocalRandom.current().nextLong(1, 1000);
 
         controller.deleteNotification(notificationId);
 
