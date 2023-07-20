@@ -5,6 +5,8 @@ import com.buffettinc.hrms.model.user.User;
 import com.buffettinc.hrms.repository.employee.EmployeeRepository;
 import com.buffettinc.hrms.repository.user.UserRepository;
 import com.buffettinc.hrms.service.employee.EmployeeService;
+import com.buffettinc.hrms.service.user.CustomUserDetails;
+import com.buffettinc.hrms.service.user.CustomUserDetailsService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,7 @@ public class UserController {
     private UserRepository userRepository;
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private CustomUserDetailsService userDetailsService;
 
     @Autowired
     private EmployeeRepository employeeRepository;
@@ -91,9 +93,7 @@ public class UserController {
                                    HttpServletRequest request) {
         try {
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-            System.out.println("userDetails.getPassword" + userDetails.getPassword());
-            System.out.println("password: " + password);
-            System.out.println("bCrypt: " + bCryptPasswordEncoder.encode(password));
+
 
             if (bCryptPasswordEncoder.matches(password, userDetails.getPassword())) {
                 // Authentication succeeded
