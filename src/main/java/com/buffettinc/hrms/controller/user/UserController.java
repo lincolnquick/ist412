@@ -1,11 +1,14 @@
-package com.buffettinc.hrms;
+package com.buffettinc.hrms.controller.user;
 
 import com.buffettinc.hrms.model.employee.Employee;
 import com.buffettinc.hrms.model.user.User;
 import com.buffettinc.hrms.repository.employee.EmployeeRepository;
 import com.buffettinc.hrms.repository.user.UserRepository;
 import com.buffettinc.hrms.service.employee.EmployeeService;
+import com.buffettinc.hrms.service.user.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,11 +32,11 @@ public class UserController {
 
     @GetMapping("")
     public String viewHomePage() {
-        return "dashboard";
+        return "index";
     }
 
     @GetMapping("dashboard")
-    public String viewDashboard() {
+    public String viewDashboard(Model model) {
         return "dashboard";
     }
 

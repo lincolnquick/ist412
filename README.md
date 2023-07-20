@@ -22,7 +22,7 @@ Once the server is running, go to http://localhost:8080 in your web browser. You
 Unit tests are located in the test directory of the project (hrms/src/test). You can run them from IntelliJ IDEA or by running `mvn test` from the project's root directory.
 
 ## Authentication
-The username required to login to the application is "user". The password is randomly generated each time the server starts and is output to the terminal.
+The username required to login to the application is "user". The password is "password".
 
 ## Contact Information
 For help or further questions, contact IST 412 Group 5 via Microsoft Teams.

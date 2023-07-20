@@ -15,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration implements WebMvcConfigurer {
+public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -24,16 +24,11 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                         .anyRequest().authenticated()
                 )
                 .formLogin(formLogin -> formLogin
-                        .defaultSuccessUrl("/dashboard.html", true)
+                        .defaultSuccessUrl("/dashboard", true)
+
                 )
                 .httpBasic(Customizer.withDefaults());
         return http.build();
     }
 
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("index");
-        registry.addViewController("/dashboard").setViewName("dashboard");
-        registry.addViewController("/login").setViewName("login");
-    }
 }
