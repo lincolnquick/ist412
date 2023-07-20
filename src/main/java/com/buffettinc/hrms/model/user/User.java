@@ -25,18 +25,24 @@ public class User {
     private String password;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employeeID", nullable = false)
+    @JoinColumn(name = "employeeid")
     private Employee employee;
 
     public User() {
         this.username = null;
         this.password = null;
+        this.employee = new Employee();
     }
 
     public User(String username, String password, Employee employee) {
         this.username = username;
         this.password = password;
-        this.employee = employee;
+        if (employee != null){
+            this.employee = employee;
+        } else {
+            this.employee = new Employee();
+        }
+
     }
 
     public Employee getEmployee() {

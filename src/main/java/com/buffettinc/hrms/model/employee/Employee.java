@@ -12,6 +12,7 @@ import com.buffettinc.hrms.model.time.Timesheet;
 import com.buffettinc.hrms.model.training.EmployeeTrainingRecord;
 import com.buffettinc.hrms.model.user.User;
 import jakarta.persistence.*;
+import org.springframework.lang.NonNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -34,6 +35,7 @@ import java.util.UUID;
 public class Employee implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @NonNull
     private UUID employeeID;
 
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
