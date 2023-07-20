@@ -29,7 +29,7 @@ public class UserController {
 
     @GetMapping("")
     public String viewHomePage() {
-        return "index";
+        return "dashboard";
     }
 
     @GetMapping("dashboard")
