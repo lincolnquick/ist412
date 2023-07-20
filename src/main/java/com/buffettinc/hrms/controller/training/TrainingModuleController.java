@@ -42,7 +42,7 @@ public class TrainingModuleController {
      * @return the view for creating or updating a TrainingModule.
      */
     @GetMapping({"/edit", "/edit/{id}"})
-    public String viewEditTrainingModule(@PathVariable(value = "id", required = false) UUID trainingID, Model model) {
+    public String viewEditTrainingModule(@PathVariable(value = "id", required = false) Long trainingID, Model model) {
         TrainingModule trainingModule = (trainingID != null) ? trainingModuleService.getTrainingModuleById(trainingID) : new TrainingModule();
         model.addAttribute("trainingModule", trainingModule);
         return "editTrainingModule";
@@ -67,7 +67,7 @@ public class TrainingModuleController {
      * @return the view for displaying all TrainingModules.
      */
     @PostMapping("/delete")
-    public String deleteTrainingModule(@RequestParam UUID trainingID) {
+    public String deleteTrainingModule(@RequestParam Long trainingID) {
         trainingModuleService.deleteTrainingModule(trainingID);
         return "redirect:/trainingModule/all";
     }

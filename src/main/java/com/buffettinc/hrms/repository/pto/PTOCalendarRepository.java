@@ -14,6 +14,6 @@ import java.util.UUID;
  * @version 1.0
  * @since 2023-07-13
  */
-public interface PTOCalendarRepository extends JpaRepository<PTOCalendar, UUID> {
+public interface PTOCalendarRepository extends JpaRepository<PTOCalendar, Long> {
     // custom methods if necessary
 }

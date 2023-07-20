@@ -69,7 +69,7 @@ public class EmployeeController {
      * @return String, name of the template file for updating an employee.
      */
     @GetMapping("/edit/{id}")
-    public String editEmployeeForm(@PathVariable UUID id, Model model) {
+    public String editEmployeeForm(@PathVariable Long id, Model model) {
         model.addAttribute("employee", employeeService.getEmployeeById(id));
         return "employees/edit"; // returns the edit template, not a redirect
     }
@@ -95,7 +95,7 @@ public class EmployeeController {
      * @return String, the redirect URL.
      */
     @GetMapping("/delete/{id}")
-    public String deleteEmployee(@PathVariable UUID id) {
+    public String deleteEmployee(@PathVariable Long id) {
         employeeService.deleteEmployee(id);
         return "redirect:/employees/list";
     }

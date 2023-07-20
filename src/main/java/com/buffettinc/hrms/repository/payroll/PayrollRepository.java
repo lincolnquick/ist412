@@ -14,6 +14,6 @@ import java.util.UUID;
  * @version 1.0
  * @since 2023-07-13
  */
-public interface PayrollRepository extends JpaRepository<Payroll, UUID> {
+public interface PayrollRepository extends JpaRepository<Payroll, Long> {
     // custom methods if necessary
 }

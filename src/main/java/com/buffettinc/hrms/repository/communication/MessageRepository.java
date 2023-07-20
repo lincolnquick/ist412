@@ -17,7 +17,7 @@ import java.util.UUID;
  * @version 1.0
  * @since 2023-07-13
  */
-public interface MessageRepository extends JpaRepository<Message, UUID> {
+public interface MessageRepository extends JpaRepository<Message, Long> {
     Page<Message> findByRecipient(Employee recipient, Pageable pageable);
 
     Page<Message> findBySender(Employee sender, Pageable pageable);

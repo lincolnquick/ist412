@@ -14,6 +14,6 @@ import java.util.UUID;
  * @version 1.0
  * @since 2023-07-13
  */
-public interface PTOBalanceRepository extends JpaRepository<PTOBalance, UUID> {
+public interface PTOBalanceRepository extends JpaRepository<PTOBalance, Long> {
     // custom methods if necessary
 }

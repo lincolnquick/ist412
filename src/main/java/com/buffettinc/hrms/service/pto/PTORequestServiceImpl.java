@@ -36,7 +36,7 @@ public class PTORequestServiceImpl implements PTORequestService {
      * {@inheritDoc}
      */
     @Override
-    public PTORequest getPTORequestById(UUID requestID) {
+    public PTORequest getPTORequestById(Long requestID) {
         return ptoRequestRepository.findById(requestID).orElse(null);
     }
 
@@ -52,7 +52,7 @@ public class PTORequestServiceImpl implements PTORequestService {
      * {@inheritDoc}
      */
     @Override
-    public void deletePTORequest(UUID requestID) {
+    public void deletePTORequest(Long requestID) {
         ptoRequestRepository.deleteById(requestID);
     }
 
@@ -60,7 +60,7 @@ public class PTORequestServiceImpl implements PTORequestService {
      * {@inheritDoc}
      */
     @Override
-    public void approvePTORequest(UUID requestID) {
+    public void approvePTORequest(Long requestID) {
         PTORequest ptoRequest = getPTORequestById(requestID);
         if (ptoRequest != null) {
             ptoRequest.setStatus(PTOStatus.APPROVED);
@@ -72,7 +72,7 @@ public class PTORequestServiceImpl implements PTORequestService {
      * {@inheritDoc}
      */
     @Override
-    public void denyPTORequest(UUID requestID) {
+    public void denyPTORequest(Long requestID) {
         PTORequest ptoRequest = getPTORequestById(requestID);
         if (ptoRequest != null) {
             ptoRequest.setStatus(PTOStatus.DENIED);

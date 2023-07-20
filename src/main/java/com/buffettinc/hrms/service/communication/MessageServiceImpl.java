@@ -53,7 +53,7 @@ public class MessageServiceImpl implements MessageService {
      * {@inheritDoc}
      */
     @Override
-    public Message markMessageAsRead(UUID messageID) {
+    public Message markMessageAsRead(Long messageID) {
         Message message = messageRepository.findById(messageID)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid message ID: " + messageID));
         message.setRead(true);
@@ -64,7 +64,7 @@ public class MessageServiceImpl implements MessageService {
      * {@inheritDoc}
      */
     @Override
-    public void deleteMessage(UUID messageID) {
+    public void deleteMessage(Long messageID) {
         messageRepository.deleteById(messageID);
     }
 
@@ -74,7 +74,7 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public Message getMessageById(UUID messageID) {
+    public Message getMessageById(Long messageID) {
         return messageRepository.getReferenceById(messageID);
     }
 }

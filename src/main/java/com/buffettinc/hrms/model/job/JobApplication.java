@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * This class represents a single Job Application submited for a prospective Employee of Buffett Inc.
@@ -18,19 +19,19 @@ import java.util.UUID;
 @Table(name="jobApplication")
 public class JobApplication implements Serializable {
     @Id
-    @GeneratedValue (strategy = GenerationType.UUID)
-    private UUID applicationID;
+    @GeneratedValue (strategy = GenerationType.AUTO)
+    private Long applicationID;
     @Column(name="jobOpeningID")
-    private UUID jobOpeningID;
+    private Long jobOpeningID;
     @Column(name="applicant")
-    private UUID applicantID;
+    private Long applicantID;
     @Column(name="date")
     private LocalDate applicationDate;
     @Column(name="status")
     private JobApplicationStatus status;
 
-    public JobApplication(UUID jobOpeningID, UUID applicantID, LocalDate applicationDate, JobApplicationStatus status) {
-        this.applicationID = UUID.randomUUID();
+    public JobApplication(Long jobOpeningID, Long applicantID, LocalDate applicationDate, JobApplicationStatus status) {
+        this.applicationID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.jobOpeningID = jobOpeningID;
         this.applicantID = applicantID;
         this.applicationDate = applicationDate;
@@ -38,34 +39,34 @@ public class JobApplication implements Serializable {
     }
 
     public JobApplication() {
-        this.applicationID = UUID.randomUUID();
+        this.applicationID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.jobOpeningID = null;
         this.applicantID = null;
         this.applicationDate = null;
         this.status = JobApplicationStatus.SUBMITTED;
     }
 
-    public UUID getApplicationID() {
+    public Long getApplicationID() {
         return applicationID;
     }
 
-    public void setApplicationID(UUID applicationID) {
+    public void setApplicationID(Long applicationID) {
         this.applicationID = applicationID;
     }
 
-    public UUID getJobOpeningID() {
+    public Long getJobOpeningID() {
         return jobOpeningID;
     }
 
-    public void setJobOpeningID(UUID jobID) {
+    public void setJobOpeningID(Long jobID) {
         this.jobOpeningID = jobID;
     }
 
-    public UUID getApplicantID() {
+    public Long getApplicantID() {
         return applicantID;
     }
 
-    public void setApplicantID(UUID applicantID) {
+    public void setApplicantID(Long applicantID) {
         this.applicantID = applicantID;
     }
 

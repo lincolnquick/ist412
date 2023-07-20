@@ -16,7 +16,7 @@ import java.util.UUID;
  * @version 1.0
  * @since 2023-07-13
  */
-public interface NotificationRepository extends JpaRepository<Notification, UUID> {
+public interface NotificationRepository extends JpaRepository<Notification, Long> {
     List<Notification> findByEmployee(Employee recipient);
     // custom methods if necessary
 }

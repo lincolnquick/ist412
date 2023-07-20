@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.net.URL;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Implementation of the {@link ApplicantService} interface.
@@ -33,7 +32,7 @@ public class ApplicantServiceImpl implements ApplicantService {
      */
     @Override
     public Applicant createApplicant(String firstName, String lastName, String streetAddress, String city, String state,
-                                     String zip, String phone, String email, UUID jobID, URL resume) {
+                                     String zip, String phone, String email, Long jobID, URL resume) {
         Applicant applicant = new Applicant(firstName, lastName, streetAddress, city, state, zip, phone, email,
                 JobApplication.JobApplicationStatus.SUBMITTED, jobID, resume);
         return applicantRepository.save(applicant);
@@ -43,7 +42,7 @@ public class ApplicantServiceImpl implements ApplicantService {
      * {@inheritDoc}
      */
     @Override
-    public Applicant getApplicantByID(UUID applicantID) {
+    public Applicant getApplicantByID(Long applicantID) {
         return applicantRepository.findById(applicantID).orElse(null);
     }
 
@@ -59,8 +58,8 @@ public class ApplicantServiceImpl implements ApplicantService {
      * {@inheritDoc}
      */
     @Override
-    public Applicant updateApplicant(UUID applicantID, String firstName, String lastName, String streetAddress, String city,
-                                     String state, String zip, String phone, String email, UUID jobID, URL resume) {
+    public Applicant updateApplicant(Long applicantID, String firstName, String lastName, String streetAddress, String city,
+                                     String state, String zip, String phone, String email, Long jobID, URL resume) {
         Applicant existingApplicant = applicantRepository.findById(applicantID).orElse(null);
         if (existingApplicant != null) {
             existingApplicant.setFirstName(firstName);
@@ -82,7 +81,7 @@ public class ApplicantServiceImpl implements ApplicantService {
      * {@inheritDoc}
      */
     @Override
-    public boolean deleteApplicant(UUID applicantID) {
+    public boolean deleteApplicant(Long applicantID) {
         Applicant existingApplicant = applicantRepository.findById(applicantID).orElse(null);
         if (existingApplicant != null) {
             applicantRepository.delete(existingApplicant);

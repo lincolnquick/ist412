@@ -29,7 +29,7 @@ public interface NotificationService {
      * @return the notification
      * @throws RuntimeException if the notification is not found
      */
-    Notification getNotification(UUID notificationID);
+    Notification getNotification(Long notificationID);
 
     /**
      * Retrieves all notifications for an employee.
@@ -46,7 +46,7 @@ public interface NotificationService {
      * @param notificationID the ID of the notification
      * @throws RuntimeException if the notification is not found
      */
-    void markNotificationAsRead(UUID notificationID);
+    void markNotificationAsRead(Long notificationID);
 
     /**
      * Deletes a notification.
@@ -54,5 +54,5 @@ public interface NotificationService {
      * @param notificationID the ID of the notification
      * @throws RuntimeException if the notification is not found
      */
-    void deleteNotification(UUID notificationID);
+    void deleteNotification(Long notificationID);
 }

@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * This class represents a single record to keep track of an {@link Employee}'s completion status of a training module.
@@ -20,20 +21,20 @@ import java.util.UUID;
 @Table(name="trainingRecord")
 public class EmployeeTrainingRecord implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID recordID;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long recordID;
     @ManyToOne
     @JoinColumn(name="employee", referencedColumnName = "employeeID")
     private Employee employee;
     @Column(name="trainingModule")
-    private UUID trainingModuleID;
+    private Long trainingModuleID;
     @Column(name="completionDate")
     private LocalDate completionDate;
     @Column(name="isCompleted")
     private boolean isCompleted;
 
-    public EmployeeTrainingRecord(Employee employee, UUID trainingModuleID) {
-        this.recordID = UUID.randomUUID();
+    public EmployeeTrainingRecord(Employee employee, Long trainingModuleID) {
+        this.recordID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.employee = employee;
         this.trainingModuleID = trainingModuleID;
         this.completionDate = null;
@@ -41,18 +42,18 @@ public class EmployeeTrainingRecord implements Serializable {
     }
 
     public EmployeeTrainingRecord() {
-        this.recordID = UUID.randomUUID();
+        this.recordID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.employee = null;
         this.trainingModuleID = null;
         this.completionDate = null;
         this.isCompleted = false;
     }
 
-    public UUID getRecordID() {
+    public Long getRecordID() {
         return recordID;
     }
 
-    public void setRecordID(UUID recordID) {
+    public void setRecordID(Long recordID) {
         this.recordID = recordID;
     }
 
@@ -64,11 +65,11 @@ public class EmployeeTrainingRecord implements Serializable {
         this.employee = employee;
     }
 
-    public UUID getTrainingModuleID() {
+    public Long getTrainingModuleID() {
         return trainingModuleID;
     }
 
-    public void setTrainingModuleID(UUID trainingModuleID) {
+    public void setTrainingModuleID(Long trainingModuleID) {
         this.trainingModuleID = trainingModuleID;
     }
 

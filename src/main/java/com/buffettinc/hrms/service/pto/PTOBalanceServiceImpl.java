@@ -24,7 +24,7 @@ public class PTOBalanceServiceImpl implements PTOBalanceService {
     }
 
     @Override
-    public PTOBalance getPTOBalanceById(UUID employeeID) {
+    public PTOBalance getPTOBalanceById(Long employeeID) {
         // Fetch the ptobalance with the given employeeID from the database
         // return the fetched ptobalance
         return null;
@@ -38,12 +38,12 @@ public class PTOBalanceServiceImpl implements PTOBalanceService {
     }
 
     @Override
-    public void deletePTOBalance(UUID employeeID) {
+    public void deletePTOBalance(Long employeeID) {
         // Delete the ptobalance with the given employeeID from the database
     }
 
     @Override
-    public void useVacationTime(UUID employeeID, float hours) {
+    public void useVacationTime(Long employeeID, float hours) {
         PTOBalance ptobalance = getPTOBalanceById(employeeID);
         if (ptobalance != null) {
             ptobalance.useVacationTime(hours);
@@ -52,7 +52,7 @@ public class PTOBalanceServiceImpl implements PTOBalanceService {
     }
 
     @Override
-    public void usePersonalTime(UUID employeeID, float hours) {
+    public void usePersonalTime(Long employeeID, float hours) {
         PTOBalance ptobalance = getPTOBalanceById(employeeID);
         if (ptobalance != null) {
             ptobalance.usePersonalTime(hours);
@@ -61,7 +61,7 @@ public class PTOBalanceServiceImpl implements PTOBalanceService {
     }
 
     @Override
-    public void useSickTime(UUID employeeID, float hours) {
+    public void useSickTime(Long employeeID, float hours) {
         PTOBalance ptobalance = getPTOBalanceById(employeeID);
         if (ptobalance != null) {
             ptobalance.useSickTime(hours);
@@ -70,7 +70,7 @@ public class PTOBalanceServiceImpl implements PTOBalanceService {
     }
 
     @Override
-    public void accrueVacationTime(UUID employeeID, float hours) {
+    public void accrueVacationTime(Long employeeID, float hours) {
         PTOBalance ptobalance = getPTOBalanceById(employeeID);
         if (ptobalance != null) {
             ptobalance.accrueVacationTime(hours);
@@ -79,7 +79,7 @@ public class PTOBalanceServiceImpl implements PTOBalanceService {
     }
 
     @Override
-    public void accruePersonalTime(UUID employeeID, float hours) {
+    public void accruePersonalTime(Long employeeID, float hours) {
         PTOBalance ptobalance = getPTOBalanceById(employeeID);
         if (ptobalance != null) {
             ptobalance.accruePersonalTime(hours);
@@ -88,7 +88,7 @@ public class PTOBalanceServiceImpl implements PTOBalanceService {
     }
 
     @Override
-    public void accrueSickTime(UUID employeeID, float hours) {
+    public void accrueSickTime(Long employeeID, float hours) {
         PTOBalance ptobalance = getPTOBalanceById(employeeID);
         if (ptobalance != null) {
             ptobalance.accrueSickTime(hours);

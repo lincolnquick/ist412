@@ -43,7 +43,7 @@ public class NotificationController {
      * @return the name of the view
      */
     @PostMapping("/send")
-    public String sendNotification(@RequestParam UUID employeeID,
+    public String sendNotification(@RequestParam Long employeeID,
                                    @RequestParam String message,
                                    Model model) {
         Employee employee = employeeService.getEmployeeById(employeeID);
@@ -59,7 +59,7 @@ public class NotificationController {
      * @return the name of the view
      */
     @GetMapping("/{notificationID}")
-    public String getNotification(@PathVariable UUID notificationID,
+    public String getNotification(@PathVariable Long notificationID,
                                   Model model) {
         model.addAttribute("notification", notificationService.getNotification(notificationID));
         return "viewNotification";
@@ -73,7 +73,7 @@ public class NotificationController {
      * @return the name of the view
      */
     @GetMapping("/list/{employeeID}")
-    public String getNotificationsByEmployee(@PathVariable UUID employeeID,
+    public String getNotificationsByEmployee(@PathVariable Long employeeID,
                                              Model model) {
         Employee employee = employeeService.getEmployeeById(employeeID);
         model.addAttribute("notifications", notificationService.getNotificationsByEmployee(employee));
@@ -87,7 +87,7 @@ public class NotificationController {
      * @return the name of the view
      */
     @PostMapping("/read/{notificationID}")
-    public String markNotificationAsRead(@PathVariable UUID notificationID) {
+    public String markNotificationAsRead(@PathVariable Long notificationID) {
         notificationService.markNotificationAsRead(notificationID);
         return "notificationRead";
     }
@@ -99,7 +99,7 @@ public class NotificationController {
      * @return the name of the view
      */
     @PostMapping("/delete/{notificationID}")
-    public String deleteNotification(@PathVariable UUID notificationID) {
+    public String deleteNotification(@PathVariable Long notificationID) {
         notificationService.deleteNotification(notificationID);
         return "notificationDeleted";
     }

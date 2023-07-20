@@ -32,7 +32,7 @@ public interface ManagerService {
      * @param dueDate     the due date of the task
      * @return the assigned task
      */
-    Task assignTask(UUID employeeID, String name, String description, LocalDate dueDate);
+    Task assignTask(Long employeeID, String name, String description, LocalDate dueDate);
 
     /**
      * Gets a list of employees managed by the manager.
@@ -41,7 +41,7 @@ public interface ManagerService {
      * @param pageable  the pageable object for pagination
      * @return a page of managed employees
      */
-    Page<Employee> getManagedEmployees(UUID managerID, Pageable pageable);
+    Page<Employee> getManagedEmployees(Long managerID, Pageable pageable);
 
     /**
      * Reviews a job application for a specific job opening.
@@ -50,7 +50,7 @@ public interface ManagerService {
      * @param applicantID the ID of the applicant
      * @return the reviewed job application
      */
-    JobApplication reviewJobApplication(UUID jobID, UUID applicantID);
+    JobApplication reviewJobApplication(Long jobID, Long applicantID);
 
     /**
      * Approves a job application for a specific job opening.

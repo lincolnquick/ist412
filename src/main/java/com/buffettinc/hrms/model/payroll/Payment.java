@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * This class represents a Payment made for a Paycheck for an {@link Employee} of Buffett Inc.
@@ -20,8 +21,8 @@ import java.util.UUID;
 @Table(name="payment")
 public class Payment implements Serializable {
     @Id
-    @GeneratedValue(strategy=GenerationType.UUID)
-    private UUID paymentID;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long paymentID;
     @Column(name="institution")
     private String institution;
     @Column(name="routing")
@@ -33,10 +34,10 @@ public class Payment implements Serializable {
     @Column(name="amount")
     private float amount;
     @Column(name="employee")
-    private UUID employeeID;
+    private Long employeeID;
 
-    public Payment(String institution, String routingNumber, String accountNumber, LocalDate postedDate, float amount, UUID employeeID) {
-        this.paymentID = UUID.randomUUID();
+    public Payment(String institution, String routingNumber, String accountNumber, LocalDate postedDate, float amount, Long employeeID) {
+        this.paymentID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.institution = institution;
         this.routingNumber = routingNumber;
         this.accountNumber = accountNumber;
@@ -46,7 +47,7 @@ public class Payment implements Serializable {
     }
 
     public Payment() {
-        this.paymentID = UUID.randomUUID();
+        this.paymentID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.institution = null;
         this.routingNumber = null;
         this.accountNumber = null;
@@ -95,11 +96,11 @@ public class Payment implements Serializable {
         this.amount = amount;
     }
 
-    public UUID getEmployeeID() {
+    public Long getEmployeeID() {
         return employeeID;
     }
 
-    public void setEmployeeID(UUID employeeID) {
+    public void setEmployeeID(Long employeeID) {
         this.employeeID = employeeID;
     }
 

@@ -36,7 +36,7 @@ public class ApplicantController {
                                   @RequestParam String streetAddress, @RequestParam String city,
                                   @RequestParam String state, @RequestParam String zip,
                                   @RequestParam String phone, @RequestParam String email,
-                                  @RequestParam UUID jobID, @RequestParam URL resume) {
+                                  @RequestParam Long jobID, @RequestParam URL resume) {
         Applicant applicant = applicantService.createApplicant(firstName, lastName, streetAddress, city, state, zip, phone, email, jobID, resume);
         return "applicantDetails"; // Assuming this is the template showing the details of the created applicant
     }
@@ -46,7 +46,7 @@ public class ApplicantController {
      * @return template name
      */
     @GetMapping("/{applicantID}")
-    public String getApplicantByID(@PathVariable UUID applicantID) {
+    public String getApplicantByID(@PathVariable Long applicantID) {
         Applicant applicant = applicantService.getApplicantByID(applicantID);
         return "applicantDetails"; // Assuming this is the template showing the details of the retrieved applicant
     }
@@ -66,11 +66,11 @@ public class ApplicantController {
      * @return template name
      */
     @PutMapping("/{applicantID}")
-    public String updateApplicant(@PathVariable UUID applicantID, @RequestParam String firstName,
+    public String updateApplicant(@PathVariable Long applicantID, @RequestParam String firstName,
                                   @RequestParam String lastName, @RequestParam String streetAddress,
                                   @RequestParam String city, @RequestParam String state,
                                   @RequestParam String zip, @RequestParam String phone,
-                                  @RequestParam String email, @RequestParam UUID jobID,
+                                  @RequestParam String email, @RequestParam Long jobID,
                                   @RequestParam URL resume) {
         Applicant applicant = applicantService.updateApplicant(applicantID, firstName, lastName, streetAddress, city, state, zip, phone, email, jobID, resume);
         return "applicantDetails"; // Assuming this is the template showing the details of the updated applicant
@@ -81,7 +81,7 @@ public class ApplicantController {
      * @return template name
      */
     @DeleteMapping("/{applicantID}")
-    public String deleteApplicant(@PathVariable UUID applicantID) {
+    public String deleteApplicant(@PathVariable Long applicantID) {
         boolean success = applicantService.deleteApplicant(applicantID);
         return "applicantDeleted"; // Assuming this is the template showing a confirmation of the deletion
     }

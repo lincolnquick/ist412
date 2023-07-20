@@ -14,6 +14,6 @@ import java.util.UUID;
  * @version 1.0
  * @since 2023-07-13
  */
-public interface TrainingModuleRepository extends JpaRepository<TrainingModule, UUID> {
+public interface TrainingModuleRepository extends JpaRepository<TrainingModule, Long> {
     // custom methods if necessary
 }

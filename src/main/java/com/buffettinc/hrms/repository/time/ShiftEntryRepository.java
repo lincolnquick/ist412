@@ -14,6 +14,6 @@ import java.util.UUID;
  * @version 1.0
  * @since 2023-07-13
  */
-public interface ShiftEntryRepository extends JpaRepository<ShiftEntry, UUID> {
+public interface ShiftEntryRepository extends JpaRepository<ShiftEntry, Long> {
     // custom methods if necessary
 }

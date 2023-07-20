@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * This class represents the Payroll information for an {@link Employee} of Buffett Inc.
@@ -24,8 +25,8 @@ import java.util.UUID;
 @Table(name="payroll")
 public class Payroll implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID payrollID;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long payrollID;
 
     @OneToOne
     @JoinColumn(name="employeeID")
@@ -46,7 +47,7 @@ public class Payroll implements Serializable {
     private List<Timesheet> approvedTimesheetList;
 
     public Payroll(Employee employee, float hourlyRate, String institutionName, String routingNumber, String accountNumber) {
-        this.payrollID = UUID.randomUUID();
+        this.payrollID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.employee = employee;
         this.hourlyRate = hourlyRate;
         this.institutionName = institutionName;
@@ -56,7 +57,7 @@ public class Payroll implements Serializable {
     }
 
     public Payroll() {
-        this.payrollID = UUID.randomUUID();
+        this.payrollID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.employee = null;
         this.hourlyRate = 0.0f;
         this.institutionName = null;
@@ -65,11 +66,11 @@ public class Payroll implements Serializable {
         this.timesheetList = new ArrayList<>();
     }
 
-    public UUID getPayrollID() {
+    public Long getPayrollID() {
         return payrollID;
     }
 
-    public void setPayrollID(UUID payrollID) {
+    public void setPayrollID(Long payrollID) {
         this.payrollID = payrollID;
     }
 

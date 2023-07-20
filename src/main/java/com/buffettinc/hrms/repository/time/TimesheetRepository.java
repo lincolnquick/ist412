@@ -14,6 +14,6 @@ import java.util.UUID;
  * @version 1.0
  * @since 2023-07-13
  */
-public interface TimesheetRepository extends JpaRepository<Timesheet, UUID> {
+public interface TimesheetRepository extends JpaRepository<Timesheet, Long> {
     // custom methods if necessary
 }

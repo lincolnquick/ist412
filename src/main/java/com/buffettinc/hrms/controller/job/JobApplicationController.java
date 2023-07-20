@@ -30,7 +30,7 @@ public class JobApplicationController {
     }
 
     @GetMapping("/{id}")
-    public String getJobApplicationByID(@PathVariable("id") UUID applicationID) {
+    public String getJobApplicationByID(@PathVariable("id") Long applicationID) {
         jobApplicationService.getJobApplicationById(applicationID);
         return "viewJobApplication";
     }
@@ -42,7 +42,7 @@ public class JobApplicationController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteJobApplication(@PathVariable("id") UUID applicationID) {
+    public String deleteJobApplication(@PathVariable("id") Long applicationID) {
         jobApplicationService.deleteJobApplication(applicationID);
         return "jobApplicationDeleted";
     }
@@ -54,13 +54,13 @@ public class JobApplicationController {
     }
 
     @GetMapping("/jobOpening/{jobOpeningID}")
-    public String getJobApplicationsForJobOpening(@PathVariable("jobOpeningID") UUID jobOpeningID) {
+    public String getJobApplicationsForJobOpening(@PathVariable("jobOpeningID") Long jobOpeningID) {
         jobApplicationService.getJobApplicationsForJobOpening(jobOpeningID);
         return "viewJobApplicationsForJobOpening";
     }
 
     @GetMapping("/applicant/{applicantID}")
-    public String getJobApplicationsByApplicant(@PathVariable("applicantID") UUID applicantID) {
+    public String getJobApplicationsByApplicant(@PathVariable("applicantID") Long applicantID) {
         jobApplicationService.getJobApplicationsByApplicant(applicantID);
         return "viewJobApplicationsByApplicant";
     }

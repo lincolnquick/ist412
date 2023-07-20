@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * This class represents a Notification sent within Buffett Inc's HRMS to an {@link Employee}.
@@ -18,8 +19,8 @@ import java.util.UUID;
 @Table(name="notification")
 public class Notification implements Serializable {
     @Id
-    @GeneratedValue (strategy = GenerationType.UUID)
-    private UUID notificationID;
+    @GeneratedValue (strategy = GenerationType.AUTO)
+    private Long notificationID;
     @ManyToOne
     @JoinColumn(name="employee", referencedColumnName = "employeeID")
     private Employee employee;
@@ -32,7 +33,7 @@ public class Notification implements Serializable {
     private boolean isRead;
 
     public Notification(Employee employee, String message) {
-        this.notificationID = UUID.randomUUID();
+        this.notificationID = ThreadLocalRandom.current().nextLong(1000);
         this.employee = employee;
         this.message = message;
         this.timestamp = LocalDateTime.now();
@@ -40,7 +41,7 @@ public class Notification implements Serializable {
     }
 
     public Notification() {
-        this.notificationID = UUID.randomUUID();
+        this.notificationID = ThreadLocalRandom.current().nextLong(1,1000);
         this.employee = null;
         this.message = null;
         this.timestamp = LocalDateTime.now();
@@ -55,11 +56,11 @@ public class Notification implements Serializable {
         isRead = read;
     }
 
-    public UUID getNotificationID() {
+    public Long getNotificationID() {
         return notificationID;
     }
 
-    public void setNotificationID(UUID notificationID) {
+    public void setNotificationID(Long notificationID) {
         this.notificationID = notificationID;
     }
 

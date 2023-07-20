@@ -42,7 +42,7 @@ public class ShiftEntryController {
      * @return the view for creating or updating a ShiftEntry.
      */
     @GetMapping({"/edit", "/edit/{id}"})
-    public String viewEditShiftEntry(@PathVariable(value = "id", required = false) UUID shiftID, Model model) {
+    public String viewEditShiftEntry(@PathVariable(value = "id", required = false) Long shiftID, Model model) {
         ShiftEntry shiftEntry = (shiftID != null) ? shiftEntryService.getShiftEntryById(shiftID) : new ShiftEntry();
         model.addAttribute("shiftEntry", shiftEntry);
         return "editShiftEntry";
@@ -67,7 +67,7 @@ public class ShiftEntryController {
      * @return the view for displaying all ShiftEntries.
      */
     @PostMapping("/delete")
-    public String deleteShiftEntry(@RequestParam UUID shiftID) {
+    public String deleteShiftEntry(@RequestParam Long shiftID) {
         shiftEntryService.deleteShiftEntry(shiftID);
         return "redirect:/shiftEntry/all";
     }

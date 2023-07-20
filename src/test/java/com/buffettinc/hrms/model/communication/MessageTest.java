@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,7 +16,7 @@ class MessageTest {
     void getMessageID() {
         Message testMessage = new Message(new Employee(), new Employee(), "test", "test message");
 
-        UUID testID = testMessage.getMessageID();
+        Long testID = testMessage.getMessageID();
         boolean testResult = true;
         if (testID.equals(null)) {
             testResult = false;
@@ -26,11 +27,11 @@ class MessageTest {
     @Test
     void setMessageID() {
         Message testMessage = new Message(new Employee(), new Employee(), "test", "test message");
-        UUID testID = UUID.randomUUID();
+        Long testID = ThreadLocalRandom.current().nextLong(1, 1000);
 
         testMessage.setMessageID(testID);
 
-        UUID testResult = testMessage.getMessageID();
+        Long testResult = testMessage.getMessageID();
         assertEquals(testID, testResult);
     }
 

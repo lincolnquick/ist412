@@ -40,7 +40,7 @@ public class ManagerController {
     }
 
     @PostMapping("/assignTask")
-    public String assignTask(@RequestParam UUID employeeID,
+    public String assignTask(@RequestParam Long employeeID,
                              @RequestParam String name,
                              @RequestParam String description,
                              @RequestParam LocalDate dueDate,
@@ -50,13 +50,13 @@ public class ManagerController {
     }
 
     @GetMapping("/managedEmployees")
-    public String getManagedEmployees(@RequestParam UUID managerID, Model model){
+    public String getManagedEmployees(@RequestParam Long managerID, Model model){
         model.addAttribute("employees", managerService.getManagedEmployees(managerID, PageRequest.of(0, 20)));
         return "managedEmployees";
     }
 
     @PostMapping("/approveJobApplication")
-    public String approveJobApplication(@RequestParam UUID applicationID, Model model) {
+    public String approveJobApplication(@RequestParam Long applicationID, Model model) {
         Optional<JobApplication> optional = jobApplicationService.getJobApplicationById(applicationID);
         if (optional.isPresent()){
             JobApplication approvedApplication = managerService.approveJobApplication(optional.get());
@@ -69,21 +69,21 @@ public class ManagerController {
     }
 
     @PostMapping("/approveHours")
-    public String approveHours(@RequestParam UUID timesheetID, Model model){
+    public String approveHours(@RequestParam Long timesheetID, Model model){
         Timesheet timesheet = timesheetService.getTimesheetById(timesheetID);
         managerService.approveHours(timesheet);
         return "approveHours";
     }
 
     @PostMapping("/approvePTO")
-    public String approvePTO(@RequestParam UUID requestID, Model model){
+    public String approvePTO(@RequestParam Long requestID, Model model){
         PTORequest request = ptoRequestService.getPTORequestById(requestID);
         managerService.approvePTO(request);
         return "approvePTO";
     }
 
     @GetMapping("/viewEmployeePTO")
-    public String viewEmployeePTO(@RequestParam UUID employeeID, Model model){
+    public String viewEmployeePTO(@RequestParam Long employeeID, Model model){
         Employee employee = employeeService.getEmployeeById(employeeID);
         model.addAttribute("ptoBalance", managerService.viewEmployeePTO(employee));
         return "viewEmployeePTO";

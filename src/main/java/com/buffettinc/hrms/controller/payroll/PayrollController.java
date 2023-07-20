@@ -43,11 +43,11 @@ public class PayrollController {
     /**
      * Endpoint to fetch a payroll by its ID.
      *
-     * @param payrollID UUID of the Payroll entry.
+     * @param payrollID Long of the Payroll entry.
      * @return string of Thymeleaf template's name.
      */
     @GetMapping("/{payrollID}")
-    public String getPayrollById(@PathVariable UUID payrollID) {
+    public String getPayrollById(@PathVariable Long payrollID) {
         payrollService.getPayrollById(payrollID);
         return "redirect:/payrollDetails";
     }
@@ -66,11 +66,11 @@ public class PayrollController {
     /**
      * Endpoint to delete a payroll.
      *
-     * @param payrollID UUID of the Payroll entry to be deleted.
+     * @param payrollID Long of the Payroll entry to be deleted.
      * @return string of Thymeleaf template's name.
      */
     @DeleteMapping("/{payrollID}")
-    public String deletePayroll(@PathVariable UUID payrollID) {
+    public String deletePayroll(@PathVariable Long payrollID) {
         payrollService.deletePayroll(payrollID);
         return "redirect:/payrollList";
     }

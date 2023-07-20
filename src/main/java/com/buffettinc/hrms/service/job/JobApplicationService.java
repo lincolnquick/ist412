@@ -30,7 +30,7 @@ public interface JobApplicationService {
      * @param applicationID the id of the job application to fetch.
      * @return an Optional of the job application if found, or an empty Optional if not.
      */
-    Optional<JobApplication> getJobApplicationById(UUID applicationID);
+    Optional<JobApplication> getJobApplicationById(Long applicationID);
 
     /**
      * Fetches all job applications.
@@ -44,7 +44,7 @@ public interface JobApplicationService {
      *
      * @param applicationID the id of the job application to delete.
      */
-    void deleteJobApplication(UUID applicationID);
+    void deleteJobApplication(Long applicationID);
 
     /**
      * Fetches all job applications by their status.
@@ -60,7 +60,7 @@ public interface JobApplicationService {
      * @param jobOpeningID the id of the job opening.
      * @return a list of job applications for the job opening.
      */
-    List<JobApplication> getJobApplicationsForJobOpening(UUID jobOpeningID);
+    List<JobApplication> getJobApplicationsForJobOpening(Long jobOpeningID);
 
     /**
      * Fetches all job applications submitted by a particular applicant.
@@ -68,5 +68,5 @@ public interface JobApplicationService {
      * @param applicantID the id of the applicant.
      * @return a list of job applications submitted by the applicant.
      */
-    List<JobApplication> getJobApplicationsByApplicant(UUID applicantID);
+    List<JobApplication> getJobApplicationsByApplicant(Long applicantID);
 }

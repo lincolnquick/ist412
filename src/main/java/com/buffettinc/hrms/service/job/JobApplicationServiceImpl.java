@@ -35,7 +35,7 @@ public class JobApplicationServiceImpl implements JobApplicationService {
      * {@inheritDoc}
      */
     @Override
-    public Optional<JobApplication> getJobApplicationById(UUID applicationID) {
+    public Optional<JobApplication> getJobApplicationById(Long applicationID) {
         return jobApplicationRepository.findById(applicationID);
     }
 
@@ -51,7 +51,7 @@ public class JobApplicationServiceImpl implements JobApplicationService {
      * {@inheritDoc}
      */
     @Override
-    public void deleteJobApplication(UUID applicationID) {
+    public void deleteJobApplication(Long applicationID) {
         jobApplicationRepository.deleteById(applicationID);
     }
 
@@ -67,7 +67,7 @@ public class JobApplicationServiceImpl implements JobApplicationService {
      * {@inheritDoc}
      */
     @Override
-    public List<JobApplication> getJobApplicationsForJobOpening(UUID jobOpeningID) {
+    public List<JobApplication> getJobApplicationsForJobOpening(Long jobOpeningID) {
         return jobApplicationRepository.findByJobOpeningID(jobOpeningID);
     }
 
@@ -75,7 +75,7 @@ public class JobApplicationServiceImpl implements JobApplicationService {
      * {@inheritDoc}
      */
     @Override
-    public List<JobApplication> getJobApplicationsByApplicant(UUID applicantID) {
+    public List<JobApplication> getJobApplicationsByApplicant(Long applicantID) {
         return jobApplicationRepository.findByApplicantID(applicantID);
     }
 }

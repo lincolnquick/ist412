@@ -31,7 +31,7 @@ public class PaymentController {
     }
 
     @GetMapping("/{id}")
-    public String getPaymentByID(@PathVariable("id") UUID paymentID) {
+    public String getPaymentByID(@PathVariable("id") Long paymentID) {
         paymentService.getPaymentById(paymentID);
         return "viewPayment";
     }
@@ -43,31 +43,31 @@ public class PaymentController {
     }
 
     @DeleteMapping("/{id}")
-    public String deletePayment(@PathVariable("id") UUID paymentID) {
+    public String deletePayment(@PathVariable("id") Long paymentID) {
         paymentService.deletePayment(paymentID);
         return "paymentDeleted";
     }
 
     @GetMapping("/employee/{employeeID}")
-    public String getPaymentsForEmployee(@PathVariable("employeeID") UUID employeeID) {
+    public String getPaymentsForEmployee(@PathVariable("employeeID") Long employeeID) {
         paymentService.getPaymentsForEmployee(employeeID);
         return "viewPaymentsForEmployee";
     }
 
     @PostMapping("/directDepositTransfer/{id}")
-    public String initiateDirectDepositTransfer(@PathVariable("id") UUID paymentID) {
+    public String initiateDirectDepositTransfer(@PathVariable("id") Long paymentID) {
         paymentService.initiateDirectDepositTransfer(paymentID);
         return "directDepositTransferInitiated";
     }
 
     @PostMapping("/acknowledgeDirectDeposit/{id}")
-    public String acknowledgeDirectDeposit(@PathVariable("id") UUID paymentID) {
+    public String acknowledgeDirectDeposit(@PathVariable("id") Long paymentID) {
         paymentService.acknowledgeDirectDeposit(paymentID);
         return "directDepositAcknowledged";
     }
 
     @PostMapping("/initiateCheckWriting/{id}")
-    public String initiateCheckWriting(@PathVariable("id") UUID paymentID) {
+    public String initiateCheckWriting(@PathVariable("id") Long paymentID) {
         paymentService.initiateCheckWriting(paymentID);
         return "checkWritingInitiated";
     }

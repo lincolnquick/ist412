@@ -27,7 +27,7 @@ public class Manager extends Employee{
     @Column(name="permission")
     private String permissionLevel;
     @ManyToMany
-    private HashMap<UUID, Task> tasks;
+    private HashMap<Long, Task> tasks;
 
     @OneToMany(mappedBy = "manager")
     private List<Employee> subordinates = new ArrayList<>();

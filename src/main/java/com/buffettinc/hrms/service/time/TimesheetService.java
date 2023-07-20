@@ -31,7 +31,7 @@ public interface TimesheetService {
      * @param timesheetID The ID of the timesheet.
      * @return The timesheet.
      */
-    Timesheet getTimesheetById(UUID timesheetID);
+    Timesheet getTimesheetById(Long timesheetID);
 
     /**
      * Gets all timesheets.
@@ -45,7 +45,7 @@ public interface TimesheetService {
      *
      * @param timesheetID The ID of the timesheet to delete.
      */
-    void deleteTimesheet(UUID timesheetID);
+    void deleteTimesheet(Long timesheetID);
 
     /**
      * Approves a timesheet.
@@ -53,5 +53,5 @@ public interface TimesheetService {
      * @param timesheetID The ID of the timesheet to approve.
      * @param manager The employee who is approving the timesheet.
      */
-    void approveTimesheet(UUID timesheetID, Employee manager);
+    void approveTimesheet(Long timesheetID, Employee manager);
 }

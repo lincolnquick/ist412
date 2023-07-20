@@ -34,7 +34,7 @@ public class PTOCalendarServiceImpl implements PTOCalendarService {
      * {@inheritDoc}
      */
     @Override
-    public PTOCalendar getPTOCalendarById(UUID calendarID) {
+    public PTOCalendar getPTOCalendarById(Long calendarID) {
         return ptoCalendarRepository.findById(calendarID).orElse(null);
     }
 
@@ -50,7 +50,7 @@ public class PTOCalendarServiceImpl implements PTOCalendarService {
      * {@inheritDoc}
      */
     @Override
-    public void deletePTOCalendar(UUID calendarID) {
+    public void deletePTOCalendar(Long calendarID) {
         ptoCalendarRepository.deleteById(calendarID);
     }
 
@@ -58,7 +58,7 @@ public class PTOCalendarServiceImpl implements PTOCalendarService {
      * {@inheritDoc}
      */
     @Override
-    public void addPTORequest(UUID calendarID, UUID employeeID, PTORequest request) {
+    public void addPTORequest(Long calendarID, Long employeeID, PTORequest request) {
         PTOCalendar ptoCalendar = getPTOCalendarById(calendarID);
         if (ptoCalendar != null) {
             ptoCalendar.addPTORequest(employeeID, request);
@@ -70,7 +70,7 @@ public class PTOCalendarServiceImpl implements PTOCalendarService {
      * {@inheritDoc}
      */
     @Override
-    public void removePTORequest(UUID calendarID, UUID employeeID, PTORequest request) {
+    public void removePTORequest(Long calendarID, Long employeeID, PTORequest request) {
         PTOCalendar ptoCalendar = getPTOCalendarById(calendarID);
         if (ptoCalendar != null) {
             ptoCalendar.removePTORequest(employeeID, request);
@@ -82,7 +82,7 @@ public class PTOCalendarServiceImpl implements PTOCalendarService {
      * {@inheritDoc}
      */
     @Override
-    public void updatePTORequest(UUID calendarID, UUID employeeID, PTORequest previousRequest, PTORequest newRequest) {
+    public void updatePTORequest(Long calendarID, Long employeeID, PTORequest previousRequest, PTORequest newRequest) {
         PTOCalendar ptoCalendar = getPTOCalendarById(calendarID);
         if (ptoCalendar != null) {
             ptoCalendar.updatePTORequest(employeeID, previousRequest, newRequest);

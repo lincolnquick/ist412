@@ -14,6 +14,6 @@ import java.util.UUID;
  * @version 1.0
  * @since 2023-07-13
  */
-public interface JobOpeningRepository extends JpaRepository<JobOpening, UUID> {
+public interface JobOpeningRepository extends JpaRepository<JobOpening, Long> {
     // custom methods if necessary
 }

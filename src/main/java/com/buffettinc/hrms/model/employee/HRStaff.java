@@ -55,19 +55,19 @@ public class HRStaff extends Employee{
         return newOpening;
     }
 
-    public Applicant addNewApplicant(String firstName, String lastName, String streetAddress, String city, String state, String zip, String phone, String email, String status, UUID jobID, URL resume){
+    public Applicant addNewApplicant(String firstName, String lastName, String streetAddress, String city, String state, String zip, String phone, String email, String status, Long jobID, URL resume){
         Applicant newApplicant = new Applicant(firstName, lastName, streetAddress, city, state, zip, phone, email, JobApplication.JobApplicationStatus.SUBMITTED, jobID, resume);
         applicants.add(newApplicant);
         return newApplicant;
     }
 
-    public JobApplication acceptApplication(UUID jobID, UUID applicantID){
+    public JobApplication acceptApplication(Long jobID, Long applicantID){
         JobApplication newApplication = new JobApplication(jobID, applicantID, LocalDate.now(), JobApplication.JobApplicationStatus.SUBMITTED);
         jobApplications.add(newApplication);
         return newApplication;
     }
 
-    public JobApplication reviewJobApplication(UUID jobID, UUID applicantID){
+    public JobApplication reviewJobApplication(Long jobID, Long applicantID){
         return new JobApplication(jobID, applicantID, LocalDate.now(), null);
 
     }

@@ -48,7 +48,7 @@ public class AccountantServiceImpl implements AccountantService {
      * {@inheritDoc}
      */
     @Override
-    public Accountant getAccountantById(UUID id) {
+    public Accountant getAccountantById(Long id) {
         return this.accountantRepository.findById(id).orElse(null);
     }
 
@@ -64,7 +64,7 @@ public class AccountantServiceImpl implements AccountantService {
      * {@inheritDoc}
      */
     @Override
-    public void deleteAccountant(UUID id) {
+    public void deleteAccountant(Long id) {
         this.accountantRepository.deleteById(id);
     }
 

@@ -14,6 +14,6 @@ import java.util.UUID;
  * @version 1.0
  * @since 2023-07-13
  */
-public interface AccountantRepository extends JpaRepository<Accountant, UUID> {
+public interface AccountantRepository extends JpaRepository<Accountant, Long> {
     // custom methods if necessary
 }

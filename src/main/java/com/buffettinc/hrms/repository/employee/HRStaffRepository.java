@@ -14,6 +14,6 @@ import java.util.UUID;
  * @version 1.0
  * @since 2023-07-13
  */
-public interface HRStaffRepository extends JpaRepository<HRStaff, UUID> {
+public interface HRStaffRepository extends JpaRepository<HRStaff, Long> {
     // custom methods if necessary
 }

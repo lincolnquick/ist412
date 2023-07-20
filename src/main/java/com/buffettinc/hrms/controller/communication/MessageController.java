@@ -49,8 +49,8 @@ public class MessageController {
      */
     @PostMapping("/send")
     public String sendMessage(@ModelAttribute Message message,
-                              @RequestParam("senderID") UUID senderID,
-                              @RequestParam("recipientID") UUID recipientID,
+                              @RequestParam("senderID") Long senderID,
+                              @RequestParam("recipientID") Long recipientID,
                               Model model) {
         Employee sender = employeeService.getEmployeeById(senderID);
         Employee recipient = employeeService.getEmployeeById(recipientID);
@@ -68,7 +68,7 @@ public class MessageController {
      * @return the name of the view
      */
     @GetMapping("/sent")
-    public String getSentMessages(@RequestParam UUID senderID, Model model) {
+    public String getSentMessages(@RequestParam Long senderID, Model model) {
         Employee sender = employeeService.getEmployeeById(senderID);
         model.addAttribute("messages", messageService.getSentMessages(sender, PageRequest.of(0, 20)));
         return "sentMessages";
@@ -82,7 +82,7 @@ public class MessageController {
      * @return the name of the view
      */
     @GetMapping("/received")
-    public String getReceivedMessages(@RequestParam UUID recipientID, Model model) {
+    public String getReceivedMessages(@RequestParam Long recipientID, Model model) {
         Employee recipient = employeeService.getEmployeeById(recipientID);
         model.addAttribute("messages", messageService.getReceivedMessages(recipient, PageRequest.of(0, 20)));
         return "receivedMessages";
@@ -90,7 +90,7 @@ public class MessageController {
 
     @GetMapping("/received/{recipientID}")
     @ResponseBody
-    public List<Message> getReceivedMessages(@PathVariable UUID recipientID) {
+    public List<Message> getReceivedMessages(@PathVariable Long recipientID) {
         Employee recipient = employeeService.getEmployeeById(recipientID);
         Page<Message> page = messageService.getReceivedMessages(recipient, PageRequest.of(0, 20));
         return page.getContent();
@@ -106,7 +106,7 @@ public class MessageController {
      * @return the name of the view
      */
     @PostMapping("/read")
-    public String markMessageAsRead(@RequestParam UUID messageID, Model model) {
+    public String markMessageAsRead(@RequestParam Long messageID, Model model) {
         model.addAttribute("message", messageService.markMessageAsRead(messageID));
         return "readMessage";
     }
@@ -118,7 +118,7 @@ public class MessageController {
      * @return the name of the view
      */
     @PostMapping("/delete")
-    public String deleteMessage(@RequestParam UUID messageID) {
+    public String deleteMessage(@RequestParam Long messageID) {
         messageService.deleteMessage(messageID);
         return "deleteMessage";
     }
@@ -130,14 +130,14 @@ public class MessageController {
     }
 
     @GetMapping("/view/{id}")
-    public String viewMessage(@PathVariable("id") UUID messageID, Model model) {
+    public String viewMessage(@PathVariable("id") Long messageID, Model model) {
         Message message = messageService.getMessageById(messageID);
         model.addAttribute("message", message);
         return "viewMessage";
     }
 
     @GetMapping("/compose")
-    public String composeMessage(@RequestParam("senderID") UUID senderID, Model model) {
+    public String composeMessage(@RequestParam("senderID") Long senderID, Model model) {
         List<Employee> allEmployees = employeeService.getAllEmployees();
         allEmployees.removeIf(e -> e.getEmployeeID().equals(senderID)); // Remove the sender from the list
         model.addAttribute("employees", allEmployees);
@@ -149,7 +149,7 @@ public class MessageController {
 
 
     @PostMapping("/reply")
-    public String replyMessage(@RequestParam UUID messageID, @RequestParam String content, Model model) {
+    public String replyMessage(@RequestParam Long messageID, @RequestParam String content, Model model) {
         Message oldMessage = messageService.getMessageById(messageID);
         Message newMessage = new Message(oldMessage.getRecipient(), oldMessage.getSender(), "Re: " + oldMessage.getTitle(), content);
         messageService.saveMessage(newMessage);

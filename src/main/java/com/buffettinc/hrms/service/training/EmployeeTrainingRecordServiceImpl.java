@@ -33,7 +33,7 @@ public class EmployeeTrainingRecordServiceImpl implements EmployeeTrainingRecord
      * {@inheritDoc}
      */
     @Override
-    public EmployeeTrainingRecord getEmployeeTrainingRecordById(UUID recordID) {
+    public EmployeeTrainingRecord getEmployeeTrainingRecordById(Long recordID) {
         return employeeTrainingRecordRepository.findById(recordID).orElse(null);
     }
 
@@ -49,7 +49,7 @@ public class EmployeeTrainingRecordServiceImpl implements EmployeeTrainingRecord
      * {@inheritDoc}
      */
     @Override
-    public void deleteEmployeeTrainingRecord(UUID recordID) {
+    public void deleteEmployeeTrainingRecord(Long recordID) {
         employeeTrainingRecordRepository.deleteById(recordID);
     }
 }

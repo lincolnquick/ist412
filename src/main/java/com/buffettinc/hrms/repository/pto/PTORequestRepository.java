@@ -17,7 +17,7 @@ import java.util.UUID;
  * @version 1.0
  * @since 2023-07-13
  */
-public interface PTORequestRepository extends JpaRepository<PTORequest, UUID> {
+public interface PTORequestRepository extends JpaRepository<PTORequest, Long> {
     List<PTORequest> findAllByStartDateGreaterThanEqualAndEndDateLessThanEqual(LocalDate startDate, LocalDate endDate);
 
     List<PTORequest> findAllByStatus(PTOStatus status);

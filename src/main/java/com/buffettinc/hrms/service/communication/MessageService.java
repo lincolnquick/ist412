@@ -51,16 +51,16 @@ public interface MessageService {
      * @param messageID  the ID of the message to mark as read
      * @return the updated message
      */
-    Message markMessageAsRead(UUID messageID);
+    Message markMessageAsRead(Long messageID);
 
     /**
      * Deletes a message.
      *
      * @param messageID  the ID of the message to delete
      */
-    void deleteMessage(UUID messageID);
+    void deleteMessage(Long messageID);
 
     void saveMessage(Message newMessage);
 
-    Message getMessageById(UUID messageID);
+    Message getMessageById(Long messageID);
 }

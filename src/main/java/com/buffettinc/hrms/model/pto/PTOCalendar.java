@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * This class represents a calendar of all {@link Employee}'s {@link PTORequest}s.
@@ -18,8 +19,8 @@ import java.util.*;
 @Entity
 public class PTOCalendar implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID calendarID;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long calendarID;
     @Column(name="url")
     private String calendarURL;
 
@@ -27,19 +28,19 @@ public class PTOCalendar implements Serializable {
     private List<PTORequest> employeePTO;
 
     public PTOCalendar(){
-        this.calendarID = UUID.randomUUID();
+        this.calendarID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.employeePTO = new ArrayList<>();
     }
 
-    public void addPTORequest(UUID employeeID, PTORequest request){
+    public void addPTORequest(Long employeeID, PTORequest request){
 
     }
 
-    public void removePTORequest(UUID employeeID, PTORequest request){
+    public void removePTORequest(Long employeeID, PTORequest request){
 
     }
 
-    public void updatePTORequest(UUID employeeID, PTORequest previousRequest, PTORequest newRequest){
+    public void updatePTORequest(Long employeeID, PTORequest previousRequest, PTORequest newRequest){
 
     }
 

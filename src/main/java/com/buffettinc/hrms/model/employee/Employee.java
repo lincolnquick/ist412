@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * This class represents an Employee for Buffett Inc.
@@ -34,9 +35,9 @@ import java.util.UUID;
 @Table(name="employee")
 public class Employee implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @NonNull
-    private UUID employeeID;
+    private Long employeeID;
 
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     private User user;
@@ -91,7 +92,7 @@ public class Employee implements Serializable{
     public Employee(String firstName, String lastName, String streetAddress, String city, String state, String zip,
                     String phone, String email, LocalDate hireDate, String department, String position,
                     Manager manager) {
-        this.employeeID = UUID.randomUUID();
+        this.employeeID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.firstName = firstName;
         this.lastName = lastName;
         this.streetAddress = streetAddress;
@@ -107,7 +108,7 @@ public class Employee implements Serializable{
     }
 
     public Employee(){
-        this.employeeID = UUID.randomUUID();
+        this.employeeID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.firstName = "";
         this.lastName = "";
         this.streetAddress = "";
@@ -134,13 +135,13 @@ public class Employee implements Serializable{
         return newNotification;
     }
 
-    public EmployeeTrainingRecord completeTraining(UUID trainingID){
+    public EmployeeTrainingRecord completeTraining(Long trainingID){
         EmployeeTrainingRecord newTrainingRecord = new EmployeeTrainingRecord(this, trainingID);
         this.trainingRecords.add(newTrainingRecord);
         return newTrainingRecord;
     }
 
-    public UUID getEmployeeID() {
+    public Long getEmployeeID() {
         return employeeID;
     }
 
@@ -288,7 +289,7 @@ public class Employee implements Serializable{
         this.manager = manager;
     }
 
-    public void setEmployeeID(UUID employeeID) {
+    public void setEmployeeID(Long employeeID) {
         this.employeeID = employeeID;
     }
 

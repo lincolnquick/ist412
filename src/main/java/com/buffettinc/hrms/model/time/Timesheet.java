@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.*;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * This class represents a Timesheet to be used by {@link Employee} of Buffett Inc.
@@ -22,8 +23,8 @@ import java.util.*;
 @Table(name="timesheet")
 public class Timesheet implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID timesheetID;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long timesheetID;
     @ManyToOne
     @JoinColumn(name="payrollID")
     private Payroll payroll;
@@ -45,7 +46,7 @@ public class Timesheet implements Serializable{
     private Employee approver;
 
     public Timesheet(Payroll payroll, LocalDate periodStart, LocalDate periodEnd) {
-        this.timesheetID = UUID.randomUUID();
+        this.timesheetID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.payroll = payroll;
         this.periodStart = periodStart;
         this.periodEnd = periodEnd;
@@ -55,7 +56,7 @@ public class Timesheet implements Serializable{
     }
 
     public Timesheet() {
-        this.timesheetID = UUID.randomUUID();
+        this.timesheetID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.payroll = null;
         this.periodStart = null;
         this.periodEnd = null;
@@ -64,11 +65,11 @@ public class Timesheet implements Serializable{
         this.approver = null;
     }
 
-    public UUID getTimesheetID() {
+    public Long getTimesheetID() {
         return timesheetID;
     }
 
-    public void setTimesheetID(UUID timesheetID) {
+    public void setTimesheetID(Long timesheetID) {
         this.timesheetID = timesheetID;
     }
 

@@ -44,7 +44,7 @@ public class TaskController {
      * @return the view for creating or updating a task.
      */
     @GetMapping({"/edit", "/edit/{id}"})
-    public String viewEditTask(@PathVariable(value = "id", required = false) UUID taskID, Model model) {
+    public String viewEditTask(@PathVariable(value = "id", required = false) Long taskID, Model model) {
         Task task = (taskID != null) ? taskService.getTaskById(taskID) : new Task();
         model.addAttribute("task", task);
         return "editTask";
@@ -69,7 +69,7 @@ public class TaskController {
      * @return the view for displaying all tasks.
      */
     @PostMapping("/delete")
-    public String deleteTask(@RequestParam UUID taskID) {
+    public String deleteTask(@RequestParam Long taskID) {
         taskService.deleteTask(taskID);
         return "redirect:/task/all";
     }

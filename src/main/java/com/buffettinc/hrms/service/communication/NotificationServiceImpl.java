@@ -41,7 +41,7 @@ public class NotificationServiceImpl implements NotificationService {
      * {@inheritDoc}
      */
     @Override
-    public Notification getNotification(UUID notificationID) {
+    public Notification getNotification(Long notificationID) {
         return notificationRepository.findById(notificationID)
                 .orElseThrow(() -> new RuntimeException("Notification not found with ID: " + notificationID));
     }
@@ -61,7 +61,7 @@ public class NotificationServiceImpl implements NotificationService {
      * {@inheritDoc}
      */
     @Override
-    public void markNotificationAsRead(UUID notificationID) {
+    public void markNotificationAsRead(Long notificationID) {
         Notification notification = notificationRepository.findById(notificationID)
                 .orElseThrow(() -> new RuntimeException("Notification not found with ID: " + notificationID));
 
@@ -73,7 +73,7 @@ public class NotificationServiceImpl implements NotificationService {
      * {@inheritDoc}
      */
     @Override
-    public void deleteNotification(UUID notificationID) {
+    public void deleteNotification(Long notificationID) {
         Notification notification = notificationRepository.findById(notificationID)
                 .orElseThrow(() -> new RuntimeException("Notification not found with ID: " + notificationID));
 

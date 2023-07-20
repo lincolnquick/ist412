@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.net.URL;
 import java.time.Duration;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * This class represents a Training Module to be used by {@link Employee} of Buffett Inc.
@@ -21,8 +22,8 @@ import java.util.UUID;
 @Table(name="trainingModule")
 public class TrainingModule implements Serializable {
     @Id
-    @GeneratedValue (strategy = GenerationType.UUID)
-    private UUID trainingID;
+    @GeneratedValue (strategy = GenerationType.AUTO)
+    private Long trainingID;
     @Column(name="name")
     private String trainingName;
     @Column(name="description")
@@ -32,10 +33,10 @@ public class TrainingModule implements Serializable {
     @Column(name="duration")
     private Duration estimatedDuration;
     @Column(name="author")
-    private UUID authorID;
+    private Long authorID;
 
-    public TrainingModule(String trainingName, String description, URL trainingURL, Duration estimatedDuration, UUID authorID) {
-        this.trainingID = UUID.randomUUID();
+    public TrainingModule(String trainingName, String description, URL trainingURL, Duration estimatedDuration, Long authorID) {
+        this.trainingID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.trainingName = trainingName;
         this.description = description;
         this.trainingURL = trainingURL;
@@ -44,7 +45,7 @@ public class TrainingModule implements Serializable {
     }
 
     public TrainingModule() {
-        this.trainingID = UUID.randomUUID();
+        this.trainingID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.trainingName = null;
         this.description = null;
         this.trainingURL = null;
@@ -52,11 +53,11 @@ public class TrainingModule implements Serializable {
         this.authorID = null;
     }
 
-    public UUID getTrainingID() {
+    public Long getTrainingID() {
         return trainingID;
     }
 
-    public void setTrainingID(UUID trainingID) {
+    public void setTrainingID(Long trainingID) {
         this.trainingID = trainingID;
     }
 
@@ -92,11 +93,11 @@ public class TrainingModule implements Serializable {
         this.estimatedDuration = estimatedDuration;
     }
 
-    public UUID getAuthorID() {
+    public Long getAuthorID() {
         return authorID;
     }
 
-    public void setAuthorID(UUID authorID) {
+    public void setAuthorID(Long authorID) {
         this.authorID = authorID;
     }
 }

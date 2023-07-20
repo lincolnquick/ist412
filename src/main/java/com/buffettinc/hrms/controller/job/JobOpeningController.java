@@ -34,7 +34,7 @@ public class JobOpeningController {
     }
 
     @GetMapping("/{id}")
-    public String getJobOpeningByID(@PathVariable("id") UUID jobID) {
+    public String getJobOpeningByID(@PathVariable("id") Long jobID) {
         JobOpening jobOpening = jobOpeningService.getJobOpeningByID(jobID);
         return "viewJobOpening";
     }
@@ -46,7 +46,7 @@ public class JobOpeningController {
     }
 
     @PutMapping("/{id}")
-    public String updateJobOpening(@PathVariable("id") UUID jobID,
+    public String updateJobOpening(@PathVariable("id") Long jobID,
                                    @RequestParam("title") String title,
                                    @RequestParam("department") String department,
                                    @RequestParam("description") String description,
@@ -56,7 +56,7 @@ public class JobOpeningController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteJobOpening(@PathVariable("id") UUID jobID) {
+    public String deleteJobOpening(@PathVariable("id") Long jobID) {
         jobOpeningService.deleteJobOpening(jobID);
         return "jobOpeningDeleted";
     }

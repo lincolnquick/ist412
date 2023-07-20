@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * This class represents a Task to be assigned by a {@link Manager} to an {@link Employee} of Buffett Inc.
@@ -21,8 +22,8 @@ import java.util.UUID;
 @Table(name="task")
 public class Task implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID taskID;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long taskID;
     @Column(name="name")
     private String name;
     @Column(name="description")
@@ -39,7 +40,7 @@ public class Task implements Serializable {
     private boolean isCompleted;
 
     public Task(String name, String description, LocalDate dueDate, Employee assignedBy, Employee assignedTo) {
-        this.taskID = UUID.randomUUID();
+        this.taskID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.name = name;
         this.description = description;
         this.dueDate = dueDate;
@@ -49,7 +50,7 @@ public class Task implements Serializable {
     }
 
     public Task() {
-        this.taskID = UUID.randomUUID();
+        this.taskID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.name = null;
         this.description = null;
         this.dueDate = LocalDate.MIN;
@@ -58,11 +59,11 @@ public class Task implements Serializable {
         this.isCompleted = false;
     }
 
-    public UUID getTaskID() {
+    public Long getTaskID() {
         return taskID;
     }
 
-    public void setTaskID(UUID taskID) {
+    public void setTaskID(Long taskID) {
         this.taskID = taskID;
     }
 

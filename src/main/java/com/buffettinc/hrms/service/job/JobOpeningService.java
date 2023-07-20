@@ -34,7 +34,7 @@ public interface JobOpeningService {
      * @param jobID  the ID of the job opening
      * @return the job opening with the specified ID, or null if not found
      */
-    JobOpening getJobOpeningByID(UUID jobID);
+    JobOpening getJobOpeningByID(Long jobID);
 
     /**
      * Get all job openings.
@@ -53,7 +53,7 @@ public interface JobOpeningService {
      * @param postingDate   the new posting date of the job opening
      * @return the updated job opening, or null if the job opening with the specified ID is not found
      */
-    JobOpening updateJobOpening(UUID jobID, String title, String department, String description, LocalDate postingDate);
+    JobOpening updateJobOpening(Long jobID, String title, String department, String description, LocalDate postingDate);
 
     /**
      * Delete a job opening with the specified ID.
@@ -61,5 +61,5 @@ public interface JobOpeningService {
      * @param jobID  the ID of the job opening to delete
      * @return true if the job opening is successfully deleted, false otherwise
      */
-    boolean deleteJobOpening(UUID jobID);
+    boolean deleteJobOpening(Long jobID);
 }

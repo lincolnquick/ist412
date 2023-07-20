@@ -33,7 +33,7 @@ public class TaskServiceImpl implements TaskService {
      * {@inheritDoc}
      */
     @Override
-    public Task getTaskById(UUID taskID) {
+    public Task getTaskById(Long taskID) {
         return taskRepository.findById(taskID).orElse(null);
     }
 
@@ -49,7 +49,7 @@ public class TaskServiceImpl implements TaskService {
      * {@inheritDoc}
      */
     @Override
-    public void deleteTask(UUID taskID) {
+    public void deleteTask(Long taskID) {
         taskRepository.deleteById(taskID);
     }
 }
