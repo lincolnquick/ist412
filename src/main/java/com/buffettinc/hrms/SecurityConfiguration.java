@@ -6,6 +6,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.*;
@@ -18,17 +20,32 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class SecurityConfiguration {
 
     @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 .authorizeRequests(authorize -> authorize
-                        .anyRequest().authenticated()
+
+                                .requestMatchers("/index").permitAll() // Unlocks index page
+                                .requestMatchers("/login").permitAll()  // Unlocks login page
+                                .requestMatchers("/register").permitAll() // Unlocks register page
+                                .requestMatchers("/register_success").permitAll()
+                                .requestMatchers("/logout").permitAll()
+                                .anyRequest().authenticated() // Locks all other pages, requiring login
+
+                        //.anyRequest().permitAll() // Unlocks all pages, not required login
                 )
                 .formLogin(formLogin -> formLogin
-                        .defaultSuccessUrl("/dashboard", true)
-
+                        .defaultSuccessUrl("/dashboard", true) // sets default page after successful login
+                        .loginProcessingUrl("/register_success")
+                        .loginPage("/login")
                 )
                 .httpBasic(Customizer.withDefaults());
-        return http.build();
+         return http.build();
     }
 
 }

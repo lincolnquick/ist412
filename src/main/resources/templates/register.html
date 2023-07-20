@@ -11,6 +11,10 @@
 <div class="container mt-4">
   <h2 class="text-center mb-4">Registration Form</h2>
   <form th:action="@{/process_register}" th:object="${user}" method="post">
+    <div th:if="${param.error}" class="alert alert-danger" role="alert">
+      A user with this username already exists.
+    </div>
+
     <div class="mb-3">
       <label class="form-label">Username:</label>
       <input type="text" th:field="*{username}" class="form-control" placeholder="Enter your username" required>
