@@ -60,7 +60,7 @@ public interface HRStaffService {
      * @return the created applicant
      */
     Applicant addNewApplicant(String firstName, String lastName, String streetAddress, String city, String state,
-                              String zip, String phone, String email, String status, UUID jobID, URL resume);
+                              String zip, String phone, String email, String status, Long jobID, URL resume);
 
     /**
      * Accepts a job application for a job opening.
@@ -69,7 +69,7 @@ public interface HRStaffService {
      * @param applicantID the ID of the applicant
      * @return the created job application
      */
-    JobApplication acceptApplication(UUID jobID, UUID applicantID);
+    JobApplication acceptApplication(Long jobID, Long applicantID);
 
     /**
      * Reviews a job application for a job opening.
@@ -78,7 +78,7 @@ public interface HRStaffService {
      * @param applicantID the ID of the applicant
      * @return the reviewed job application
      */
-    JobApplication reviewJobApplication(UUID jobID, UUID applicantID);
+    JobApplication reviewJobApplication(Long jobID, Long applicantID);
 
     /**
      * Approves a job application.

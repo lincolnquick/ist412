@@ -5,6 +5,7 @@ import com.buffettinc.hrms.model.employee.Employee;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -51,16 +52,23 @@ public interface MessageService {
      * @param messageID  the ID of the message to mark as read
      * @return the updated message
      */
-    Message markMessageAsRead(UUID messageID);
+    Message markMessageAsRead(Long messageID);
+
+    /**
+     * Gets a list of all messages that one user has received.
+     * @param recipientID ID of the recipient
+     * @return List of all messages received
+     */
+    List<Message> getReceivedMessagesByID(Long recipientID);
 
     /**
      * Deletes a message.
      *
      * @param messageID  the ID of the message to delete
      */
-    void deleteMessage(UUID messageID);
+    void deleteMessage(Long messageID);
 
     void saveMessage(Message newMessage);
 
-    Message getMessageById(UUID messageID);
+    Message getMessageById(Long messageID);
 }

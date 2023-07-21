@@ -34,7 +34,7 @@ public class TimesheetServiceImpl implements TimesheetService {
      * {@inheritDoc}
      */
     @Override
-    public Timesheet getTimesheetById(UUID timesheetID) {
+    public Timesheet getTimesheetById(Long timesheetID) {
         return timesheetRepository.findById(timesheetID).orElse(null);
     }
 
@@ -50,7 +50,7 @@ public class TimesheetServiceImpl implements TimesheetService {
      * {@inheritDoc}
      */
     @Override
-    public void deleteTimesheet(UUID timesheetID) {
+    public void deleteTimesheet(Long timesheetID) {
         timesheetRepository.deleteById(timesheetID);
     }
 
@@ -58,7 +58,7 @@ public class TimesheetServiceImpl implements TimesheetService {
      * {@inheritDoc}
      */
     @Override
-    public void approveTimesheet(UUID timesheetID, Employee manager) {
+    public void approveTimesheet(Long timesheetID, Employee manager) {
         Timesheet timesheet = getTimesheetById(timesheetID);
         if (timesheet != null) {
             timesheet.approveTimesheet(manager);

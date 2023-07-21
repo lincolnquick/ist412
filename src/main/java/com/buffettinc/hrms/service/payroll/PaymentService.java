@@ -30,7 +30,7 @@ public interface PaymentService {
      * @param paymentID the id of the payment to fetch.
      * @return an Optional of the payment if found, or an empty Optional if not.
      */
-    Optional<Payment> getPaymentById(UUID paymentID);
+    Optional<Payment> getPaymentById(Long paymentID);
 
     /**
      * Fetches all payments.
@@ -44,7 +44,7 @@ public interface PaymentService {
      *
      * @param paymentID the id of the payment to delete.
      */
-    void deletePayment(UUID paymentID);
+    void deletePayment(Long paymentID);
 
     /**
      * Fetches all payments for a particular employee.
@@ -52,7 +52,7 @@ public interface PaymentService {
      * @param employeeID the id of the employee.
      * @return a list of payments for the employee.
      */
-    List<Payment> getPaymentsForEmployee(UUID employeeID);
+    List<Payment> getPaymentsForEmployee(Long employeeID);
 
     /**
      * Initiates a direct deposit transfer for the given payment.
@@ -60,7 +60,7 @@ public interface PaymentService {
      * @param paymentID the id of the payment.
      * @return an updated payment with the direct deposit transfer initiated.
      */
-    Payment initiateDirectDepositTransfer(UUID paymentID);
+    Payment initiateDirectDepositTransfer(Long paymentID);
 
     /**
      * Acknowledges a direct deposit for the given payment.
@@ -68,7 +68,7 @@ public interface PaymentService {
      * @param paymentID the id of the payment.
      * @return an updated payment with the direct deposit acknowledged.
      */
-    Payment acknowledgeDirectDeposit(UUID paymentID);
+    Payment acknowledgeDirectDeposit(Long paymentID);
 
     /**
      * Initiates a check writing for the given payment.
@@ -76,5 +76,5 @@ public interface PaymentService {
      * @param paymentID the id of the payment.
      * @return an updated payment with the check writing initiated.
      */
-    Payment initiateCheckWriting(UUID paymentID);
+    Payment initiateCheckWriting(Long paymentID);
 }

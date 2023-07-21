@@ -33,7 +33,7 @@ public class ShiftEntryServiceImpl implements ShiftEntryService {
      * {@inheritDoc}
      */
     @Override
-    public ShiftEntry getShiftEntryById(UUID shiftID) {
+    public ShiftEntry getShiftEntryById(Long shiftID) {
         return shiftEntryRepository.findById(shiftID).orElse(null);
     }
 
@@ -49,7 +49,7 @@ public class ShiftEntryServiceImpl implements ShiftEntryService {
      * {@inheritDoc}
      */
     @Override
-    public void deleteShiftEntry(UUID shiftID) {
+    public void deleteShiftEntry(Long shiftID) {
         shiftEntryRepository.deleteById(shiftID);
     }
 
@@ -57,7 +57,7 @@ public class ShiftEntryServiceImpl implements ShiftEntryService {
      * {@inheritDoc}
      */
     @Override
-    public long getShiftDurationInHours(UUID shiftID) {
+    public long getShiftDurationInHours(Long shiftID) {
         ShiftEntry shiftEntry = getShiftEntryById(shiftID);
         return shiftEntry != null ? shiftEntry.getDurationInHours() : 0;
     }

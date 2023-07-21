@@ -33,7 +33,7 @@ public class TrainingModuleServiceImpl implements TrainingModuleService {
      * {@inheritDoc}
      */
     @Override
-    public TrainingModule getTrainingModuleById(UUID trainingID) {
+    public TrainingModule getTrainingModuleById(Long trainingID) {
         return trainingModuleRepository.findById(trainingID).orElse(null);
     }
 
@@ -49,7 +49,7 @@ public class TrainingModuleServiceImpl implements TrainingModuleService {
      * {@inheritDoc}
      */
     @Override
-    public void deleteTrainingModule(UUID trainingID) {
+    public void deleteTrainingModule(Long trainingID) {
         trainingModuleRepository.deleteById(trainingID);
     }
 }

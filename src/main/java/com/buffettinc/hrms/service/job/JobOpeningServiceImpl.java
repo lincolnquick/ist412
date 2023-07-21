@@ -41,7 +41,7 @@ public class JobOpeningServiceImpl implements JobOpeningService {
      * {@inheritDoc}
      */
     @Override
-    public JobOpening getJobOpeningByID(UUID jobID) {
+    public JobOpening getJobOpeningByID(Long jobID) {
         return jobOpeningRepository.findById(jobID).orElse(null);
     }
 
@@ -57,7 +57,7 @@ public class JobOpeningServiceImpl implements JobOpeningService {
      * {@inheritDoc}
      */
     @Override
-    public JobOpening updateJobOpening(UUID jobID, String title, String department, String description, LocalDate postingDate) {
+    public JobOpening updateJobOpening(Long jobID, String title, String department, String description, LocalDate postingDate) {
         JobOpening jobOpening = jobOpeningRepository.findById(jobID).orElse(null);
         if (jobOpening != null) {
             jobOpening.setTitle(title);
@@ -73,7 +73,7 @@ public class JobOpeningServiceImpl implements JobOpeningService {
      * {@inheritDoc}
      */
     @Override
-    public boolean deleteJobOpening(UUID jobID) {
+    public boolean deleteJobOpening(Long jobID) {
         JobOpening jobOpening = jobOpeningRepository.findById(jobID).orElse(null);
         if (jobOpening != null) {
             jobOpeningRepository.delete(jobOpening);

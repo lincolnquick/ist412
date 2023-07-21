@@ -30,7 +30,7 @@ public interface PTOCalendarService {
      * @param calendarID the UUID of the PTOCalendar
      * @return the PTOCalendar with the provided ID or null if not found
      */
-    PTOCalendar getPTOCalendarById(UUID calendarID);
+    PTOCalendar getPTOCalendarById(Long calendarID);
 
     /**
      * Retrieve all existing PTOCalendar objects.
@@ -44,7 +44,7 @@ public interface PTOCalendarService {
      *
      * @param calendarID the UUID of the PTOCalendar to remove
      */
-    void deletePTOCalendar(UUID calendarID);
+    void deletePTOCalendar(Long calendarID);
 
     /**
      * Add a PTORequest to a specific PTOCalendar.
@@ -53,7 +53,7 @@ public interface PTOCalendarService {
      * @param employeeID the UUID of the Employee
      * @param request the PTORequest to add
      */
-    void addPTORequest(UUID calendarID, UUID employeeID, PTORequest request);
+    void addPTORequest(Long calendarID, Long employeeID, PTORequest request);
 
     /**
      * Remove a PTORequest from a specific PTOCalendar.
@@ -62,7 +62,7 @@ public interface PTOCalendarService {
      * @param employeeID the UUID of the Employee
      * @param request the PTORequest to remove
      */
-    void removePTORequest(UUID calendarID, UUID employeeID, PTORequest request);
+    void removePTORequest(Long calendarID, Long employeeID, PTORequest request);
 
     /**
      * Update a PTORequest in a specific PTOCalendar.
@@ -72,5 +72,5 @@ public interface PTOCalendarService {
      * @param previousRequest the PTORequest to update
      * @param newRequest the updated PTORequest
      */
-    void updatePTORequest(UUID calendarID, UUID employeeID, PTORequest previousRequest, PTORequest newRequest);
+    void updatePTORequest(Long calendarID, Long employeeID, PTORequest previousRequest, PTORequest newRequest);
 }

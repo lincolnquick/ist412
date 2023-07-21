@@ -32,7 +32,7 @@ public interface ApplicantService {
      * @return the created applicant
      */
     Applicant createApplicant(String firstName, String lastName, String streetAddress, String city, String state,
-                              String zip, String phone, String email, UUID jobID, URL resume);
+                              String zip, String phone, String email, Long jobID, URL resume);
 
     /**
      * Get an applicant by their ID.
@@ -40,7 +40,7 @@ public interface ApplicantService {
      * @param applicantID the ID of the applicant
      * @return the found applicant, or null if not found
      */
-    Applicant getApplicantByID(UUID applicantID);
+    Applicant getApplicantByID(Long applicantID);
 
     /**
      * Get all applicants.
@@ -65,8 +65,8 @@ public interface ApplicantService {
      * @param resume        the updated resume URL
      * @return the updated applicant, or null if not found
      */
-    Applicant updateApplicant(UUID applicantID, String firstName, String lastName, String streetAddress, String city,
-                              String state, String zip, String phone, String email, UUID jobID, URL resume);
+    Applicant updateApplicant(Long applicantID, String firstName, String lastName, String streetAddress, String city,
+                              String state, String zip, String phone, String email, Long jobID, URL resume);
 
     /**
      * Delete an applicant by their ID.
@@ -74,5 +74,5 @@ public interface ApplicantService {
      * @param applicantID the ID of the applicant to delete
      * @return true if the applicant was successfully deleted, false otherwise
      */
-    boolean deleteApplicant(UUID applicantID);
+    boolean deleteApplicant(Long applicantID);
 }

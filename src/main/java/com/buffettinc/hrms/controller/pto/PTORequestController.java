@@ -32,7 +32,7 @@ public class PTORequestController {
      * @return The Thymeleaf template "ptorequestDetails".
      */
     @GetMapping("/{id}")
-    public String viewPTORequestDetails(@PathVariable("id") UUID id, Model model) {
+    public String viewPTORequestDetails(@PathVariable("id") Long id, Model model) {
         PTORequest ptoRequest = ptoRequestService.getPTORequestById(id);
         model.addAttribute("ptoRequest", ptoRequest);
         return "ptorequestDetails";
@@ -69,7 +69,7 @@ public class PTORequestController {
      * @return The Thymeleaf template "ptorequestList".
      */
     @PostMapping("/{id}/delete")
-    public String deletePTORequest(@PathVariable("id") UUID id) {
+    public String deletePTORequest(@PathVariable("id") Long id) {
         ptoRequestService.deletePTORequest(id);
         return "redirect:/ptorequests";
     }
@@ -81,7 +81,7 @@ public class PTORequestController {
      * @return The Thymeleaf template "ptorequestList".
      */
     @PostMapping("/{id}/approve")
-    public String approvePTORequest(@PathVariable("id") UUID id) {
+    public String approvePTORequest(@PathVariable("id") Long id) {
         ptoRequestService.approvePTORequest(id);
         return "redirect:/ptorequests";
     }
@@ -93,7 +93,7 @@ public class PTORequestController {
      * @return The Thymeleaf template "ptorequestList".
      */
     @PostMapping("/{id}/deny")
-    public String denyPTORequest(@PathVariable("id") UUID id) {
+    public String denyPTORequest(@PathVariable("id") Long id) {
         ptoRequestService.denyPTORequest(id);
         return "redirect:/ptorequests";
     }

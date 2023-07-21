@@ -42,7 +42,7 @@ public class PTOCalendarController {
      * @return the view for creating or updating a PTOCalendar.
      */
     @GetMapping({"/edit", "/edit/{id}"})
-    public String viewEditPTOCalendar(@PathVariable(value = "id", required = false) UUID calendarID, Model model) {
+    public String viewEditPTOCalendar(@PathVariable(value = "id", required = false) Long calendarID, Model model) {
         PTOCalendar ptoCalendar = (calendarID != null) ? ptoCalendarService.getPTOCalendarById(calendarID) : new PTOCalendar();
         model.addAttribute("ptocalendar", ptoCalendar);
         return "editPTOCalendar";
@@ -67,7 +67,7 @@ public class PTOCalendarController {
      * @return the view for displaying all PTOCalendar.
      */
     @PostMapping("/delete")
-    public String deletePTOCalendar(@RequestParam UUID calendarID) {
+    public String deletePTOCalendar(@RequestParam Long calendarID) {
         ptoCalendarService.deletePTOCalendar(calendarID);
         return "redirect:/ptoCalendar/all";
     }

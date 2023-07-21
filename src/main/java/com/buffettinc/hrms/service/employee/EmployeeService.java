@@ -21,11 +21,11 @@ public interface EmployeeService {
 
     List<Employee> getUnregisteredEmployees();
 
-    Employee getEmployeeById(UUID id);
+    Employee getEmployeeById(Long id);
 
     Employee updateEmployee(Employee employee);
 
-    void deleteEmployee(UUID id);
+    void deleteEmployee(Long id);
 
     Page<Employee> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
 }

@@ -72,7 +72,7 @@ public class HRStaffServiceImpl implements HRStaffService {
      * {@inheritDoc}
      */
     public Applicant addNewApplicant(String firstName, String lastName, String streetAddress, String city, String state,
-                                     String zip, String phone, String email, String status, UUID jobID, URL resume) {
+                                     String zip, String phone, String email, String status, Long jobID, URL resume) {
         Applicant newApplicant = new Applicant(firstName, lastName, streetAddress, city, state, zip, phone, email,
                 JobApplication.JobApplicationStatus.SUBMITTED, jobID, resume);
         applicantRepository.save(newApplicant);
@@ -83,7 +83,7 @@ public class HRStaffServiceImpl implements HRStaffService {
     /**
      * {@inheritDoc}
      */
-    public JobApplication acceptApplication(UUID jobID, UUID applicantID) {
+    public JobApplication acceptApplication(Long jobID, Long applicantID) {
         JobApplication newApplication = new JobApplication(jobID, applicantID, LocalDate.now(),
                 JobApplication.JobApplicationStatus.SUBMITTED);
         jobApplicationRepository.save(newApplication);
@@ -94,7 +94,7 @@ public class HRStaffServiceImpl implements HRStaffService {
     /**
      * {@inheritDoc}
      */
-    public JobApplication reviewJobApplication(UUID jobID, UUID applicantID) {
+    public JobApplication reviewJobApplication(Long jobID, Long applicantID) {
         return new JobApplication(jobID, applicantID, LocalDate.now(), null);
     }
 

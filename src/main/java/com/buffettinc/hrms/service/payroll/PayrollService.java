@@ -32,7 +32,7 @@ public interface PayrollService {
      * @param payrollID UUID of the Payroll entry.
      * @return Payroll object if found, else Optional.empty.
      */
-    Optional<Payroll> getPayrollById(UUID payrollID);
+    Optional<Payroll> getPayrollById(Long payrollID);
 
     /**
      * Get all Payroll entries.
@@ -46,7 +46,7 @@ public interface PayrollService {
      *
      * @param payrollID UUID of the Payroll entry to be deleted.
      */
-    void deletePayroll(UUID payrollID);
+    void deletePayroll(Long payrollID);
 
     /**
      * Get all Timesheets of a Payroll entry.
@@ -54,7 +54,7 @@ public interface PayrollService {
      * @param payrollID UUID of the Payroll entry.
      * @return List of Timesheets.
      */
-    List<Timesheet> getTimesheetsForPayroll(UUID payrollID);
+    List<Timesheet> getTimesheetsForPayroll(Long payrollID);
 
     /**
      * Add a Timesheet to a Payroll entry.
@@ -63,7 +63,7 @@ public interface PayrollService {
      * @param timesheet Timesheet to be added.
      * @return Updated Payroll entry.
      */
-    Payroll addTimesheetToPayroll(UUID payrollID, Timesheet timesheet);
+    Payroll addTimesheetToPayroll(Long payrollID, Timesheet timesheet);
 
     /**
      * Approve a Timesheet of a Payroll entry.
@@ -72,5 +72,5 @@ public interface PayrollService {
      * @param timesheetID UUID of the Timesheet to be approved.
      * @return Updated Payroll entry.
      */
-    Payroll approveTimesheet(UUID payrollID, UUID timesheetID);
+    Payroll approveTimesheet(Long payrollID, Long timesheetID);
 }

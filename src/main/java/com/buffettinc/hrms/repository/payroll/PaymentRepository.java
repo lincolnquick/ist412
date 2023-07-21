@@ -15,7 +15,7 @@ import java.util.UUID;
  * @version 1.0
  * @since 2023-07-13
  */
-public interface PaymentRepository extends JpaRepository<Payment, UUID> {
-    List<Payment> findByEmployeeID(UUID employeeID);
+public interface PaymentRepository extends JpaRepository<Payment, Long> {
+    List<Payment> findByEmployeeID(Long employeeID);
     // custom methods if necessary
 }

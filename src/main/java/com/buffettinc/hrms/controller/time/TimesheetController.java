@@ -42,7 +42,7 @@ public class TimesheetController {
      * @return the view for creating or updating a Timesheet.
      */
     @GetMapping({"/edit", "/edit/{id}"})
-    public String viewEditTimesheet(@PathVariable(value = "id", required = false) UUID timesheetID, Model model) {
+    public String viewEditTimesheet(@PathVariable(value = "id", required = false) Long timesheetID, Model model) {
         Timesheet timesheet = (timesheetID != null) ? timesheetService.getTimesheetById(timesheetID) : new Timesheet();
         model.addAttribute("timesheet", timesheet);
         return "editTimesheet";
@@ -67,7 +67,7 @@ public class TimesheetController {
      * @return the view for displaying all Timesheets.
      */
     @PostMapping("/delete")
-    public String deleteTimesheet(@RequestParam UUID timesheetID) {
+    public String deleteTimesheet(@RequestParam Long timesheetID) {
         timesheetService.deleteTimesheet(timesheetID);
         return "redirect:/timesheet/all";
     }

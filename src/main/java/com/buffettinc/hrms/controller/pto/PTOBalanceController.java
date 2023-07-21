@@ -72,7 +72,7 @@ public class PTOBalanceController {
      * @return The name of the Thymeleaf template to be displayed.
      */
     @GetMapping("/edit/{id}")
-    public String editPTOBalanceForm(@PathVariable("id") UUID id, Model model) {
+    public String editPTOBalanceForm(@PathVariable("id") Long id, Model model) {
         model.addAttribute("ptobalance", ptobalanceService.getPTOBalanceById(id));
         return "editPtobalance";
     }
@@ -84,7 +84,7 @@ public class PTOBalanceController {
      * @return A redirect instruction to another endpoint.
      */
     @GetMapping("/delete/{id}")
-    public String deletePTOBalance(@PathVariable("id") UUID id) {
+    public String deletePTOBalance(@PathVariable("id") Long id) {
         ptobalanceService.deletePTOBalance(id);
         return "redirect:/ptobalance/";
     }

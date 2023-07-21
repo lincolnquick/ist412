@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
 import java.time.LocalDate;
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * This class represents a job opening for Buffett Inc.
  * A job opening consists of a jobID, a title, department, description, and posting date.
@@ -17,8 +19,8 @@ import java.time.LocalDate;
 @Table(name="jobOpening")
 public class JobOpening implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID jobID;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long jobID;
     @Column(name="title")
     private String title;
     @Column(name="deptartment")
@@ -29,7 +31,7 @@ public class JobOpening implements Serializable {
     private LocalDate postingDate;
 
     public JobOpening(String title, String department, String description, LocalDate postingDate) {
-        this.jobID = UUID.randomUUID();
+        this.jobID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.title = title;
         this.department = department;
         this.description = description;
@@ -37,18 +39,18 @@ public class JobOpening implements Serializable {
     }
 
     public JobOpening() {
-        this.jobID = UUID.randomUUID();
+        this.jobID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.title = null;
         this.department = null;
         this.description = null;
         this.postingDate = LocalDate.MIN;
     }
 
-    public UUID getJobID() {
+    public Long getJobID() {
         return jobID;
     }
 
-    public void setJobID(UUID jobID) {
+    public void setJobID(Long jobID) {
         this.jobID = jobID;
     }
 

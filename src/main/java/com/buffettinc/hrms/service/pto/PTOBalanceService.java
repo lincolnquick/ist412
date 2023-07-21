@@ -30,7 +30,7 @@ public interface PTOBalanceService {
      * @param employeeID The ID of the PTOBalance object to be fetched.
      * @return The fetched PTOBalance object.
      */
-    PTOBalance getPTOBalanceById(UUID employeeID);
+    PTOBalance getPTOBalanceById(Long employeeID);
 
     /**
      * Fetches all PTOBalance objects.
@@ -44,7 +44,7 @@ public interface PTOBalanceService {
      *
      * @param employeeID The ID of the PTOBalance object to be deleted.
      */
-    void deletePTOBalance(UUID employeeID);
+    void deletePTOBalance(Long employeeID);
 
     /**
      * Reduces the vacation balance of the employee by a specified amount of hours.
@@ -52,7 +52,7 @@ public interface PTOBalanceService {
      * @param employeeID The ID of the employee.
      * @param hours The amount of hours to be deducted from the vacation balance.
      */
-    void useVacationTime(UUID employeeID, float hours);
+    void useVacationTime(Long employeeID, float hours);
 
     /**
      * Reduces the personal time balance of the employee by a specified amount of hours.
@@ -60,7 +60,7 @@ public interface PTOBalanceService {
      * @param employeeID The ID of the employee.
      * @param hours The amount of hours to be deducted from the personal time balance.
      */
-    void usePersonalTime(UUID employeeID, float hours);
+    void usePersonalTime(Long employeeID, float hours);
 
     /**
      * Reduces the sick time balance of the employee by a specified amount of hours.
@@ -68,7 +68,7 @@ public interface PTOBalanceService {
      * @param employeeID The ID of the employee.
      * @param hours The amount of hours to be deducted from the sick time balance.
      */
-    void useSickTime(UUID employeeID, float hours);
+    void useSickTime(Long employeeID, float hours);
 
     /**
      * Adds to the vacation balance of the employee by a specified amount of hours.
@@ -76,7 +76,7 @@ public interface PTOBalanceService {
      * @param employeeID The ID of the employee.
      * @param hours The amount of hours to be added to the vacation balance.
      */
-    void accrueVacationTime(UUID employeeID, float hours);
+    void accrueVacationTime(Long employeeID, float hours);
 
     /**
      * Adds to the personal time balance of the employee by a specified amount of hours.
@@ -84,7 +84,7 @@ public interface PTOBalanceService {
      * @param employeeID The ID of the employee.
      * @param hours The amount of hours to be added to the personal time balance.
      */
-    void accruePersonalTime(UUID employeeID, float hours);
+    void accruePersonalTime(Long employeeID, float hours);
 
     /**
      * Adds to the sick time balance of the employee by a specified amount of hours.
@@ -92,5 +92,5 @@ public interface PTOBalanceService {
      * @param employeeID The ID of the employee.
      * @param hours The amount of hours to be added to the sick time balance.
      */
-    void accrueSickTime(UUID employeeID, float hours);
+    void accrueSickTime(Long employeeID, float hours);
 }

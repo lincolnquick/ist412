@@ -20,8 +20,8 @@ import java.io.Serializable;
 @Table(name="ptobalance")
 public class PTOBalance implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID employeeID;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long employeeID;
 
     @Column(name="vacation")
     private float vacationTime;
@@ -30,7 +30,7 @@ public class PTOBalance implements Serializable{
     @Column(name="sick")
     private float sickTime;
 
-    public PTOBalance(UUID employeeID, float vacationTime, float personalTime, float sickTime) {
+    public PTOBalance(Long employeeID, float vacationTime, float personalTime, float sickTime) {
         this.employeeID = employeeID;
         this.vacationTime = vacationTime;
         this.personalTime = personalTime;
@@ -44,11 +44,11 @@ public class PTOBalance implements Serializable{
         this.sickTime = 0.0f;
     }
 
-    public UUID getEmployeeID() {
+    public Long getEmployeeID() {
         return employeeID;
     }
 
-    public void setEmployeeID(UUID employeeID) {
+    public void setEmployeeID(Long employeeID) {
         this.employeeID = employeeID;
     }
 

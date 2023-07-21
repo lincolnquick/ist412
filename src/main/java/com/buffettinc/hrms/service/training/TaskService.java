@@ -29,7 +29,7 @@ public interface TaskService {
      * @param taskID The ID of the task.
      * @return The task.
      */
-    Task getTaskById(UUID taskID);
+    Task getTaskById(Long taskID);
 
     /**
      * Gets all tasks.
@@ -43,5 +43,5 @@ public interface TaskService {
      *
      * @param taskID The ID of the task to delete.
      */
-    void deleteTask(UUID taskID);
+    void deleteTask(Long taskID);
 }

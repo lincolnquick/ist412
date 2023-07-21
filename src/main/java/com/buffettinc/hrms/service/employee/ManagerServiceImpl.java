@@ -52,7 +52,7 @@ public class ManagerServiceImpl implements ManagerService {
      * {@inheritDoc}
      */
     @Override
-    public Task assignTask(UUID employeeID, String name, String description, LocalDate dueDate) {
+    public Task assignTask(Long employeeID, String name, String description, LocalDate dueDate) {
         Employee employee = employeeRepository.findById(employeeID)
                 .orElseThrow(() -> new RuntimeException("Employee not found with ID: " + employeeID));
         Manager manager = (Manager) managerRepository.findByEmployeeID(employeeID)
@@ -67,7 +67,7 @@ public class ManagerServiceImpl implements ManagerService {
      * {@inheritDoc}
      */
     @Override
-    public Page<Employee> getManagedEmployees(UUID managerID, Pageable pageable) {
+    public Page<Employee> getManagedEmployees(Long managerID, Pageable pageable) {
         Manager manager = managerRepository.findById(managerID)
                 .orElseThrow(() -> new RuntimeException("Manager not found with ID: " + managerID));
         return employeeRepository.findByManager(manager, pageable);
@@ -77,7 +77,7 @@ public class ManagerServiceImpl implements ManagerService {
      * {@inheritDoc}
      */
     @Override
-    public JobApplication reviewJobApplication(UUID jobID, UUID applicantID) {
+    public JobApplication reviewJobApplication(Long jobID, Long applicantID) {
         JobApplication jobApplication = (JobApplication) jobApplicationRepository.findByJobOpeningIDAndApplicantID(jobID, applicantID)
                 .orElseThrow(() -> new RuntimeException("Job application not found for job ID: "
                         + jobID + " and applicant ID: " + applicantID));

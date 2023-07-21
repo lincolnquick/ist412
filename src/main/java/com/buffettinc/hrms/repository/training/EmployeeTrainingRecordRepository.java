@@ -14,6 +14,6 @@ import java.util.UUID;
  * @version 1.0
  * @since 2023-07-13
  */
-public interface EmployeeTrainingRecordRepository extends JpaRepository<EmployeeTrainingRecord, UUID> {
+public interface EmployeeTrainingRecordRepository extends JpaRepository<EmployeeTrainingRecord, Long> {
     // custom methods if necessary
 }

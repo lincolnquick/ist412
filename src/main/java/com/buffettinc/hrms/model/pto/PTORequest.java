@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * This class represents a PTORequest to be used by {@link Employee} of Buffett Inc.
@@ -20,8 +21,8 @@ import java.util.UUID;
 @Table(name="ptorequest")
 public class PTORequest implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID requestID;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long requestID;
     @ManyToOne
     @JoinColumn(name="employeeID")
     private Employee employee;
@@ -42,7 +43,7 @@ public class PTORequest implements Serializable {
     private PTOCalendar ptoCalendar;
 
     public PTORequest(Employee employee, LocalDate startDate, LocalDate endDate, PTOReason reason) {
-        this.requestID = UUID.randomUUID();
+        this.requestID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.employee = employee;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -53,7 +54,7 @@ public class PTORequest implements Serializable {
     }
 
     public PTORequest() {
-        this.requestID = UUID.randomUUID();
+        this.requestID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.employee = null;
         this.startDate = LocalDate.MIN;
         this.endDate = LocalDate.MIN;
@@ -63,11 +64,11 @@ public class PTORequest implements Serializable {
         this.ptoCalendar = null;
     }
 
-    public UUID getRequestID() {
+    public Long getRequestID() {
         return requestID;
     }
 
-    public void setRequestID(UUID requestID) {
+    public void setRequestID(Long requestID) {
         this.requestID = requestID;
     }
 

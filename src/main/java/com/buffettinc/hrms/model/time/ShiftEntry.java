@@ -24,8 +24,8 @@ import java.util.UUID;
 @Table(name = "shiftEntry")
 public class ShiftEntry implements Serializable{
     @Id
-    @GeneratedValue (strategy = GenerationType.UUID)
-    private UUID shiftID;
+    @GeneratedValue (strategy = GenerationType.AUTO)
+    private Long shiftID;
     @Column(name = "start")
     private LocalDateTime start;
     @Column (name = "end")

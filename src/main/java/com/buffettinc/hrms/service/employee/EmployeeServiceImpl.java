@@ -59,7 +59,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     /**
      * {@inheritDoc}
      */
-    public Employee getEmployeeById(UUID id) {
+    public Employee getEmployeeById(Long id) {
         return this.employeeRepository.findById(id).orElse(null);
     }
 
@@ -68,7 +68,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     /**
      * {@inheritDoc}
      */
-    public void deleteEmployee(UUID id) {
+    public void deleteEmployee(Long id) {
         this.employeeRepository.deleteById(id);
     }
 

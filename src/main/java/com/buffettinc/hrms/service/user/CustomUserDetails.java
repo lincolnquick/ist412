@@ -28,6 +28,8 @@ public class CustomUserDetails implements UserDetails {
         return user.getUsername();
     }
 
+    public User getUser() { return this.user; }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -46,6 +48,10 @@ public class CustomUserDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public Long getEmployeeID(){
+        return this.user.getEmployee().getEmployeeID();
     }
 
     public String getFullName() {

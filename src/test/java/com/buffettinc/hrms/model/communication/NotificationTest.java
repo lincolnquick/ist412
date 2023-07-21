@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -45,7 +46,7 @@ class NotificationTest {
 
         Notification notification = new Notification(employee, "Test Notification");
 
-        UUID testID = notification.getNotificationID();
+        Long testID = notification.getNotificationID();
         boolean testResult = false;
         if (!testID.equals(null)){
             testResult = true;
@@ -61,7 +62,7 @@ class NotificationTest {
 
         Notification notification = new Notification(employee, "Test Notification");
 
-        UUID testID = UUID.randomUUID();
+        Long testID = ThreadLocalRandom.current().nextLong(1,1000);
 
         notification.setNotificationID(testID);
 

@@ -29,7 +29,7 @@ public interface EmployeeTrainingRecordService {
      * @param recordID The ID of the employee training record.
      * @return The employee training record.
      */
-    EmployeeTrainingRecord getEmployeeTrainingRecordById(UUID recordID);
+    EmployeeTrainingRecord getEmployeeTrainingRecordById(Long recordID);
 
     /**
      * Gets all employee training records.
@@ -43,5 +43,5 @@ public interface EmployeeTrainingRecordService {
      *
      * @param recordID The ID of the employee training record to delete.
      */
-    void deleteEmployeeTrainingRecord(UUID recordID);
+    void deleteEmployeeTrainingRecord(Long recordID);
 }

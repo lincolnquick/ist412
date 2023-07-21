@@ -16,12 +16,12 @@ import java.util.UUID;
  * @version 1.0
  * @since 2023-07-13
  */
-public interface JobApplicationRepository extends JpaRepository<JobApplication, UUID> {
-    Optional<Object> findByJobOpeningIDAndApplicantID(UUID jobOpeningID, UUID applicantID);
+public interface JobApplicationRepository extends JpaRepository<JobApplication, Long> {
+    Optional<Object> findByJobOpeningIDAndApplicantID(Long jobOpeningID, Long applicantID);
 
-    List<JobApplication> findByApplicantID(UUID applicantID);
+    List<JobApplication> findByApplicantID(Long applicantID);
 
-    List<JobApplication> findByJobOpeningID(UUID jobOpeningID);
+    List<JobApplication> findByJobOpeningID(Long jobOpeningID);
 
     List<JobApplication> findByStatus(JobApplication.JobApplicationStatus status);
     // custom methods if necessary

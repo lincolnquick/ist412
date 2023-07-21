@@ -31,7 +31,7 @@ public interface TrainingModuleService {
      * @param trainingID The ID of the training module.
      * @return The training module.
      */
-    TrainingModule getTrainingModuleById(UUID trainingID);
+    TrainingModule getTrainingModuleById(Long trainingID);
 
     /**
      * Gets all training modules.
@@ -45,5 +45,5 @@ public interface TrainingModuleService {
      *
      * @param trainingID The ID of the training module to delete.
      */
-    void deleteTrainingModule(UUID trainingID);
+    void deleteTrainingModule(Long trainingID);
 }

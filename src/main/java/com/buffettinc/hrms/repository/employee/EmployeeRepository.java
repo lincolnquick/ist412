@@ -19,7 +19,7 @@ import java.util.UUID;
  * @version 1.0
  * @since 2023-07-13
  */
-public interface EmployeeRepository extends JpaRepository<Employee, UUID> {
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     Page<Employee> findByManager(Manager manager, Pageable pageable);
 

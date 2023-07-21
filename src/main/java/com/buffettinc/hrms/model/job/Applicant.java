@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * This class represents a prospective Employee of Buffett Inc. who has submitted a job application.
@@ -17,8 +18,8 @@ import java.util.UUID;
 @Table(name="applicant")
 public class Applicant implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID applicantID;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long applicantID;
     @Column(name="firstName")
     private String firstName;
     @Column(name="lastName")
@@ -38,12 +39,12 @@ public class Applicant implements Serializable {
     @Column(name="status")
     private JobApplication.JobApplicationStatus status; // Status of the application
     @Column(name="job")
-    private UUID jobID; // ID of the job applied for
+    private Long jobID; // ID of the job applied for
     @Column(name="resume")
     private URL resume; // Link of the applicant's resume
 
-    public Applicant(String firstName, String lastName, String streetAddress, String city, String state, String zip, String phone, String email, JobApplication.JobApplicationStatus status, UUID jobID, URL resume) {
-        this.applicantID = UUID.randomUUID();
+    public Applicant(String firstName, String lastName, String streetAddress, String city, String state, String zip, String phone, String email, JobApplication.JobApplicationStatus status, Long jobID, URL resume) {
+        this.applicantID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.firstName = firstName;
         this.lastName = lastName;
         this.streetAddress = streetAddress;
@@ -58,7 +59,7 @@ public class Applicant implements Serializable {
     }
 
     public Applicant() {
-        this.applicantID = UUID.randomUUID();
+        this.applicantID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.firstName = null;
         this.lastName = null;
         this.streetAddress = null;
@@ -72,11 +73,11 @@ public class Applicant implements Serializable {
         this.resume = null;
     }
 
-    public UUID getApplicantID() {
+    public Long getApplicantID() {
         return applicantID;
     }
 
-    public void setApplicantID(UUID applicantID) {
+    public void setApplicantID(Long applicantID) {
         this.applicantID = applicantID;
     }
 
@@ -152,11 +153,11 @@ public class Applicant implements Serializable {
         this.status = status;
     }
 
-    public UUID getJobID() {
+    public Long getJobID() {
         return jobID;
     }
 
-    public void setJobID(UUID jobID) {
+    public void setJobID(Long jobID) {
         this.jobID = jobID;
     }
 

@@ -30,7 +30,7 @@ public interface PTORequestService {
      * @param requestID the id of the PTORequest to be fetched.
      * @return the fetched PTORequest.
      */
-    PTORequest getPTORequestById(UUID requestID);
+    PTORequest getPTORequestById(Long requestID);
 
     /**
      * Fetches all PTORequests.
@@ -44,21 +44,21 @@ public interface PTORequestService {
      *
      * @param requestID the id of the PTORequest to be deleted.
      */
-    void deletePTORequest(UUID requestID);
+    void deletePTORequest(Long requestID);
 
     /**
      * Approves a PTORequest.
      *
      * @param requestID the id of the PTORequest to be approved.
      */
-    void approvePTORequest(UUID requestID);
+    void approvePTORequest(Long requestID);
 
     /**
      * Denies a PTORequest.
      *
      * @param requestID the id of the PTORequest to be denied.
      */
-    void denyPTORequest(UUID requestID);
+    void denyPTORequest(Long requestID);
 
     /**
      * Fetches all PTORequests between two dates.

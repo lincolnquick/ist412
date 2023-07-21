@@ -42,7 +42,7 @@ public class EmployeeTrainingRecordController {
      * @return the view for creating or updating an EmployeeTrainingRecord.
      */
     @GetMapping({"/edit", "/edit/{id}"})
-    public String viewEditEmployeeTrainingRecord(@PathVariable(value = "id", required = false) UUID recordID, Model model) {
+    public String viewEditEmployeeTrainingRecord(@PathVariable(value = "id", required = false) Long recordID, Model model) {
         EmployeeTrainingRecord employeeTrainingRecord = (recordID != null) ? employeeTrainingRecordService.getEmployeeTrainingRecordById(recordID) : new EmployeeTrainingRecord();
         model.addAttribute("employeeTrainingRecord", employeeTrainingRecord);
         return "editEmployeeTrainingRecord";
@@ -67,7 +67,7 @@ public class EmployeeTrainingRecordController {
      * @return the view for displaying all EmployeeTrainingRecords.
      */
     @PostMapping("/delete")
-    public String deleteEmployeeTrainingRecord(@RequestParam UUID recordID) {
+    public String deleteEmployeeTrainingRecord(@RequestParam Long recordID) {
         employeeTrainingRecordService.deleteEmployeeTrainingRecord(recordID);
         return "redirect:/employeeTrainingRecord/all";
     }

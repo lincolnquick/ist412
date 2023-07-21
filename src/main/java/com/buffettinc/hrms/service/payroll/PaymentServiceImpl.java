@@ -34,7 +34,7 @@ public class PaymentServiceImpl implements PaymentService {
      * {@inheritDoc}
      */
     @Override
-    public Optional<Payment> getPaymentById(UUID paymentID) {
+    public Optional<Payment> getPaymentById(Long paymentID) {
         return paymentRepository.findById(paymentID);
     }
 
@@ -50,7 +50,7 @@ public class PaymentServiceImpl implements PaymentService {
      * {@inheritDoc}
      */
     @Override
-    public void deletePayment(UUID paymentID) {
+    public void deletePayment(Long paymentID) {
         paymentRepository.deleteById(paymentID);
     }
 
@@ -58,7 +58,7 @@ public class PaymentServiceImpl implements PaymentService {
      * {@inheritDoc}
      */
     @Override
-    public List<Payment> getPaymentsForEmployee(UUID employeeID) {
+    public List<Payment> getPaymentsForEmployee(Long employeeID) {
         return paymentRepository.findByEmployeeID(employeeID);
     }
 
@@ -66,7 +66,7 @@ public class PaymentServiceImpl implements PaymentService {
      * {@inheritDoc}
      */
     @Override
-    public Payment initiateDirectDepositTransfer(UUID paymentID) {
+    public Payment initiateDirectDepositTransfer(Long paymentID) {
         Payment payment = paymentRepository.findById(paymentID)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid payment ID: " + paymentID));
 
@@ -78,7 +78,7 @@ public class PaymentServiceImpl implements PaymentService {
      * {@inheritDoc}
      */
     @Override
-    public Payment acknowledgeDirectDeposit(UUID paymentID) {
+    public Payment acknowledgeDirectDeposit(Long paymentID) {
         Payment payment = paymentRepository.findById(paymentID)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid payment ID: " + paymentID));
 
@@ -90,7 +90,7 @@ public class PaymentServiceImpl implements PaymentService {
      * {@inheritDoc}
      */
     @Override
-    public Payment initiateCheckWriting(UUID paymentID) {
+    public Payment initiateCheckWriting(Long paymentID) {
         Payment payment = paymentRepository.findById(paymentID)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid payment ID: " + paymentID));
 

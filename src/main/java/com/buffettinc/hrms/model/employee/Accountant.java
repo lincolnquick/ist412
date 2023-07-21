@@ -28,7 +28,7 @@ public class Accountant extends Employee{
         payments = new ArrayList<>();
     }
 
-    public Payment addPayment(String institution, String routingNumber, String accountNumber, LocalDate postedDate, float amount, UUID employeeID){
+    public Payment addPayment(String institution, String routingNumber, String accountNumber, LocalDate postedDate, float amount, Long employeeID){
         Payment newPayment = new Payment(institution, routingNumber, accountNumber, postedDate, amount, employeeID);
         payments.add(newPayment);
         return newPayment;

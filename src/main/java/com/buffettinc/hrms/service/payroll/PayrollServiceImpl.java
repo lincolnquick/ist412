@@ -32,7 +32,7 @@ public class PayrollServiceImpl implements PayrollService {
 
     /** {@inheritDoc} */
     @Override
-    public Optional<Payroll> getPayrollById(UUID payrollID) {
+    public Optional<Payroll> getPayrollById(Long payrollID) {
         return payrollRepository.findById(payrollID);
     }
 
@@ -44,19 +44,19 @@ public class PayrollServiceImpl implements PayrollService {
 
     /** {@inheritDoc} */
     @Override
-    public void deletePayroll(UUID payrollID) {
+    public void deletePayroll(Long payrollID) {
         payrollRepository.deleteById(payrollID);
     }
 
     /** {@inheritDoc} */
     @Override
-    public List<Timesheet> getTimesheetsForPayroll(UUID payrollID) {
+    public List<Timesheet> getTimesheetsForPayroll(Long payrollID) {
         return payrollRepository.findById(payrollID).get().getTimesheetList();
     }
 
     /** {@inheritDoc} */
     @Override
-    public Payroll addTimesheetToPayroll(UUID payrollID, Timesheet timesheet) {
+    public Payroll addTimesheetToPayroll(Long payrollID, Timesheet timesheet) {
         Payroll payroll = payrollRepository.findById(payrollID).get();
         payroll.getTimesheetList().add(timesheet);
         return payrollRepository.save(payroll);
@@ -64,7 +64,7 @@ public class PayrollServiceImpl implements PayrollService {
 
     /** {@inheritDoc} */
     @Override
-    public Payroll approveTimesheet(UUID payrollID, UUID timesheetID) {
+    public Payroll approveTimesheet(Long payrollID, Long timesheetID) {
         Payroll payroll = payrollRepository.findById(payrollID).get();
         List<Timesheet> timesheets = payroll.getTimesheetList();
         for (Timesheet t : timesheets) {

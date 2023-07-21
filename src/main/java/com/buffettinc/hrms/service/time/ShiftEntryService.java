@@ -30,7 +30,7 @@ public interface ShiftEntryService {
      * @param shiftID The ID of the shift entry.
      * @return The shift entry.
      */
-    ShiftEntry getShiftEntryById(UUID shiftID);
+    ShiftEntry getShiftEntryById(Long shiftID);
 
     /**
      * Gets all shift entries.
@@ -44,7 +44,7 @@ public interface ShiftEntryService {
      *
      * @param shiftID The ID of the shift entry to delete.
      */
-    void deleteShiftEntry(UUID shiftID);
+    void deleteShiftEntry(Long shiftID);
 
     /**
      * Gets the duration of a shift in hours.
@@ -52,5 +52,5 @@ public interface ShiftEntryService {
      * @param shiftID The ID of the shift entry.
      * @return The duration of the shift in hours.
      */
-    long getShiftDurationInHours(UUID shiftID);
+    long getShiftDurationInHours(Long shiftID);
 }
