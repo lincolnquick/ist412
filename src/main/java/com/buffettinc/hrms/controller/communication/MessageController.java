@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -60,7 +61,7 @@ public class MessageController {
         Employee recipient = employeeService.getEmployeeById(recipientID);
         Message message = new Message(sender, recipient, title, content);
         messageService.saveMessage(message);
-        return "redirect:/messages";
+        return "/messages/messages";
     }
 
     /**
@@ -127,8 +128,13 @@ public class MessageController {
     }
 
     @GetMapping("/messages")
-    public String messagesLandingPage(Model model){
+    public String messagesLandingPage(@AuthenticationPrincipal CustomUserDetails userDetails, Model model){
+        Long recipientID = userDetails.getEmployeeID();
         model.addAttribute("employees", employeeService.getAllEmployees());
+        model.addAttribute("messages", messageService.getReceivedMessagesByID(recipientID));
+        model.addAttribute("recipientID", recipientID);
+        System.out.println("Recipient ID: " + recipientID);
+        System.out.println(messageService.getReceivedMessagesByID(recipientID));
         return "messages/messages";
     }
 

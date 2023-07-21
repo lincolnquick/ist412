@@ -6,7 +6,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.UUID;
+import java.util.List;
+
 
 /**
  * This is the repository interface for the {@link Message} entity.
@@ -19,6 +20,8 @@ import java.util.UUID;
  */
 public interface MessageRepository extends JpaRepository<Message, Long> {
     Page<Message> findByRecipient(Employee recipient, Pageable pageable);
+
+    List<Message> findListByRecipient(Employee recipient);
 
     Page<Message> findBySender(Employee sender, Pageable pageable);
     // custom methods if necessary

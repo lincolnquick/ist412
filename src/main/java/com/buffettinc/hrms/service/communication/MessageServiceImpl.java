@@ -3,12 +3,15 @@ package com.buffettinc.hrms.service.communication;
 import com.buffettinc.hrms.model.communication.Message;
 import com.buffettinc.hrms.model.employee.Employee;
 import com.buffettinc.hrms.repository.communication.MessageRepository;
+import com.buffettinc.hrms.repository.employee.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -19,10 +22,13 @@ import java.util.UUID;
 public class MessageServiceImpl implements MessageService {
 
     private final MessageRepository messageRepository;
+    @Autowired
+    private final EmployeeRepository employeeRepository;
 
     @Autowired
-    public MessageServiceImpl(MessageRepository messageRepository) {
+    public MessageServiceImpl(MessageRepository messageRepository, EmployeeRepository employeeRepository) {
         this.messageRepository = messageRepository;
+        this.employeeRepository = employeeRepository;
     }
 
     /**
@@ -47,6 +53,16 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public Page<Message> getReceivedMessages(Employee recipient, Pageable pageable) {
         return messageRepository.findByRecipient(recipient, pageable);
+    }
+
+    public List<Message> getReceivedMessagesByID(Long recipientID){
+        Optional<Employee> recipient = employeeRepository.findById(recipientID);
+        if (recipient.isPresent()){
+            return messageRepository.findListByRecipient(recipient.get());
+        } else {
+            return null;
+        }
+
     }
 
     /**
