@@ -60,7 +60,7 @@ public class MessageController {
         Employee recipient = employeeService.getEmployeeById(recipientID);
         Message message = new Message(sender, recipient, title, content);
         messageService.saveMessage(message);
-        return "redirect:/messages";
+        return "redirect:/messages/messages";
     }
 
     /**
