@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -50,7 +51,9 @@ public class UserController {
 
 
     @GetMapping("dashboard")
-    public String viewDashboard(Model model) {
+    public String viewDashboard(@AuthenticationPrincipal CustomUserDetails userDetails, Model model) throws Exception{
+
+
         return "dashboard";
     }
 

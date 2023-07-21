@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +22,10 @@
     <li class="nav-item"> <a class="nav-link" th:href="@{/payments/paystubs}">Paystubs</a> </li>
   </ul>
   <h1 class="mt-5">Buffett Inc. HRMS Dashboard</h1>
+  <div sec:authorize="isAuthenticated()">
+    <p>Authenticated as: <span sec:authentication="name"></span></p>
+    <p>Roles: <span sec:authentication="principal.authorities"></span></p>
+  </div>
   <div class="row mt-5">
     <div class="col-lg-4 col-md-6">
       <div class="card">
