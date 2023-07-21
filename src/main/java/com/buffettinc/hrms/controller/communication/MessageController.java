@@ -4,9 +4,11 @@ import com.buffettinc.hrms.model.communication.Message;
 import com.buffettinc.hrms.model.employee.Employee;
 import com.buffettinc.hrms.service.communication.MessageService;
 import com.buffettinc.hrms.service.employee.EmployeeService;
+import com.buffettinc.hrms.service.user.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -48,18 +50,15 @@ public class MessageController {
      * @return the name of the view
      */
     @PostMapping("/send")
-    public String sendMessage(@ModelAttribute Message message,
-                              @RequestParam("senderID") Long senderID,
+    public String sendMessage(@RequestParam("senderID") Long senderID,
                               @RequestParam("recipientID") Long recipientID,
                               @RequestParam("content") String content,
                               @RequestParam("title") String title,
                               Model model) {
+
         Employee sender = employeeService.getEmployeeById(senderID);
         Employee recipient = employeeService.getEmployeeById(recipientID);
-        message.setSender(sender);
-        message.setRecipient(recipient);
-        message.setTitle(title);
-        message.setContent(content);
+        Message message = new Message(sender, recipient, title, content);
         messageService.saveMessage(message);
         return "redirect:/messages";
     }
@@ -141,9 +140,12 @@ public class MessageController {
     }
 
     @GetMapping("/compose")
-    public String composeMessage(Model model) {
+    public String composeMessage(Model model, Authentication authentication) {
         List<Employee> allEmployees = employeeService.getAllEmployees();
-        long senderID = allEmployees.get(0).getEmployeeID();
+
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+        Long senderID = userDetails.getEmployeeID();
+
         allEmployees.removeIf(e -> e.getEmployeeID().equals(senderID)); // Remove the sender from the list
         model.addAttribute("employees", allEmployees);
         model.addAttribute("senderID", senderID); // Add the sender ID to the model

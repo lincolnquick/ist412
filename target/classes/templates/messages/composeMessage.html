@@ -31,7 +31,9 @@
     <h2>Select Recipient</h2>
     <!-- Compose message form -->
     <form th:action="@{/messages/send}" th:object="${message}" method="post">
-        <input type="hidden" id="senderID" name="senderID" th:value="${senderId}">
+        <input type="hidden" id="senderID" name="senderID" th:value="${senderID}">
+        <p>Sender ID: </p>
+        <p th:text="${senderID}"></p>
         <div class="form-group">
             <label for="recipientID">Recipient</label>
             <select id="recipientID" name="recipientID" class="form-control">

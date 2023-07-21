@@ -48,6 +48,10 @@ public class CustomUserDetails implements UserDetails {
         return true;
     }
 
+    public Long getEmployeeID(){
+        return this.user.getEmployee().getEmployeeID();
+    }
+
     public String getFullName() {
         return user.getEmployee().getFirstName() + " " + user.getEmployee().getLastName();
     }
