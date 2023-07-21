@@ -45,7 +45,6 @@ public class MessageController {
      * @param senderID the ID of the sender
      * @param recipientID the ID of the recipient
      * @param title the title of the message
-     * @param message the content of the message
      * @param model the model
      * @return the name of the view
      */
