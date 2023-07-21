@@ -144,7 +144,7 @@ public class MessageController {
         model.addAttribute("employees", allEmployees);
         model.addAttribute("senderID", senderID); // Add the sender ID to the model
         model.addAttribute("message", new Message());
-        return "composeMessage";
+        return "messages/composeMessage";
     }
 
 
