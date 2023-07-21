@@ -16,6 +16,6 @@ import java.util.UUID;
  * @since 2023-07-13
  */
 public interface ManagerRepository extends JpaRepository<Manager, Long> {
-    Optional<Object> findByEmployeeID(Long employeeID);
+    Optional<Manager> findByEmployeeID(Long employeeID);
     // custom methods if necessary
 }

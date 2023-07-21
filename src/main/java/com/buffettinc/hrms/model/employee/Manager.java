@@ -26,8 +26,6 @@ import java.util.UUID;
 public class Manager extends Employee{
     @Column(name="permission")
     private String permissionLevel;
-    @ManyToMany
-    private HashMap<Long, Task> tasks;
 
     @OneToMany(mappedBy = "manager")
     private List<Employee> subordinates = new ArrayList<>();
@@ -36,12 +34,20 @@ public class Manager extends Employee{
     public Manager() {
         super();
         this.permissionLevel = "";
-        tasks = new HashMap<>();
     }
+
+    public Manager(String lastName, String firstName, String streetAddress, String city, String state, String zip,
+                   String phone, String email, LocalDate hireDate, String department, String position,
+                   Manager manager){
+        super(lastName, firstName, streetAddress, city, state, zip, phone, email, hireDate, department, position,
+                manager);
+        this.permissionLevel = "";
+    }
+
 
     public Task assignTask(Employee employee, String name, String description, LocalDate dueDate){
         Task newTask = new Task(name, description, dueDate, this, employee);
-        tasks.put(employee.getEmployeeID(), newTask);
+        //tasks.put(employee.getEmployeeID(), newTask);
         return newTask;
     }
 

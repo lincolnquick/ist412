@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.net.URL;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -104,6 +105,11 @@ public class HRStaffServiceImpl implements HRStaffService {
      */
     public JobApplication approveJobApplication(JobApplication application) {
         return null;
+    }
+
+    @Override
+    public List<HRStaff> getAllHRStaff() {
+        return this.hrStaffRepository.findAll();
     }
 
     @Override

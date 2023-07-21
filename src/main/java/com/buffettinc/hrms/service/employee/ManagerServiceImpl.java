@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -46,6 +47,11 @@ public class ManagerServiceImpl implements ManagerService {
         this.jobApplicationRepository = jobApplicationRepository;
         this.timesheetRepository = timesheetRepository;
         this.taskRepository = taskRepository;
+    }
+
+    @Override
+    public List<Manager> getAllManagers() {
+        return this.managerRepository.findAll();
     }
 
     /**

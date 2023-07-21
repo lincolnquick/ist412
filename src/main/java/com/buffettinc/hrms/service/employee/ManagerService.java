@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -22,6 +23,12 @@ import java.util.UUID;
  * @since 2023-07-13
  */
 public interface ManagerService {
+
+    /**
+     * Gets all Manager employees.
+     * @return List of all Managers
+     */
+    List<Manager> getAllManagers();
 
     /**
      * Assigns a task to an employee.

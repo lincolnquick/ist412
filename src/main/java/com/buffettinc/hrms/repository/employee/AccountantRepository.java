@@ -1,8 +1,10 @@
 package com.buffettinc.hrms.repository.employee;
 
 import com.buffettinc.hrms.model.employee.Accountant;
+import com.buffettinc.hrms.model.employee.Manager;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -16,4 +18,5 @@ import java.util.UUID;
  */
 public interface AccountantRepository extends JpaRepository<Accountant, Long> {
     // custom methods if necessary
+    Optional<Accountant> findByEmployeeID(Long employeeID);
 }
