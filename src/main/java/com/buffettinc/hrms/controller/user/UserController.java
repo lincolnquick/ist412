@@ -4,6 +4,8 @@ import com.buffettinc.hrms.model.employee.Employee;
 import com.buffettinc.hrms.model.user.User;
 import com.buffettinc.hrms.repository.employee.EmployeeRepository;
 import com.buffettinc.hrms.repository.user.UserRepository;
+import com.buffettinc.hrms.service.communication.MessageService;
+import com.buffettinc.hrms.service.communication.NotificationService;
 import com.buffettinc.hrms.service.employee.EmployeeService;
 import com.buffettinc.hrms.service.user.CustomUserDetails;
 import com.buffettinc.hrms.service.user.CustomUserDetailsService;
@@ -40,6 +42,12 @@ public class UserController {
     private EmployeeService employeeService;
 
     @Autowired
+    private MessageService messageService;
+
+    @Autowired
+    private NotificationService notificationService;
+
+    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
@@ -57,8 +65,10 @@ public class UserController {
         User loggedInUser = userDetails.getUser();
         String loggedInFullName = loggedInEmployee.getFullName();
         String loggedInUsername = loggedInUser.getUsername();
+        int unreadMessageCount = messageService.countByIsReadFalseAndRecipient(loggedInEmployee);
 
         model.addAttribute("loggedInFullName", loggedInFullName);
+        model.addAttribute("unreadMessageCount", unreadMessageCount);
         return "dashboard";
     }
 

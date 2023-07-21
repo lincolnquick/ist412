@@ -78,6 +78,7 @@
         <div class="card-body">
           <h5 class="card-title">Messages</h5>
           <p class="card-text">View and send messages</p>
+          <p class="card-text"><strong>Unread Messages: </strong><span th:text="${unreadMessageCount}">0</span></p>
           <a href="/messages/messages" class="btn btn-primary">View Messages</a>
           <a href="/messages/compose" class="btn btn-success">Compose Message</a>
         </div>

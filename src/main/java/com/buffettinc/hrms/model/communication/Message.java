@@ -20,10 +20,10 @@ public class Message implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long messageID;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "sender")
     private Employee sender;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "recipient")
     private Employee recipient;
     @Column(name="timestamp")

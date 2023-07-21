@@ -31,6 +31,11 @@ public class MessageServiceImpl implements MessageService {
         this.employeeRepository = employeeRepository;
     }
 
+    @Override
+    public int countByIsReadFalseAndRecipient(Employee employee) {
+        return this.messageRepository.countByIsReadFalseAndRecipient(employee);
+    }
+
     /**
      * {@inheritDoc}
      */

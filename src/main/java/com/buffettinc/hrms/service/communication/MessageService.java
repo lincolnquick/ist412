@@ -18,6 +18,13 @@ import java.util.UUID;
 public interface MessageService {
 
     /**
+     * Returns the number of unread messages for a given Employee
+     * @param employeeID the employeeID for which to count unread messages
+     * @return number of unread messages
+     */
+    int countByIsReadFalseAndRecipient(Employee employee);
+
+    /**
      * Sends a message from the sender to the recipient.
      *
      * @param sender    the sender of the message

@@ -25,6 +25,7 @@ public interface EmployeeService {
 
     Employee updateEmployee(Employee employee);
 
+
     void deleteEmployee(Long id);
 
     Page<Employee> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
