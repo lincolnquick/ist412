@@ -26,6 +26,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+/**
+ * This class represents the controller for the User's view, including the Dashboard or main page of the HRMS.
+ *
+ * @author IST 412 Group 5
+ * @since 2023-07-21
+ */
 @Controller
 public class UserController {
 

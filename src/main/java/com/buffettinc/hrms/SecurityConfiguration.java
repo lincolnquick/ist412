@@ -19,6 +19,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import javax.sql.DataSource;
 
 
+/**
+ * This class sets up the necessary configuration for the web application, such as defining the login page, logout page,
+ * where to redirect the user after logging in, and which pages to require authentication and which to permit to all users.
+ *
+ * @author IST 412 Group 5
+ * @since 2023-07-21
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {

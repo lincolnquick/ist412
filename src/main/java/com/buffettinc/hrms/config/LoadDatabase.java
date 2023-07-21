@@ -19,6 +19,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.time.LocalDate;
 import java.util.Optional;
 
+/**
+ * This class loads the database with sample data to be used for debugging and testing purposes.
+ * If certain entities, such as users and employees do not exist, they will be added to the database here.
+ *
+ * @author IST 412 Group 5
+ * @since 2023-07-21
+ */
 @Configuration
 public class LoadDatabase {
 
