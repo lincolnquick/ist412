@@ -52,8 +52,13 @@ public class UserController {
 
     @GetMapping("dashboard")
     public String viewDashboard(@AuthenticationPrincipal CustomUserDetails userDetails, Model model) throws Exception{
+        Long employeeID = userDetails.getEmployeeID();
+        Employee loggedInEmployee = employeeService.getEmployeeById(employeeID);
+        User loggedInUser = userDetails.getUser();
+        String loggedInFullName = loggedInEmployee.getFullName();
+        String loggedInUsername = loggedInUser.getUsername();
 
-
+        model.addAttribute("loggedInFullName", loggedInFullName);
         return "dashboard";
     }
 

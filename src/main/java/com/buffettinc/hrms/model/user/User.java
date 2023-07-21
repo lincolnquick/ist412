@@ -57,6 +57,8 @@ public class User {
         return username;
     }
 
+    public String getFullName() {return this.getEmployee().getFullName(); }
+
     public void setUsername(String username) {
         this.username = username;
     }

@@ -22,9 +22,9 @@
     <li class="nav-item"> <a class="nav-link" th:href="@{/payments/paystubs}">Paystubs</a> </li>
   </ul>
   <h1 class="mt-5">Buffett Inc. HRMS Dashboard</h1>
+  
   <div sec:authorize="isAuthenticated()">
-    <p>Authenticated as: <span sec:authentication="name"></span></p>
-    <p>Roles: <span sec:authentication="principal.authorities"></span></p>
+    <h2 class="mt-3">Welcome, <span th:text="${loggedInFullName}"></span>!</h2>
   </div>
   <div class="row mt-5">
     <div class="col-lg-4 col-md-6">
