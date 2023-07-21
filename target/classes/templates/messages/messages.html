@@ -39,7 +39,7 @@
         </thead>
         <tbody>
         <tr th:each="message : ${messages}">
-            <td th:text="${message.sender}"></td>
+            <td th:text="${message.sender.getFullName()}"></td>
             <td th:text="${message.timestamp}"></td>
             <td th:text="${message.title}"></td>
             <td th:text="${message.content}"></td>

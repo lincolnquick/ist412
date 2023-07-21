@@ -241,6 +241,10 @@ public class Employee implements Serializable{
         this.state = state;
     }
 
+    public String getFullName(){
+        return this.getFirstName() + " " + this.getLastName();
+    }
+
     public String getZip() {
         return zip;
     }
