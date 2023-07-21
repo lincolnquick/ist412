@@ -135,6 +135,7 @@ public class MessageController {
         model.addAttribute("recipient", recipient);
         model.addAttribute("messages", messageService.getReceivedMessagesByID(recipientID));
         model.addAttribute("recipientID", recipientID);
+        model.addAttribute("page", "messages");
 
         return "messages/messages";
     }

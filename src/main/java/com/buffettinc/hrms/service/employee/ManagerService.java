@@ -1,5 +1,6 @@
 package com.buffettinc.hrms.service.employee;
 
+import com.buffettinc.hrms.model.communication.Observer;
 import com.buffettinc.hrms.model.employee.Employee;
 import com.buffettinc.hrms.model.employee.Manager;
 import com.buffettinc.hrms.model.job.JobApplication;
@@ -29,6 +30,14 @@ public interface ManagerService {
      * @return List of all Managers
      */
     List<Manager> getAllManagers();
+
+    void registerObserver(Observer observer);
+
+    void registerObservers(List<Observer> observers);
+
+    void removeObserver(Observer observer);
+
+    void removeObservers(List<Observer> observers);
 
     /**
      * Assigns a task to an employee.

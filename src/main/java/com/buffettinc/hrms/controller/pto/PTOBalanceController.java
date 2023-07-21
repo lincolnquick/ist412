@@ -95,7 +95,9 @@ public class PTOBalanceController {
      * @return Sting of Thymeleaf html page to display
      */
     @GetMapping("/pto")
-    public String ptoLandingPage(){
+    public String ptoLandingPage(Model model){
+        model.addAttribute("page", "pto");
+
         return "pto/pto";
     }
 

@@ -4,6 +4,7 @@ import com.buffettinc.hrms.model.payroll.Payment;
 import com.buffettinc.hrms.service.payroll.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -78,7 +79,8 @@ public class PaymentController {
      * @return String of Paystubs Thymeleaf template name.
      */
     @GetMapping("/paystubs")
-    public String paystubsLandingPage(){
+    public String paystubsLandingPage(Model model){
+        model.addAttribute("page", "payments");
         return "paystubs/paystubs";
     }
 }

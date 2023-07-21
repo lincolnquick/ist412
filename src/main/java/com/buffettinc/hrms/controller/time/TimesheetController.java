@@ -78,7 +78,9 @@ public class TimesheetController {
      * @return Sting of Thymeleaf template file.
      */
     @GetMapping("/timesheets")
-    public String timesheetsLanding(){
+    public String timesheetsLanding(Model model){
+        model.addAttribute("page", "timesheets");
+
         return "timesheets/timesheets";
     }
 }

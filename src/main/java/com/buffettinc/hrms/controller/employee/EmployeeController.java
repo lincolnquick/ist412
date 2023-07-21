@@ -48,6 +48,7 @@ public class EmployeeController {
         model.addAttribute("accountants", accountantService.getAllAccountants());
         model.addAttribute("hrstaff", hrStaffService.getAllHRStaff());
         model.addAttribute("managers", managerService.getAllManagers());
+        model.addAttribute("page", "employees");
         return "employees/list"; // corresponds to a Thymeleaf template in "src/main/resources/templates/employees/list.html"
     }
 

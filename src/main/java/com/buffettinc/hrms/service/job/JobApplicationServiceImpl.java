@@ -1,8 +1,11 @@
 package com.buffettinc.hrms.service.job;
 
 import com.buffettinc.hrms.model.job.JobApplication;
+import com.buffettinc.hrms.repository.employee.ManagerRepository;
 import com.buffettinc.hrms.repository.job.JobApplicationRepository;
 import com.buffettinc.hrms.service.JobApplicationService;
+import com.buffettinc.hrms.service.employee.HRStaffService;
+import com.buffettinc.hrms.service.employee.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +25,32 @@ public class JobApplicationServiceImpl implements JobApplicationService {
 
     @Autowired
     private JobApplicationRepository jobApplicationRepository;
+
+    @Autowired
+    private JobOpeningService jobOpeningService;
+
+    @Autowired
+    private ManagerService managerService;
+
+    @Autowired
+    private ManagerRepository managerRepository;
+
+    @Autowired
+    private ApplicantService applicantService;
+
+    @Autowired
+    private HRStaffService hrStaffService;
+
+    public void submitApplication(JobApplication jobApplication){
+        // Save application to the database
+        JobApplication savedApplication = jobApplicationRepository.save(jobApplication);
+
+        // Add observers - all Managers in same department
+        Long jobOpeningID = savedApplication.getJobOpeningID();
+        String department = jobOpeningService.getJobOpeningByID(jobOpeningID).get().getDepartment();
+        managerService.registerObservers(managerRepository.findAllByDepartment(department));
+
+    }
 
     /**
      * {@inheritDoc}

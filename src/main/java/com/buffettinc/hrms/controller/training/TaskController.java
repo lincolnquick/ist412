@@ -80,7 +80,8 @@ public class TaskController {
      * @return String name of Thymeleaf template.
      */
     @GetMapping("/tasks")
-    public String tasksLandingPage(){
+    public String tasksLandingPage(Model model){
+        model.addAttribute("page", "tasks");
         return "tasks/tasks";
     }
 }

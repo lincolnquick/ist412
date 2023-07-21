@@ -69,6 +69,7 @@ public class UserController {
 
         model.addAttribute("loggedInFullName", loggedInFullName);
         model.addAttribute("unreadMessageCount", unreadMessageCount);
+        model.addAttribute("page", "home");
         return "dashboard";
     }
 

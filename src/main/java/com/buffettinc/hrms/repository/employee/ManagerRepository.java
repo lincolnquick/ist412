@@ -1,10 +1,11 @@
 package com.buffettinc.hrms.repository.employee;
 
+import com.buffettinc.hrms.model.communication.Observer;
 import com.buffettinc.hrms.model.employee.Manager;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 /**
  * This is the repository interface for the {@link Manager} entity.
@@ -18,4 +19,7 @@ import java.util.UUID;
 public interface ManagerRepository extends JpaRepository<Manager, Long> {
     Optional<Manager> findByEmployeeID(Long employeeID);
     // custom methods if necessary
+
+
+    List<Observer> findAllByDepartment(String department);
 }

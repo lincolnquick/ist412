@@ -5,6 +5,7 @@ import com.buffettinc.hrms.service.payroll.PayrollService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -81,7 +82,9 @@ public class PayrollController {
      * @return String of Thymeleaf template's name.
      */
     @GetMapping("/payroll")
-    public String payrollLandingPage(){
+    public String payrollLandingPage(Model model){
+
+        model.addAttribute("page", "messages");
         return "payroll/payroll";
     }
 

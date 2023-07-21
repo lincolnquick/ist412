@@ -1,5 +1,6 @@
 package com.buffettinc.hrms.service.employee;
 
+import com.buffettinc.hrms.model.communication.Observer;
 import com.buffettinc.hrms.model.employee.Employee;
 import com.buffettinc.hrms.model.employee.Manager;
 import com.buffettinc.hrms.model.job.Applicant;
@@ -28,6 +29,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -46,37 +48,50 @@ public class ManagerServiceImpl implements ManagerService {
     private final ManagerRepository managerRepository;
     private final EmployeeRepository employeeRepository;
     private final JobApplicationRepository jobApplicationRepository;
-    private final JobApplicationService jobApplicationService;
-
-    private final JobOpeningRepository jobOpeningRepository;
 
     private final JobOpeningService jobOpeningService;
-    private final TimesheetRepository timesheetRepository;
     private final TaskRepository taskRepository;
 
-    private final NotificationRepository notificationRepository;
-    private final MessageRepository messageRepository;
 
     private final NotificationService notificationService;
 
+    private List<Observer> observers;
+
     public ManagerServiceImpl(ManagerRepository managerRepository, EmployeeRepository employeeRepository,
                               JobApplicationRepository jobApplicationRepository,
-                              JobApplicationService jobApplicationService,
-                              JobOpeningRepository jobOpeningRepository, JobOpeningService jobOpeningService,
-                              TimesheetRepository timesheetRepository,
-                              TaskRepository taskRepository, NotificationRepository notificationRepository,
-                              MessageRepository messageRepository, NotificationService notificationService) {
+                              JobOpeningService jobOpeningService,
+                              TaskRepository taskRepository,
+                              NotificationService notificationService) {
         this.managerRepository = managerRepository;
         this.employeeRepository = employeeRepository;
         this.jobApplicationRepository = jobApplicationRepository;
-        this.jobApplicationService = jobApplicationService;
-        this.jobOpeningRepository = jobOpeningRepository;
         this.jobOpeningService = jobOpeningService;
-        this.timesheetRepository = timesheetRepository;
         this.taskRepository = taskRepository;
-        this.notificationRepository = notificationRepository;
-        this.messageRepository = messageRepository;
         this.notificationService = notificationService;
+        this.observers = new ArrayList<>();
+    }
+
+    @Override
+    public void registerObserver(Observer observer){
+        observers.add(observer);
+    }
+
+    @Override
+    public void registerObservers(List<Observer> observers){
+        for (Observer o : observers){
+            this.observers.add(o);
+        }
+    }
+
+    @Override
+    public void removeObservers(List<Observer> observers){
+        for (Observer o : observers){
+            this.observers.remove(o);
+        }
+    }
+    @Override
+    public void removeObserver(Observer observer){
+        observers.remove(observer);
     }
 
     @Override
@@ -85,6 +100,7 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     public void hire(Applicant applicant, Manager hiringManager){
+        applicant.setStatus(JobApplication.JobApplicationStatus.APPROVED_BY_MANAGER);
         // Hiring Logic
         Optional<Manager> manager = managerRepository.findByEmployeeID(hiringManager.getEmployeeID());
         // create new employee based on applicant info

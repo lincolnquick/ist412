@@ -78,7 +78,8 @@ public class TrainingModuleController {
      * @return String name of Thymeleaf template.
      */
     @GetMapping("/training")
-    public String trainingLandingPage(){
+    public String trainingLandingPage(Model model){
+        model.addAttribute("page", "training");
         return "training/training";
     }
 }

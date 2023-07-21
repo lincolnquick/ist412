@@ -4,7 +4,9 @@ import com.buffettinc.hrms.model.communication.Notification;
 import com.buffettinc.hrms.model.employee.Employee;
 import com.buffettinc.hrms.service.communication.NotificationService;
 import com.buffettinc.hrms.service.employee.EmployeeService;
+import com.buffettinc.hrms.service.user.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -110,7 +112,13 @@ public class NotificationController {
      * @return String of name of Thymeleaf template.
      */
     @GetMapping("/notifications")
-    public String notificationsLandingPage(){
+    public String notificationsLandingPage(@AuthenticationPrincipal CustomUserDetails userDetails, Model model){
+        Long recipientID = userDetails.getEmployeeID();
+        Employee recipient = employeeService.getEmployeeById(recipientID);
+        model.addAttribute("recipient", recipient);
+        model.addAttribute("notifications", notificationService.getNotificationsByEmployee(recipient));
+        model.addAttribute("recipientID", recipientID);
+        model.addAttribute("page", "notifications");
         return "notifications/notifications";
     }
 }
