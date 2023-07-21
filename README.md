@@ -34,6 +34,14 @@ Use one of the following sample users with details to login to the application. 
 | HRStaff | Toby | Flenderson | toby | password |
 | Accountant | Angela | Martin | amartin | password |
 
+## Implemented Patterns
+In this project, we have implemented two main patterns: the Observer behavioral pattern and the Dashboard View UI pattern.
+
+### Observer Pattern
+The Observer pattern is used to ensure that a particular state change in one part of the program can be automatically propagated to other interested parts of the program. In our application, the `NotificationService` class is an observable that other parts of the system observe. When a significant event occurs (such as a new PTO request or a payroll update), the `NotificationService` notifies all observers. Classes that act as observers include `Employee`, `Manager`, `HRStaff`, and `Accountant`.
+
+### Dashboard View UI Pattern
+The Dashboard View UI pattern is implemented in our system to present the main view for users after they log in. The `UserController.java` class along with the `dashboard.html` Thymeleaf template use this pattern to prepare and render the dashboard view, which gives users a quick overview of their most important information. This includes their tasks, messages, pending requests, and notifications.
 
 ## Contact Information
 For help or further questions, contact IST 412 Group 5 via Microsoft Teams.
