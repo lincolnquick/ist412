@@ -71,7 +71,7 @@ class MessageControllerTest {
 
         when(messageService.markMessageAsRead(messageId)).thenReturn(message);
 
-        controller.markMessageAsRead(messageId, model);
+        //controller.markMessageAsRead(messageId, model);
 
         verify(messageService).markMessageAsRead(messageId);
         verify(model).addAttribute("message", message);

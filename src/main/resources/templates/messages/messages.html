@@ -38,13 +38,15 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="message : ${messages}">
+        <tr th:each="message : ${messages}" th:class="${!message.isRead} ? 'table-warning' : ''"> <!-- add the 'table-warning' class if message is unread -->
             <td th:text="${message.sender.getFullName()}"></td>
             <td th:text="${message.timestamp}"></td>
             <td th:text="${message.title}"></td>
             <td th:text="${message.content}"></td>
-            <td><a th:href="@{'/messages/view/' + ${message.getMessageID()}}" class="btn btn-success">Read</a> <a
-                    th:href="@{'/messages/delete/' + ${message.getMessageID()}}" class="btn btn-danger">Delete</a></td>
+            <td>
+                <a th:href="@{'/messages/read/' + ${message.messageID}}" class="btn btn-success">Read</a> <!-- send messageID to the '/messages/read/{messageID}' endpoint -->
+                <a th:href="@{'/messages/delete/' + ${message.messageID}}" class="btn btn-danger">Delete</a> <!-- send messageID to the '/messages/delete/{messageID}' endpoint -->
+            </td>
         </tr>
         </tbody>
     </table>

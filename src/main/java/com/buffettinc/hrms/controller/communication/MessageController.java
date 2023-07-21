@@ -109,11 +109,12 @@ public class MessageController {
      * @param model the model
      * @return the name of the view
      */
-    @PostMapping("/read")
-    public String markMessageAsRead(@RequestParam Long messageID, Model model) {
-        model.addAttribute("message", messageService.markMessageAsRead(messageID));
-        return "readMessage";
+    @GetMapping("/read/{messageID}")
+    public String readMessage(@PathVariable("messageID") Long messageID) {
+        messageService.markMessageAsRead(messageID);
+        return "redirect:/messages/messages";
     }
+
 
     /**
      * Handles deleting a message.
@@ -121,10 +122,10 @@ public class MessageController {
      * @param messageID the ID of the message
      * @return the name of the view
      */
-    @PostMapping("/delete")
-    public String deleteMessage(@RequestParam Long messageID) {
+    @GetMapping("/delete/{messageID}")
+    public String deleteMessage(@PathVariable("messageID") Long messageID) {
         messageService.deleteMessage(messageID);
-        return "deleteMessage";
+        return "redirect:/messages/messages";
     }
 
     @GetMapping("/messages")
