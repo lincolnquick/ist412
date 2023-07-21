@@ -2,6 +2,7 @@ package com.buffettinc.hrms.model.employee;
 
 import com.buffettinc.hrms.model.communication.Message;
 import com.buffettinc.hrms.model.communication.Notification;
+import com.buffettinc.hrms.model.communication.Observer;
 import com.buffettinc.hrms.model.payroll.Payroll;
 import com.buffettinc.hrms.model.pto.PTOBalance;
 import com.buffettinc.hrms.model.pto.PTOCalendar;
@@ -33,7 +34,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 @Entity
 @Table(name="employee")
-public class Employee implements Serializable{
+public class Employee implements Serializable, Observer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NonNull
@@ -328,4 +329,13 @@ public class Employee implements Serializable{
         return new PTORequest(this, startDate, endDate, reason);
     }
 
+    @Override
+    public void update(Notification notification) {
+        System.out.println(this.toString() + " received notification: " + notification.getMessage());
+    }
+
+    @Override
+    public String toString(){
+        return "Employee: " + this.getUser().getUsername() + ": " + this.getFirstName() + " " + this.getLastName();
+    }
 }

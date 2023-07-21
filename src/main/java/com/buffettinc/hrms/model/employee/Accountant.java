@@ -1,5 +1,6 @@
 package com.buffettinc.hrms.model.employee;
 
+import com.buffettinc.hrms.model.communication.Notification;
 import com.buffettinc.hrms.model.payroll.Payment;
 import jakarta.persistence.*;
 
@@ -47,6 +48,16 @@ public class Accountant extends Employee{
 
     public void approvePayment(){
 
+    }
+
+    @Override
+    public void update(Notification notification) {
+        System.out.println(this.toString() + " received notification: " + notification.getMessage());
+    }
+
+    @Override
+    public String toString(){
+        return "Accountant: " + this.getUser().getUsername() + ": " + this.getFirstName() + " " + this.getLastName();
     }
 
 }

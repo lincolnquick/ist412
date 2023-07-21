@@ -1,5 +1,7 @@
 package com.buffettinc.hrms.model.employee;
 
+import com.buffettinc.hrms.model.communication.Notification;
+import com.buffettinc.hrms.model.communication.Observer;
 import com.buffettinc.hrms.model.job.JobApplication;
 import com.buffettinc.hrms.model.pto.PTOCalendar;
 import com.buffettinc.hrms.model.pto.PTORequest;
@@ -23,7 +25,7 @@ import java.util.UUID;
  */
 @Entity
 @Table(name="manager")
-public class Manager extends Employee{
+public class Manager extends Employee {
     @Column(name="permission")
     private String permissionLevel;
 
@@ -80,5 +82,15 @@ public class Manager extends Employee{
 
     public PTOCalendar viewPTOCalendar(){
         return new PTOCalendar();
+    }
+
+    @Override
+    public void update(Notification notification) {
+        System.out.println(this.toString() + " received notification: " + notification.getMessage());
+    }
+
+    @Override
+    public String toString(){
+        return "Manager: " + this.getUser().getUsername() + ": " + this.getFirstName() + " " + this.getLastName();
     }
 }
