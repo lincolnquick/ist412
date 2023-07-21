@@ -51,11 +51,15 @@ public class MessageController {
     public String sendMessage(@ModelAttribute Message message,
                               @RequestParam("senderID") Long senderID,
                               @RequestParam("recipientID") Long recipientID,
+                              @RequestParam("content") String content,
+                              @RequestParam("title") String title,
                               Model model) {
         Employee sender = employeeService.getEmployeeById(senderID);
         Employee recipient = employeeService.getEmployeeById(recipientID);
         message.setSender(sender);
         message.setRecipient(recipient);
+        message.setTitle(title);
+        message.setContent(content);
         messageService.saveMessage(message);
         return "redirect:/messages";
     }
