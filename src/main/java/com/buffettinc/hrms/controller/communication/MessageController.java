@@ -130,11 +130,11 @@ public class MessageController {
     @GetMapping("/messages")
     public String messagesLandingPage(@AuthenticationPrincipal CustomUserDetails userDetails, Model model){
         Long recipientID = userDetails.getEmployeeID();
-        model.addAttribute("employees", employeeService.getAllEmployees());
+        Employee recipient = employeeService.getEmployeeById(recipientID);
+        model.addAttribute("recipient", recipient);
         model.addAttribute("messages", messageService.getReceivedMessagesByID(recipientID));
         model.addAttribute("recipientID", recipientID);
-        System.out.println("Recipient ID: " + recipientID);
-        System.out.println(messageService.getReceivedMessagesByID(recipientID));
+
         return "messages/messages";
     }
 

@@ -30,10 +30,10 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">Viewed</th>
-            <th scope="col">Date</th>
             <th scope="col">From</th>
+            <th scope="col">Date</th>
             <th scope="col">Subject</th>
+            <th scope="col">Message</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -43,8 +43,8 @@
             <td th:text="${message.timestamp}"></td>
             <td th:text="${message.title}"></td>
             <td th:text="${message.content}"></td>
-            <td><a th:href="@{'/employees/edit/' + ${employee.employeeID}}" class="btn btn-success">Read</a> <a
-                    th:href="@{'/messages/delete/' + ${messages.messageID}}" class="btn btn-danger">Delete</a></td>
+            <td><a th:href="@{'/messages/view/' + ${message.getMessageID()}}" class="btn btn-success">Read</a> <a
+                    th:href="@{'/messages/delete/' + ${message.getMessageID()}}" class="btn btn-danger">Delete</a></td>
         </tr>
         </tbody>
     </table>
