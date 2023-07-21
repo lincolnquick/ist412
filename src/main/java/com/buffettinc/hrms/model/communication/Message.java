@@ -4,7 +4,6 @@ import com.buffettinc.hrms.model.employee.Employee;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.UUID;
 import java.time.LocalDateTime;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -31,17 +30,17 @@ public class Message implements Serializable {
     private LocalDateTime timestamp;
     @Column(name="title")
     private String title;
-    @Column(name="message")
-    private String message;
+    @Column(name="content")
+    private String content;
     @Column(name="isRead")
     private boolean isRead;
 
-    public Message(Employee sender, Employee recipient, String title, String message) {
+    public Message(Employee sender, Employee recipient, String title, String content) {
         this.messageID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.sender = sender;
         this.recipient = recipient;
         this.title = title;
-        this.message = message;
+        this.content = content;
         this.isRead = false;
         this.timestamp = LocalDateTime.now();
     }
@@ -51,7 +50,7 @@ public class Message implements Serializable {
         this.sender = null;
         this.recipient = null;
         this.title = null;
-        this.message = null;
+        this.content = null;
         this.isRead = false;
         this.timestamp = LocalDateTime.now();
     }
@@ -96,12 +95,12 @@ public class Message implements Serializable {
         this.title = title;
     }
 
-    public String getMessage() {
-        return message;
+    public String getContent() {
+        return content;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setContent(String message) {
+        this.content = message;
     }
 
     public boolean isRead() {

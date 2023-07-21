@@ -3,9 +3,7 @@ package com.buffettinc.hrms.model.communication;
 import com.buffettinc.hrms.model.employee.Employee;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -135,7 +133,7 @@ class MessageTest {
     void getMessage() {
         Message testMessage = new Message(new Employee(), new Employee(), "test", "test message");
 
-        String testWords = testMessage.getMessage();
+        String testWords = testMessage.getContent();
         boolean testResult = true;
         if(testWords.equals(null)){
             testResult = false;
@@ -148,9 +146,9 @@ class MessageTest {
         Message testMessage = new Message(new Employee(), new Employee(), "test", "test message");
 
         String testMessageNew = "new test message";
-        testMessage.setMessage(testMessageNew);
+        testMessage.setContent(testMessageNew);
 
-        String testResult = testMessage.getMessage();
+        String testResult = testMessage.getContent();
 
         assertEquals(testMessageNew, testResult);
 

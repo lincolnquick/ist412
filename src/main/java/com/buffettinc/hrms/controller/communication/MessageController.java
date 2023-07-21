@@ -137,14 +137,14 @@ public class MessageController {
     }
 
     @GetMapping("/compose")
-    public String composeMessage(@PathVariable("senderID") Long senderID, Model model) {
+    public String composeMessage(Model model) {
         List<Employee> allEmployees = employeeService.getAllEmployees();
-
+        long senderID = allEmployees.get(0).getEmployeeID();
         allEmployees.removeIf(e -> e.getEmployeeID().equals(senderID)); // Remove the sender from the list
         model.addAttribute("employees", allEmployees);
         model.addAttribute("senderID", senderID); // Add the sender ID to the model
         model.addAttribute("message", new Message());
-        return "composeMessage";
+        return "messages/composeMessage";
     }
 
 
