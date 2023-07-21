@@ -1,7 +1,10 @@
 package com.buffettinc.hrms.controller.employee;
 
 import com.buffettinc.hrms.model.employee.Employee;
+import com.buffettinc.hrms.service.employee.AccountantService;
 import com.buffettinc.hrms.service.employee.EmployeeService;
+import com.buffettinc.hrms.service.employee.HRStaffService;
+import com.buffettinc.hrms.service.employee.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,10 +24,17 @@ import java.util.UUID;
 public class EmployeeController {
 
     private final EmployeeService employeeService;
+    private final AccountantService accountantService;
+    private final HRStaffService hrStaffService;
+    private final ManagerService managerService;
 
     @Autowired
-    public EmployeeController(EmployeeService employeeService) {
+    public EmployeeController(EmployeeService employeeService, AccountantService accountantService,
+                              HRStaffService hrStaffService, ManagerService managerService) {
         this.employeeService = employeeService;
+        this.accountantService = accountantService;
+        this.hrStaffService = hrStaffService;
+        this.managerService = managerService;
     }
 
     /**
@@ -35,6 +45,9 @@ public class EmployeeController {
     @GetMapping("list")
     public String listAllEmployees(Model model) {
         model.addAttribute("employees", employeeService.getAllEmployees());
+        model.addAttribute("accountants", accountantService.getAllAccountants());
+        model.addAttribute("hrstaff", hrStaffService.getAllHRStaff());
+        model.addAttribute("managers", managerService.getAllManagers());
         return "employees/list"; // corresponds to a Thymeleaf template in "src/main/resources/templates/employees/list.html"
     }
 

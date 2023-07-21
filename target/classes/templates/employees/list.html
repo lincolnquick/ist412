@@ -45,6 +45,85 @@
     </tr>
     </tbody>
   </table>
+  <h2 class="my-4">Manager List</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Employee ID</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Street Address</th>
+      <th scope="col">Position</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="manager : ${managers}">
+      <th scope="row" th:text="${manager.employeeID}"></th>
+      <td th:text="${manager.firstName}"></td>
+      <td th:text="${manager.lastName}"></td>
+      <td th:text="${manager.streetAddress}"></td>
+      <td th:text="${manager.position}"></td>
+      <td>
+        <a th:href="@{'/employees/edit/' + ${manager.employeeID}}" class="btn btn-warning">Edit</a>
+        <a th:href="@{'/employees/delete/' + ${manager.employeeID}}" class="btn btn-danger">Remove</a>
+      </td>
+    </tr>
+    </tbody>
+    </table>
+  <h2 class="my-4">HR Staff List</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Employee ID</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Street Address</th>
+      <th scope="col">Position</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="hr : ${hrstaff}">
+      <th scope="row" th:text="${hr.employeeID}"></th>
+      <td th:text="${hr.firstName}"></td>
+      <td th:text="${hr.lastName}"></td>
+      <td th:text="${hr.streetAddress}"></td>
+      <td th:text="${hr.position}"></td>
+      <td>
+        <a th:href="@{'/employees/edit/' + ${hr.employeeID}}" class="btn btn-warning">Edit</a>
+        <a th:href="@{'/employees/delete/' + ${hr.employeeID}}" class="btn btn-danger">Remove</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <h2 class="my-4">Accountant List</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Employee ID</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Street Address</th>
+      <th scope="col">Position</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="accountant : ${accountants}">
+      <th scope="row" th:text="${accountant.employeeID}"></th>
+      <td th:text="${accountant.firstName}"></td>
+      <td th:text="${accountant.lastName}"></td>
+      <td th:text="${accountant.streetAddress}"></td>
+      <td th:text="${accountant.position}"></td>
+      <td>
+        <a th:href="@{'/employees/edit/' + ${accountant.employeeID}}" class="btn btn-warning">Edit</a>
+        <a th:href="@{'/employees/delete/' + ${accountant.employeeID}}" class="btn btn-danger">Remove</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
   <div class="mt-4">
     <a href="/employees/new" class="btn btn-primary">Add New Employee</a>
   </div>

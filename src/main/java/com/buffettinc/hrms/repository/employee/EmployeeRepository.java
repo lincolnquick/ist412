@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -22,6 +23,8 @@ import java.util.UUID;
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     Page<Employee> findByManager(Manager manager, Pageable pageable);
+
+    Optional<Employee> findByEmployeeID(Long employeeID);
 
     @Query("SELECT e FROM Employee e WHERE e.employeeID NOT IN (SELECT u.employee.employeeID FROM User u)")
     List<Employee> findUnregisteredEmployees();

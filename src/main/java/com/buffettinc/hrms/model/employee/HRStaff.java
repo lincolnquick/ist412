@@ -25,45 +25,49 @@ import java.util.UUID;
 public class HRStaff extends Employee{
     @Column(name="permission")
     private String permissionLevel;
-    @ManyToMany
-    private ArrayList<JobApplication> jobApplications;
-    @ManyToMany
-    private ArrayList<Applicant> applicants;
-    @ManyToMany
-    private ArrayList<JobOpening> jobOpenings;
-    @ManyToMany
-    private ArrayList<TrainingModule> trainingModules;
+//    @ManyToMany
+//    private ArrayList<JobApplication> jobApplications;
+//    @ManyToMany
+//    private ArrayList<Applicant> applicants;
+//    @ManyToMany
+//    private ArrayList<JobOpening> jobOpenings;
+//    @ManyToMany
+//    private ArrayList<TrainingModule> trainingModules;
 
     public HRStaff(){
         super();
         permissionLevel = "";
-        jobApplications = new ArrayList<>();
-        applicants = new ArrayList<>();
-        jobOpenings = new ArrayList<>();
-        trainingModules = new ArrayList<>();
+    }
+
+    public HRStaff(String lastName, String firstName, String streetAddress, String city, String state, String zip,
+                   String phone, String email, LocalDate hireDate, String department, String position,
+                   Manager manager){
+        super(lastName, firstName, streetAddress, city, state, zip, phone, email, hireDate, department, position,
+                manager);
+        this.permissionLevel = "";
     }
 
     public TrainingModule addTrainingModule(String title, String description, URL trainingURL, Duration eta){
         TrainingModule newTraining = new TrainingModule(title, description, trainingURL, eta, this.getEmployeeID());
-        trainingModules.add(newTraining);
+        //trainingModules.add(newTraining);
         return newTraining;
     }
 
     public JobOpening postJobOpening(String title, String department, String description, LocalDate postingDate){
         JobOpening newOpening = new JobOpening(title, department, description, postingDate);
-        jobOpenings.add(newOpening);
+        //jobOpenings.add(newOpening);
         return newOpening;
     }
 
     public Applicant addNewApplicant(String firstName, String lastName, String streetAddress, String city, String state, String zip, String phone, String email, String status, Long jobID, URL resume){
         Applicant newApplicant = new Applicant(firstName, lastName, streetAddress, city, state, zip, phone, email, JobApplication.JobApplicationStatus.SUBMITTED, jobID, resume);
-        applicants.add(newApplicant);
+       // applicants.add(newApplicant);
         return newApplicant;
     }
 
     public JobApplication acceptApplication(Long jobID, Long applicantID){
         JobApplication newApplication = new JobApplication(jobID, applicantID, LocalDate.now(), JobApplication.JobApplicationStatus.SUBMITTED);
-        jobApplications.add(newApplication);
+        //jobApplications.add(newApplication);
         return newApplication;
     }
 

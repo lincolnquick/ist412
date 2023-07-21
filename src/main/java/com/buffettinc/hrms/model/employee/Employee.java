@@ -89,7 +89,7 @@ public class Employee implements Serializable{
     private List<EmployeeTrainingRecord> trainingRecords = new ArrayList<>();
 
 
-    public Employee(String firstName, String lastName, String streetAddress, String city, String state, String zip,
+    public Employee(String lastName, String firstName, String streetAddress, String city, String state, String zip,
                     String phone, String email, LocalDate hireDate, String department, String position,
                     Manager manager) {
         this.employeeID = ThreadLocalRandom.current().nextLong(1, 1000);

@@ -10,6 +10,7 @@ import com.buffettinc.hrms.model.training.TrainingModule;
 import java.net.URL;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -88,6 +89,11 @@ public interface HRStaffService {
      */
     JobApplication approveJobApplication(JobApplication application);
 
+    /**
+     * Gets all HRStaff employees
+     * @return List of all HRStaff employees
+     */
+    List<HRStaff> getAllHRStaff();
     /**
      * Views employee data for a given employee.
      *

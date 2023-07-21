@@ -19,18 +19,24 @@ import java.util.UUID;
 public class Accountant extends Employee{
     @Column(name="permission")
     private String permissionLevel;
-    @ManyToMany
-    private ArrayList<Payment> payments;
+//    @ManyToMany
+//    private ArrayList<Payment> payments;
 
     public Accountant(){
         super();
         permissionLevel = "";
-        payments = new ArrayList<>();
+    }
+    public Accountant(String lastName, String firstName, String streetAddress, String city, String state, String zip,
+                   String phone, String email, LocalDate hireDate, String department, String position,
+                   Manager manager){
+        super(lastName, firstName, streetAddress, city, state, zip, phone, email, hireDate, department, position,
+                manager);
+        this.permissionLevel = "";
     }
 
     public Payment addPayment(String institution, String routingNumber, String accountNumber, LocalDate postedDate, float amount, Long employeeID){
         Payment newPayment = new Payment(institution, routingNumber, accountNumber, postedDate, amount, employeeID);
-        payments.add(newPayment);
+       // payments.add(newPayment);
         return newPayment;
 
     }

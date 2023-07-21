@@ -22,8 +22,18 @@ Once the server is running, go to http://localhost:8080 in your web browser. You
 Unit tests are located in the test directory of the project (hrms/src/test). You can run them from IntelliJ IDEA or by running `mvn test` from the project's root directory.
 
 ## Authentication
-- Username: user	Password: password
-- Username: kong	Password: empire
+Use one of the following sample users with details to login to the application. After logging in with one of the following users, you may Register a new user. New users will be defaulted to the 'Employee' role.
+
+| Role | First Name | Last Name | Username | Password |
+|-------- | -------- | -------- | -------- | -------- |
+| Employee | Group5 | IST412 | user | password |
+| Employee | King | Kong | kong | empire |
+| Employee | Jim | Halpert | jhalpert | password |
+| Employee | Dwight | Shrute | dshrute | password |
+| Manager | Michael | Scott | mscott | password |
+| HRStaff | Toby | Flenderson | toby | password |
+| Accountant | Angela | Martin | amartin | password |
+
 
 ## Contact Information
 For help or further questions, contact IST 412 Group 5 via Microsoft Teams.
