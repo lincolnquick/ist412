@@ -24,7 +24,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "employeeid")
     private Employee employee;
 
@@ -56,8 +56,6 @@ public class User {
     public String getUsername() {
         return username;
     }
-
-    public String getFullName() {return this.getEmployee().getFullName(); }
 
     public void setUsername(String username) {
         this.username = username;
