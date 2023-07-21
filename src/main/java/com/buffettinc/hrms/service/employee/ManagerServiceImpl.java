@@ -2,17 +2,26 @@ package com.buffettinc.hrms.service.employee;
 
 import com.buffettinc.hrms.model.employee.Employee;
 import com.buffettinc.hrms.model.employee.Manager;
+import com.buffettinc.hrms.model.job.Applicant;
 import com.buffettinc.hrms.model.job.JobApplication;
+import com.buffettinc.hrms.model.job.JobOpening;
 import com.buffettinc.hrms.model.pto.PTOBalance;
 import com.buffettinc.hrms.model.pto.PTOCalendar;
 import com.buffettinc.hrms.model.pto.PTORequest;
 import com.buffettinc.hrms.model.time.Timesheet;
 import com.buffettinc.hrms.model.training.Task;
+import com.buffettinc.hrms.repository.communication.MessageRepository;
+import com.buffettinc.hrms.repository.communication.NotificationRepository;
 import com.buffettinc.hrms.repository.employee.EmployeeRepository;
 import com.buffettinc.hrms.repository.employee.ManagerRepository;
 import com.buffettinc.hrms.repository.job.JobApplicationRepository;
+import com.buffettinc.hrms.repository.job.JobOpeningRepository;
 import com.buffettinc.hrms.repository.time.TimesheetRepository;
 import com.buffettinc.hrms.repository.training.TaskRepository;
+import com.buffettinc.hrms.service.JobApplicationService;
+import com.buffettinc.hrms.service.communication.MessageService;
+import com.buffettinc.hrms.service.communication.NotificationService;
+import com.buffettinc.hrms.service.job.JobOpeningService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -20,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -36,22 +46,86 @@ public class ManagerServiceImpl implements ManagerService {
     private final ManagerRepository managerRepository;
     private final EmployeeRepository employeeRepository;
     private final JobApplicationRepository jobApplicationRepository;
+    private final JobApplicationService jobApplicationService;
+
+    private final JobOpeningRepository jobOpeningRepository;
+
+    private final JobOpeningService jobOpeningService;
     private final TimesheetRepository timesheetRepository;
     private final TaskRepository taskRepository;
 
+    private final NotificationRepository notificationRepository;
+    private final MessageRepository messageRepository;
+
+    private final NotificationService notificationService;
+
     public ManagerServiceImpl(ManagerRepository managerRepository, EmployeeRepository employeeRepository,
-                              JobApplicationRepository jobApplicationRepository, TimesheetRepository timesheetRepository,
-                              TaskRepository taskRepository) {
+                              JobApplicationRepository jobApplicationRepository,
+                              JobApplicationService jobApplicationService,
+                              JobOpeningRepository jobOpeningRepository, JobOpeningService jobOpeningService,
+                              TimesheetRepository timesheetRepository,
+                              TaskRepository taskRepository, NotificationRepository notificationRepository,
+                              MessageRepository messageRepository, NotificationService notificationService) {
         this.managerRepository = managerRepository;
         this.employeeRepository = employeeRepository;
         this.jobApplicationRepository = jobApplicationRepository;
+        this.jobApplicationService = jobApplicationService;
+        this.jobOpeningRepository = jobOpeningRepository;
+        this.jobOpeningService = jobOpeningService;
         this.timesheetRepository = timesheetRepository;
         this.taskRepository = taskRepository;
+        this.notificationRepository = notificationRepository;
+        this.messageRepository = messageRepository;
+        this.notificationService = notificationService;
     }
 
     @Override
     public List<Manager> getAllManagers() {
         return this.managerRepository.findAll();
+    }
+
+    public void hire(Applicant applicant, Manager hiringManager){
+        // Hiring Logic
+        Optional<Manager> manager = managerRepository.findByEmployeeID(hiringManager.getEmployeeID());
+        // create new employee based on applicant info
+
+        Employee newEmployee = convertApplicantToEmployee(applicant, manager.orElse(null));
+        employeeRepository.save(newEmployee);
+        Optional<Employee> savedEmployee = employeeRepository.findByEmployeeID(newEmployee.getEmployeeID());
+
+        if (savedEmployee.isEmpty()){
+            throw new RuntimeException("Error in saving new employee. ");
+        }
+
+        // Notify applicant about the outcome
+        notificationService.sendNotification(savedEmployee.get(), "Congratulations! You have been hired.");
+
+    }
+
+    private Employee convertApplicantToEmployee(Applicant applicant, Manager hiringManager){
+
+        String firstName = applicant.getFirstName();
+        String lastName = applicant.getLastName();
+        String streetAddress = applicant.getStreetAddress();
+        String city = applicant.getCity();
+        String state = applicant.getState();
+        String zip = applicant.getZip();
+        String phone = applicant.getPhone();
+        String email = applicant.getEmail();
+        String position = "New Hire";
+        String department = "Department";
+        Long jobID = applicant.getJobID();
+        Optional<JobOpening> jobOpening = jobOpeningService.getJobOpeningByID(jobID);
+
+        if (jobOpening.isPresent()){
+            position = jobOpening.get().getTitle();
+            department = jobOpening.get().getDepartment();
+        }
+        Employee newEmployee = new Employee(lastName, firstName, streetAddress, city, state, zip, phone, email,
+                LocalDate.now(),department,position, hiringManager);
+
+        return newEmployee;
+
     }
 
     /**

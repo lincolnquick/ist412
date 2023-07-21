@@ -4,6 +4,7 @@ import com.buffettinc.hrms.model.job.JobOpening;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -34,7 +35,7 @@ public interface JobOpeningService {
      * @param jobID  the ID of the job opening
      * @return the job opening with the specified ID, or null if not found
      */
-    JobOpening getJobOpeningByID(Long jobID);
+    Optional<JobOpening> getJobOpeningByID(Long jobID);
 
     /**
      * Get all job openings.

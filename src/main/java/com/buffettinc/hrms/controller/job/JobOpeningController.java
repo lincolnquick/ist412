@@ -35,7 +35,7 @@ public class JobOpeningController {
 
     @GetMapping("/{id}")
     public String getJobOpeningByID(@PathVariable("id") Long jobID) {
-        JobOpening jobOpening = jobOpeningService.getJobOpeningByID(jobID);
+        JobOpening jobOpening = jobOpeningService.getJobOpeningByID(jobID).get();
         return "viewJobOpening";
     }
 

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -41,8 +42,8 @@ public class JobOpeningServiceImpl implements JobOpeningService {
      * {@inheritDoc}
      */
     @Override
-    public JobOpening getJobOpeningByID(Long jobID) {
-        return jobOpeningRepository.findById(jobID).orElse(null);
+    public Optional<JobOpening> getJobOpeningByID(Long jobID) {
+        return jobOpeningRepository.findById(jobID);
     }
 
     /**

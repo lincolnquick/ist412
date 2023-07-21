@@ -12,19 +12,8 @@
     </style>
 </head>
 <body>
+<div th:include="fragments/navbar :: navbar"></div>
 <div class="container">
-    <ul class="nav nav-tabs">
-        <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
-        <li class="nav-item"><a class="nav-link" th:href="@{/employees/list}">Employees</a></li>
-        <li class="nav-item"><a class="nav-link" th:href="@{/payroll/payroll}">Payroll</a></li>
-        <li class="nav-item"><a class="nav-link" th:href="@{/ptobalance/pto}">Paid Time Off</a></li>
-        <li class="nav-item"><a class="nav-link" th:href="@{/timesheets/timesheets}">Time Sheets</a></li>
-        <li class="nav-item"><a class="nav-link" th:href="@{/training/training}">Training</a></li>
-        <li class="nav-item"><a class="nav-link" th:href="@{/messages/messages}">Messages</a></li>
-        <li class="nav-item"><a class="nav-link" th:href="@{/notifications/notifications}">Notifications</a></li>
-        <li class="nav-item"><a class="nav-link" th:href="@{/tasks/tasks}">Tasks</a></li>
-        <li class="nav-item"><a class="nav-link active" th:href="@{/payments/paystubs}">Paystubs</a></li>
-    </ul>
     <h1 class="mt-5">Buffett Inc. HRMS Paystubs</h1>
     <p>Coming Soon</p>
 </div>

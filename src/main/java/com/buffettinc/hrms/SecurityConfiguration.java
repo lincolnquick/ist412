@@ -47,6 +47,11 @@ public class SecurityConfiguration {
                         .defaultSuccessUrl("/dashboard", true) // sets default page after successful login
                         .loginProcessingUrl("/register_success")
                         .loginPage("/login")
+
+                )
+                .logout( logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/index")
                 )
                 .httpBasic(Customizer.withDefaults())
                 .csrf().disable();
