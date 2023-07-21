@@ -16,7 +16,7 @@ Make sure MySQL Workbench is installed. Login using username "root" and password
 Run the HrmsApplication.java file from IntelliJ IDEA. The server will start and the application will be accessible from the web browser.
 
 ## Accessing the Application
-Once the server is running, go to http://localhost:8080 in your web browser. You will be prompted to log in. The username is "user" and the password is randomly generated and can be accessed from the Terminal within IntelliJ. Please note that functionality of the application is not complete and the views of the application are still under development.
+Once the server is running, go to http://localhost:8080 in your web browser. You will be prompted to log in. Please note that functionality of the application is not complete and the views of the application are still under development.
 
 ## Running the Unit Tests
 Unit tests are located in the test directory of the project (hrms/src/test). You can run them from IntelliJ IDEA or by running `mvn test` from the project's root directory.
