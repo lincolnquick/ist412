@@ -57,7 +57,7 @@ public class Accountant extends Employee{
 
     @Override
     public String toString(){
-        return "Accountant: " + this.getUser().getUsername() + ": " + this.getFirstName() + " " + this.getLastName();
+        return "Accountant: " + this.getUser().getUsername() + " - " + this.getFirstName() + " " + this.getLastName();
     }
 
 }

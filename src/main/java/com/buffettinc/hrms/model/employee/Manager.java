@@ -91,6 +91,6 @@ public class Manager extends Employee {
 
     @Override
     public String toString(){
-        return "Manager: " + this.getUser().getUsername() + ": " + this.getFirstName() + " " + this.getLastName();
+        return "Manager: " + this.getUser().getUsername() + " - " + this.getFirstName() + " " + this.getLastName();
     }
 }

@@ -60,6 +60,7 @@ public class EmployeeController {
     @GetMapping("new")
     public String createEmployeeForm(Model model) {
         model.addAttribute("employee", new Employee());
+        model.addAttribute("managers", managerService.getAllManagers());
         return "employees/new"; // corresponds to a Thymeleaf template in "src/main/resources/templates/employees/new.html"
     }
 

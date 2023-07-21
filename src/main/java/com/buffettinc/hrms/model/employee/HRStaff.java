@@ -47,6 +47,6 @@ public class HRStaff extends Employee implements Observer{
 
     @Override
     public String toString(){
-        return "HR Staff: " + this.getUser().getUsername() + ": " + this.getFirstName() + " " + this.getLastName();
+        return "HR Staff: " + this.getUser().getUsername() + " - " + this.getFirstName() + " " + this.getLastName();
     }
 }

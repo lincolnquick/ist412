@@ -336,6 +336,6 @@ public class Employee implements Serializable, Observer {
 
     @Override
     public String toString(){
-        return "Employee: " + this.getUser().getUsername() + ": " + this.getFirstName() + " " + this.getLastName();
+        return "Employee: " + this.getUser().getUsername() + " - " + this.getFirstName() + " " + this.getLastName();
     }
 }
