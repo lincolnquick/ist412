@@ -56,6 +56,33 @@ public class LoadDatabase {
                     // save employee (and thus user because of CascadeType.ALL)
                     employeeRepository.save(employee);
                 }
+                if (userRepository.findByUsername("kong") == null) {
+                    // Create and save employee before assigning to the user
+                    Employee employee = new Employee();
+                    employee.setHireDate(LocalDate.now());
+                    employee.setFirstName("King");
+                    employee.setLastName("Kong");
+                    employee.setStreetAddress("Big Monkey Ave");
+                    employee.setCity("Jungle");
+                    employee.setState("Skull Island");
+                    employee.setZip("12345");
+                    employee.setEmail("banana@test.com");
+                    employee.setPhone("5555555555");
+                    employee.setDepartment("Building Climbing");
+                    employee.setPosition("The Boss");
+
+                    String username = "kong";
+                    String password = passwordEncoder.encode("empire");
+
+                    User user = new User(username, password, employee);
+
+                    // set user to employee and employee to user
+                    user.setEmployee(employee);
+                    employee.setUser(user);
+
+                    // save employee (and thus user because of CascadeType.ALL)
+                    employeeRepository.save(employee);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
