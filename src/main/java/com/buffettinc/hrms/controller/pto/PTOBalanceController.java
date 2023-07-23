@@ -3,10 +3,14 @@ package com.buffettinc.hrms.controller.pto;
 import com.buffettinc.hrms.model.pto.PTOBalance;
 import com.buffettinc.hrms.service.pto.PTOBalanceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -96,8 +100,10 @@ public class PTOBalanceController {
      */
     @GetMapping("/pto")
     public String ptoLandingPage(Model model){
-        model.addAttribute("page", "pto");
 
+        model.addAttribute("localDate", LocalDate.now());
+        model.addAttribute("startTime", LocalDateTime.now());
+        model.addAttribute("endTime", LocalDateTime.now());
         return "pto/pto";
     }
 
