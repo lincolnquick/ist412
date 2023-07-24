@@ -22,9 +22,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 /**
  * This class represents the controller for the User's view, including the Dashboard or main page of the HRMS.
@@ -33,6 +36,7 @@ import java.util.List;
  * @since 2023-07-21
  */
 @Controller
+@RequestMapping("")
 public class UserController {
 
     @Autowired
@@ -92,19 +96,35 @@ public class UserController {
         return "register";
     }
 
+//    @PostMapping("/process_register")
+//    public String processRegister(@RequestParam("username") String username){
+//        System.out.println("Username: " + username);
+//        return "register_success";
+//    }
+
+    // For debugging purposes.
+    @PostMapping
+    public String catchAllPost() {
+        System.out.println("A POST request has hit the UserController");
+        return "redirect:/";
+    }
+
     @PostMapping("/process_register")
     public String processRegister(User user){
-        User existingUser = userRepository.findByUsername(user.getUsername());
-        if (existingUser != null) {
-            // handle the case where a user with the same username already exists
-            // you can redirect back to the registration form and show an error message
+        System.out.println("processRegister() was called.");
+        try {
+            System.out.println("Calling userDetailsService.register(" + user.toString() + ", " + user.getEmployee().getEmployeeID());
+            userDetailsService.register(user, user.getEmployee().getEmployeeID());
+
+
+        } catch (Exception e) {
+            System.out.println("Error processing registration: " + e.getMessage());
+            e.printStackTrace();
             return "redirect:/register?error";
         }
-        String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
-        userRepository.save(user);
         return "register_success";
     }
+
 
 
     @GetMapping("/login")
