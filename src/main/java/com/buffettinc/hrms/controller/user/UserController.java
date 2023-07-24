@@ -96,18 +96,6 @@ public class UserController {
         return "register";
     }
 
-//    @PostMapping("/process_register")
-//    public String processRegister(@RequestParam("username") String username){
-//        System.out.println("Username: " + username);
-//        return "register_success";
-//    }
-
-    // For debugging purposes.
-    @PostMapping
-    public String catchAllPost() {
-        System.out.println("A POST request has hit the UserController");
-        return "redirect:/";
-    }
 
     @PostMapping("/process_register")
     public String processRegister(User user){
