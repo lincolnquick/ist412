@@ -15,7 +15,27 @@
 <div th:include="fragments/navbar :: navbar"></div>
 <div class="container">
     <h1 class="mt-5">Buffett Inc. HRMS Paid Time Off</h1>
-    <p>Coming Soon</p>
+    <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<body>
+<div class="container">
+    <div>
+        <label for="pto-date">Time Off Date:</label>
+        <input type="date" th:field="${localDate}" id="pto-date"/>
+    </div>
+    <div>
+        <label for="pto-time-start">From:</label>
+        <input type="time" th:field="${startTime}" id="pto-time-start"/>
+    </div>
+    <div>
+        <label for="pto-time-end">To:</label>
+        <input type="time" th:field="${endTime}" id="pto-time-end"/>
+    </div>
+
+    <p>Note: Functionality Not Implemented Fully.</p>
+</div>
+</body>
+</html>
 </div>
 </body>
 </html>

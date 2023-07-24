@@ -43,6 +43,9 @@ The Observer pattern is used to ensure that a particular state change in one par
 ### Dashboard View UI Pattern
 The Dashboard View UI pattern is implemented in our system to present the main view for users after they log in. The `UserController.java` class along with the `dashboard.html` Thymeleaf template use this pattern to prepare and render the dashboard view, which gives users a quick overview of their most important information. This includes their tasks, messages, pending requests, and notifications.
 
+### Tabbed Navigation UI Pattern
+The Tabbed Navigation UI pattern is implmented on every HTML page of our system.  Within the HTML for each tab are HREF links that indicate the target page.  Every controller file has a mapping that corresponds to the link for each page listed in the tabbed navigation.
+
 ## Contact Information
 For help or further questions, contact IST 412 Group 5 via Microsoft Teams.
 
