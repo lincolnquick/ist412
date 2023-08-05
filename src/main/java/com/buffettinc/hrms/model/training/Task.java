@@ -40,7 +40,6 @@ public class Task implements Serializable {
     private boolean isCompleted;
 
     public Task(String name, String description, LocalDate dueDate, Employee assignedBy, Employee assignedTo) {
-        this.taskID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.name = name;
         this.description = description;
         this.dueDate = dueDate;
@@ -50,7 +49,6 @@ public class Task implements Serializable {
     }
 
     public Task() {
-        this.taskID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.name = null;
         this.description = null;
         this.dueDate = LocalDate.MIN;

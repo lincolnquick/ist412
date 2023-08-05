@@ -20,8 +20,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.io.Serializable;
 import java.util.List;
-import java.util.UUID;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * This class represents an Employee for Buffett Inc.
@@ -35,6 +33,7 @@ import java.util.concurrent.ThreadLocalRandom;
 @Entity
 @Table(name="employee")
 public class Employee implements Serializable, Observer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NonNull
@@ -89,11 +88,9 @@ public class Employee implements Serializable, Observer {
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<EmployeeTrainingRecord> trainingRecords = new ArrayList<>();
 
-
     public Employee(String lastName, String firstName, String streetAddress, String city, String state, String zip,
                     String phone, String email, LocalDate hireDate, String department, String position,
                     Manager manager) {
-        this.employeeID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.firstName = firstName;
         this.lastName = lastName;
         this.streetAddress = streetAddress;
@@ -106,10 +103,10 @@ public class Employee implements Serializable, Observer {
         this.department = department;
         this.position = position;
         this.manager = manager;
+
     }
 
     public Employee(){
-        this.employeeID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.firstName = "";
         this.lastName = "";
         this.streetAddress = "";

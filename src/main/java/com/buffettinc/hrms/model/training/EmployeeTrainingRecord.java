@@ -34,7 +34,6 @@ public class EmployeeTrainingRecord implements Serializable {
     private boolean isCompleted;
 
     public EmployeeTrainingRecord(Employee employee, Long trainingModuleID) {
-        this.recordID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.employee = employee;
         this.trainingModuleID = trainingModuleID;
         this.completionDate = null;
@@ -42,7 +41,6 @@ public class EmployeeTrainingRecord implements Serializable {
     }
 
     public EmployeeTrainingRecord() {
-        this.recordID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.employee = null;
         this.trainingModuleID = null;
         this.completionDate = null;

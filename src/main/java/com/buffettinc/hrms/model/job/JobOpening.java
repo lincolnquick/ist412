@@ -31,7 +31,6 @@ public class JobOpening implements Serializable {
     private LocalDate postingDate;
 
     public JobOpening(String title, String department, String description, LocalDate postingDate) {
-        this.jobID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.title = title;
         this.department = department;
         this.description = description;
@@ -39,7 +38,6 @@ public class JobOpening implements Serializable {
     }
 
     public JobOpening() {
-        this.jobID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.title = null;
         this.department = null;
         this.description = null;

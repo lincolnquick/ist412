@@ -28,7 +28,6 @@ public class PTOCalendar implements Serializable {
     private List<PTORequest> employeePTO;
 
     public PTOCalendar(){
-        this.calendarID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.employeePTO = new ArrayList<>();
     }
 

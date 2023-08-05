@@ -46,7 +46,6 @@ public class Timesheet implements Serializable{
     private Employee approver;
 
     public Timesheet(Payroll payroll, LocalDate periodStart, LocalDate periodEnd) {
-        this.timesheetID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.payroll = payroll;
         this.periodStart = periodStart;
         this.periodEnd = periodEnd;
@@ -56,7 +55,6 @@ public class Timesheet implements Serializable{
     }
 
     public Timesheet() {
-        this.timesheetID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.payroll = null;
         this.periodStart = null;
         this.periodEnd = null;

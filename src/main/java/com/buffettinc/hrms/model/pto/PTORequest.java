@@ -43,7 +43,6 @@ public class PTORequest implements Serializable {
     private PTOCalendar ptoCalendar;
 
     public PTORequest(Employee employee, LocalDate startDate, LocalDate endDate, PTOReason reason) {
-        this.requestID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.employee = employee;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -54,7 +53,6 @@ public class PTORequest implements Serializable {
     }
 
     public PTORequest() {
-        this.requestID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.employee = null;
         this.startDate = LocalDate.MIN;
         this.endDate = LocalDate.MIN;
