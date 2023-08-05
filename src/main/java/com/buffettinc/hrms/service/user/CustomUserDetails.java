@@ -59,7 +59,4 @@ public class CustomUserDetails implements UserDetails {
         return this.user.getEmployee().getEmployeeID();
     }
 
-    public String getFullName() {
-        return user.getEmployee().getFirstName() + " " + user.getEmployee().getLastName();
-    }
 }
