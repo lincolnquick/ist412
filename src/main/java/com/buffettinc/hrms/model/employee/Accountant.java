@@ -20,8 +20,6 @@ import java.util.UUID;
 public class Accountant extends Employee{
     @Column(name="permission")
     private String permissionLevel;
-//    @ManyToMany
-//    private ArrayList<Payment> payments;
 
     public Accountant(){
         super();

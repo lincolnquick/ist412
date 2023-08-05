@@ -19,6 +19,8 @@ public interface EmployeeService {
 
     List<Employee> getAllEmployees();
 
+    List<Employee> getOnlyEmployees();
+
     List<Employee> getUnregisteredEmployees();
 
     Employee getEmployeeById(Long id);

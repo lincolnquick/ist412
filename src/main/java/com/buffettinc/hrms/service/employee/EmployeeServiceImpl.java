@@ -1,6 +1,9 @@
 package com.buffettinc.hrms.service.employee;
 
+import com.buffettinc.hrms.model.employee.Accountant;
 import com.buffettinc.hrms.model.employee.Employee;
+import com.buffettinc.hrms.model.employee.HRStaff;
+import com.buffettinc.hrms.model.employee.Manager;
 import com.buffettinc.hrms.repository.employee.EmployeeRepository;
 import com.buffettinc.hrms.service.employee.EmployeeService;
 import org.springframework.data.domain.Page;
@@ -8,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -53,6 +57,22 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     public List<Employee> getAllEmployees() {
         return this.employeeRepository.findAll();
+    }
+
+    @Override
+    /**
+     * Returns a list of all Employees that are not also Managers, HRStaff, or Accountants.
+     * @return list of all Employees that aren't also a superclass
+     */
+    public List<Employee> getOnlyEmployees() {
+        List<Employee> allEmployees = getAllEmployees();
+        List<Employee> onlyEmployees = new ArrayList<>();
+        for (Employee employee: allEmployees) {
+            if (!(employee instanceof Manager ) && !(employee instanceof HRStaff) && !(employee instanceof Accountant)){
+                onlyEmployees.add(employee);
+            }
+        }
+        return onlyEmployees;
     }
 
     @Override

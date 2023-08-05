@@ -47,7 +47,7 @@ public class EmployeeController {
      */
     @GetMapping("list")
     public String listAllEmployees(Model model) {
-        model.addAttribute("employees", employeeService.getAllEmployees());
+        model.addAttribute("employees", employeeService.getOnlyEmployees());
         model.addAttribute("accountants", accountantService.getAllAccountants());
         model.addAttribute("hrstaff", hrStaffService.getAllHRStaff());
         model.addAttribute("managers", managerService.getAllManagers());
