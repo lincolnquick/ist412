@@ -48,6 +48,35 @@ The Dashboard View UI pattern is implemented in our system to present the main v
 ### Tabbed Navigation UI Pattern
 The Tabbed Navigation UI pattern is implmented on every HTML page of our system.  Within the HTML for each tab are HREF links that indicate the target page.  Every controller file has a mapping that corresponds to the link for each page listed in the tabbed navigation.
 
+## Code Refactoring
+The following code refactors were implemented for the Two Use Case Assignment
+
+### Register Link and Error Message
+Lincoln Quick - Fixed issues with incorrect operation when the register link was clicked on.  The user is also presented with an error code if no user is present.
+
+### Navigation Toolbar Refactor
+Lincoln Quick - A code fragment was created and is referenced rather than copying the same code in each HTML file.
+
+### Additional Code Supporting Business Practices Added
+
+### Service Classes Had Unused Methods
+Abraham Wagner - Removed methods from the Service package that had no usage.
+
+### Employee Listing Page Refactor
+Lincoln Quick - Reimagined employee display and removed redundant code.
+
+### Employee Listings Split By Type
+Lincoln Quick - Separated employees by type in display and code.
+
+### Employee Permissions Revisited
+
+### Employees Cannot be Created at Registration
+
+### Random Number Generator Check
+
+### Accountant and HRStaff Save Issue
+Lincoln Quick - Troublshot code to enable saving of employees with HRStaff and Accountant designation.
+
 ## Contact Information
 For help or further questions, contact IST 412 Group 5 via Microsoft Teams.
 
