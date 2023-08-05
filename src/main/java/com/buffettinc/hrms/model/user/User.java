@@ -1,6 +1,11 @@
 package com.buffettinc.hrms.model.user;
 
+
+
+import com.buffettinc.hrms.model.employee.Accountant;
 import com.buffettinc.hrms.model.employee.Employee;
+import com.buffettinc.hrms.model.employee.HRStaff;
+import com.buffettinc.hrms.model.employee.Manager;
 import jakarta.persistence.*;
 
 /**
@@ -27,6 +32,9 @@ public class User {
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "employeeid")
     private Employee employee;
+
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
     public User() {
         this.username = null;
@@ -76,4 +84,28 @@ public class User {
     public void setId(Long id) {
         this.id = id;
     }
+
+    /**
+     * Determines the role based on the type of Employee
+     * @param employee
+     * @return UserRole
+     */
+    private UserRole determineRole(Employee employee){
+        if (employee instanceof Manager){
+            return UserRole.MANAGER;
+        } else if (employee instanceof HRStaff) {
+            return UserRole.HRSTAFF;
+        } else if (employee instanceof Accountant) {
+            return UserRole.ACCOUNTANT;
+        } else {
+            return UserRole.EMPLOYEE;
+        }
+    }
+}
+
+enum UserRole {
+    EMPLOYEE,
+    MANAGER,
+    HRSTAFF,
+    ACCOUNTANT
 }
