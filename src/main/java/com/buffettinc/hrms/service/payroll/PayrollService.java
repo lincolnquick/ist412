@@ -49,14 +49,6 @@ public interface PayrollService {
     void deletePayroll(Long payrollID);
 
     /**
-     * Get all Timesheets of a Payroll entry.
-     *
-     * @param payrollID UUID of the Payroll entry.
-     * @return List of Timesheets.
-     */
-    List<Timesheet> getTimesheetsForPayroll(Long payrollID);
-
-    /**
      * Add a Timesheet to a Payroll entry.
      *
      * @param payrollID UUID of the Payroll entry.

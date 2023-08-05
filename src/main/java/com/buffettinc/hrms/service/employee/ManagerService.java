@@ -35,11 +35,7 @@ public interface ManagerService {
      */
     List<Manager> getAllManagers();
 
-    void registerObserver(Observer observer);
-
     void registerObservers(List<Observer> observers);
-
-    void removeObserver(Observer observer);
 
     void removeObservers(List<Observer> observers);
 
@@ -72,40 +68,4 @@ public interface ManagerService {
      */
     JobApplication reviewJobApplication(Long jobID, Long applicantID);
 
-    /**
-     * Approves a job application for a specific job opening.
-     *
-     * @param jobApplication the job application to approve
-     * @return the approved job application
-     */
-    JobApplication approveJobApplication(JobApplication jobApplication);
-
-    /**
-     * Approves hours in a timesheet.
-     *
-     * @param timesheet the timesheet to approve
-     */
-    void approveHours(Timesheet timesheet);
-
-    /**
-     * Approves a PTO request.
-     *
-     * @param request the PTO request to approve
-     */
-    void approvePTO(PTORequest request);
-
-    /**
-     * Views the PTO balance of an employee.
-     *
-     * @param employee the employee to view the PTO balance of
-     * @return the PTO balance of the employee
-     */
-    PTOBalance viewEmployeePTO(Employee employee);
-
-    /**
-     * Views the PTO calendar.
-     *
-     * @return the PTO calendar
-     */
-    PTOCalendar viewPTOCalendar();
 }

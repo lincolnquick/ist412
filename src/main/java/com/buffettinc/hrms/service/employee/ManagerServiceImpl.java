@@ -81,11 +81,6 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Override
-    public void registerObserver(Observer observer){
-        observers.add(observer);
-    }
-
-    @Override
     public void registerObservers(List<Observer> observers){
         for (Observer o : observers){
             this.observers.add(o);
@@ -97,10 +92,6 @@ public class ManagerServiceImpl implements ManagerService {
         for (Observer o : observers){
             this.observers.remove(o);
         }
-    }
-    @Override
-    public void removeObserver(Observer observer){
-        observers.remove(observer);
     }
 
     @Override
@@ -190,46 +181,4 @@ public class ManagerServiceImpl implements ManagerService {
         return jobApplication;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JobApplication approveJobApplication(JobApplication jobApplication) {
-        // Perform approval operations
-        return jobApplication;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void approveHours(Timesheet timesheet) {
-        // Perform approval operations
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void approvePTO(PTORequest request) {
-        // Perform approval operations
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public PTOBalance viewEmployeePTO(Employee employee) {
-        // Retrieve and return the PTO balance of the employee
-        return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public PTOCalendar viewPTOCalendar() {
-        // Retrieve and return the PTO calendar
-        return null;
-    }
 }

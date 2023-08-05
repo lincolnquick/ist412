@@ -17,8 +17,8 @@ public interface AccountantService {
 
     Accountant createAccountant(Accountant accountant);
     List<Accountant> getAllAccountants();
-    Accountant getAccountantById(Long id);
+
     Accountant updateAccountant(Accountant accountant);
-    void deleteAccountant(Long id);
+
     Page<Accountant> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
 }

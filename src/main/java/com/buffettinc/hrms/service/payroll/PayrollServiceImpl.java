@@ -50,12 +50,6 @@ public class PayrollServiceImpl implements PayrollService {
 
     /** {@inheritDoc} */
     @Override
-    public List<Timesheet> getTimesheetsForPayroll(Long payrollID) {
-        return payrollRepository.findById(payrollID).get().getTimesheetList();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public Payroll addTimesheetToPayroll(Long payrollID, Timesheet timesheet) {
         Payroll payroll = payrollRepository.findById(payrollID).get();
         payroll.getTimesheetList().add(timesheet);
