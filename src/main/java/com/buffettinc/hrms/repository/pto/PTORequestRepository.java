@@ -21,5 +21,7 @@ public interface PTORequestRepository extends JpaRepository<PTORequest, Long> {
     List<PTORequest> findAllByStartDateGreaterThanEqualAndEndDateLessThanEqual(LocalDate startDate, LocalDate endDate);
 
     List<PTORequest> findAllByStatus(PTOStatus status);
+
+    List <PTORequest> getPTORequestByEmployee(Long empID);
     // custom methods if necessary
 }

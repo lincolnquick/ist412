@@ -95,4 +95,9 @@ public class PTORequestServiceImpl implements PTORequestService {
     public List<PTORequest> getAllPTORequestsByStatus(PTOStatus status) {
         return ptoRequestRepository.findAllByStatus(status);
     }
+
+    @Override
+    public List<PTORequest> getPTORequestByEmployee(Long employeeID){
+        return ptoRequestRepository.getPTORequestByEmployee(employeeID);
+    }
 }

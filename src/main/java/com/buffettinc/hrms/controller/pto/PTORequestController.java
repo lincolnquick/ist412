@@ -1,11 +1,19 @@
 package com.buffettinc.hrms.controller.pto;
 
+import com.buffettinc.hrms.model.employee.Employee;
+import com.buffettinc.hrms.service.employee.EmployeeService;
 import com.buffettinc.hrms.model.pto.PTORequest;
+import com.buffettinc.hrms.service.employee.EmployeeServiceImpl;
 import com.buffettinc.hrms.service.pto.PTORequestService;
+import com.buffettinc.hrms.service.pto.PTORequestServiceImpl;
+import com.buffettinc.hrms.service.user.CustomUserDetails;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
@@ -19,9 +27,11 @@ import java.util.UUID;
 @RequestMapping("/ptorequests")
 public class PTORequestController {
     private final PTORequestService ptoRequestService;
+    private final EmployeeServiceImpl employeeService;
 
-    public PTORequestController(PTORequestService ptoRequestService) {
+    public PTORequestController(PTORequestService ptoRequestService, EmployeeServiceImpl employeeService) {
         this.ptoRequestService = ptoRequestService;
+        this.employeeService = employeeService;
     }
 
     /**
@@ -45,9 +55,12 @@ public class PTORequestController {
      * @return The Thymeleaf template "newPtorequestForm".
      */
     @GetMapping("/new")
-    public String showNewPTORequestForm(Model model) {
-        model.addAttribute("ptoRequest", new PTORequest());
-        return "newPtorequestForm";
+    public String showNewPTORequestForm(Model model){
+
+        model.addAttribute("localDate", LocalDate.now());
+        model.addAttribute("startTime", LocalDateTime.now());
+        model.addAttribute("endTime", LocalDateTime.now());
+        return "pto/newPTORequest";
     }
 
     /**
@@ -97,4 +110,19 @@ public class PTORequestController {
         ptoRequestService.denyPTORequest(id);
         return "redirect:/ptorequests";
     }
+
+    @GetMapping("/ptorequests")
+    public String ptoRequestsLandingPage(@AuthenticationPrincipal CustomUserDetails userDetails, Model model){
+        Long userID = userDetails.getEmployeeID();
+        Employee ptoEmployee = employeeService.getEmployeeById(userID);
+
+
+        model.addAttribute("PTORequests", ptoRequestService.getPTORequestByEmployee(userID));
+        model.addAttribute("employee", ptoEmployee);
+        model.addAttribute("userID", userID);
+        model.addAttribute("page", "ptorequests");
+
+        return "/ptorequests";
+    }
+
 }
