@@ -46,6 +46,29 @@ public class Manager extends Employee {
         this.permissionLevel = "";
     }
 
+    public Manager(Employee employee) {
+        this.setEmployeeID(employee.getEmployeeID());
+        this.setUser(employee.getUser());
+        this.setFirstName(employee.getFirstName());
+        this.setLastName(employee.getLastName());
+        this.setStreetAddress(employee.getStreetAddress());
+        this.setCity(employee.getCity());
+        this.setState(employee.getState());
+        this.setPhone(employee.getPhone());
+        this.setEmail(employee.getEmail());
+        this.setHireDate(employee.getHireDate());
+        this.setDepartment(employee.getDepartment());
+        this.setPosition(employee.getPosition());
+        this.setManager(employee.getManager());
+        this.setPtoRequests(employee.getPtoRequests());
+        this.setPtoBalance(employee.getPtoBalance());
+        this.setSentMessages(employee.getSentMessages());
+        this.setReceivedMessages(employee.getReceivedMessages());
+        this.setNotifications(employee.getNotifications());
+        this.setTrainingRecords(employee.getTrainingRecords());
+
+    }
+
 
     public Task assignTask(Employee employee, String name, String description, LocalDate dueDate){
         Task newTask = new Task(name, description, dueDate, this, employee);

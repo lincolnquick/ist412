@@ -96,15 +96,10 @@ public class UserController {
         return "register";
     }
 
-
     @PostMapping("/process_register")
     public String processRegister(User user){
-        System.out.println("processRegister() was called.");
         try {
-            System.out.println("Calling userDetailsService.register(" + user.toString() + ", " + user.getEmployee().getEmployeeID());
             userDetailsService.register(user, user.getEmployee().getEmployeeID());
-
-
         } catch (Exception e) {
             System.out.println("Error processing registration: " + e.getMessage());
             e.printStackTrace();

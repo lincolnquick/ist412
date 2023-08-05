@@ -22,6 +22,10 @@ import java.util.UUID;
  */
 public interface HRStaffService {
 
+    HRStaff createHRStaff(HRStaff hrStaff);
+
+    HRStaff updateHRStaff(HRStaff hrStaff);
+
     /**
      * Adds a new training module.
      *

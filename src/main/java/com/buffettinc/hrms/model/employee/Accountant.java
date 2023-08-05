@@ -35,6 +35,28 @@ public class Accountant extends Employee{
         this.permissionLevel = "";
     }
 
+    public Accountant(Employee employee){
+        this.setEmployeeID(employee.getEmployeeID());
+        this.setUser(employee.getUser());
+        this.setFirstName(employee.getFirstName());
+        this.setLastName(employee.getLastName());
+        this.setStreetAddress(employee.getStreetAddress());
+        this.setCity(employee.getCity());
+        this.setState(employee.getState());
+        this.setPhone(employee.getPhone());
+        this.setEmail(employee.getEmail());
+        this.setHireDate(employee.getHireDate());
+        this.setDepartment(employee.getDepartment());
+        this.setPosition(employee.getPosition());
+        this.setManager(employee.getManager());
+        this.setPtoRequests(employee.getPtoRequests());
+        this.setPtoBalance(employee.getPtoBalance());
+        this.setSentMessages(employee.getSentMessages());
+        this.setReceivedMessages(employee.getReceivedMessages());
+        this.setNotifications(employee.getNotifications());
+        this.setTrainingRecords(employee.getTrainingRecords());
+    }
+
     public Payment addPayment(String institution, String routingNumber, String accountNumber, LocalDate postedDate, float amount, Long employeeID){
         Payment newPayment = new Payment(institution, routingNumber, accountNumber, postedDate, amount, employeeID);
        // payments.add(newPayment);

@@ -49,6 +49,17 @@ public class HRStaffServiceImpl implements HRStaffService {
     }
 
     @Override
+    public HRStaff createHRStaff(HRStaff hrStaff) {
+        return hrStaffRepository.save(hrStaff);
+
+    }
+
+    @Override
+    public HRStaff updateHRStaff(HRStaff hrStaff){
+        return hrStaffRepository.save(hrStaff);
+    }
+
+    @Override
     /**
      * {@inheritDoc}
      */

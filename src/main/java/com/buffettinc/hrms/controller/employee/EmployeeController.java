@@ -1,6 +1,9 @@
 package com.buffettinc.hrms.controller.employee;
 
+import com.buffettinc.hrms.model.employee.Accountant;
 import com.buffettinc.hrms.model.employee.Employee;
+import com.buffettinc.hrms.model.employee.HRStaff;
+import com.buffettinc.hrms.model.employee.Manager;
 import com.buffettinc.hrms.service.employee.AccountantService;
 import com.buffettinc.hrms.service.employee.EmployeeService;
 import com.buffettinc.hrms.service.employee.HRStaffService;
@@ -71,10 +74,25 @@ public class EmployeeController {
      * @return String, the redirect URL.
      */
     @PostMapping("save")
-    public String saveEmployee(@ModelAttribute("employee") Employee employee) {
-        employeeService.createEmployee(employee);
+    public String saveEmployee(@ModelAttribute("employee") Employee employee, @RequestParam String employeeType) {
+        switch (employeeType) {
+            case "Manager":
+                managerService.createManager(new Manager(employee));
+                break;
+            case "HRStaff":
+                hrStaffService.createHRStaff(new HRStaff(employee));
+                break;
+            case "Accountant":
+                accountantService.createAccountant(new Accountant(employee));
+                break;
+            default:
+                employeeService.createEmployee(employee);
+                break;
+        }
         return "redirect:/employees/list";
     }
+
+
 
     /**
      * Displays the page for updating an existing employee.
@@ -98,7 +116,15 @@ public class EmployeeController {
      */
     @PostMapping("/edit")
     public String updateEmployee(@ModelAttribute("employee") Employee employee) {
-        employeeService.updateEmployee(employee);
+        if (employee instanceof Manager) {
+            managerService.updateManager((Manager) employee);
+        } else if (employee instanceof HRStaff) {
+            hrStaffService.updateHRStaff((HRStaff) employee);
+        } else if (employee instanceof Accountant) {
+            accountantService.updateAccountant((Accountant) employee);
+        } else {
+            employeeService.updateEmployee(employee);
+        }
         return "redirect:/employees/list";
     }
 

@@ -39,6 +39,28 @@ public class HRStaff extends Employee implements Observer{
         this.permissionLevel = "";
     }
 
+    public HRStaff(Employee employee){
+        this.setEmployeeID(employee.getEmployeeID());
+        this.setUser(employee.getUser());
+        this.setFirstName(employee.getFirstName());
+        this.setLastName(employee.getLastName());
+        this.setStreetAddress(employee.getStreetAddress());
+        this.setCity(employee.getCity());
+        this.setState(employee.getState());
+        this.setPhone(employee.getPhone());
+        this.setEmail(employee.getEmail());
+        this.setHireDate(employee.getHireDate());
+        this.setDepartment(employee.getDepartment());
+        this.setPosition(employee.getPosition());
+        this.setManager(employee.getManager());
+        this.setPtoRequests(employee.getPtoRequests());
+        this.setPtoBalance(employee.getPtoBalance());
+        this.setSentMessages(employee.getSentMessages());
+        this.setReceivedMessages(employee.getReceivedMessages());
+        this.setNotifications(employee.getNotifications());
+        this.setTrainingRecords(employee.getTrainingRecords());
+    }
+
 
     @Override
     public void update(Notification notification) {

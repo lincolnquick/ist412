@@ -15,7 +15,7 @@ import java.util.UUID;
  */
 public interface AccountantService {
 
-    Accountant saveAccountant(Accountant accountant);
+    Accountant createAccountant(Accountant accountant);
     List<Accountant> getAllAccountants();
     Accountant getAccountantById(Long id);
     Accountant updateAccountant(Accountant accountant);

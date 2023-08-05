@@ -32,7 +32,7 @@ public class AccountantServiceImpl implements AccountantService {
      * {@inheritDoc}
      */
     @Override
-    public Accountant saveAccountant(Accountant accountant) {
+    public Accountant createAccountant(Accountant accountant) {
         return this.accountantRepository.save(accountant);
     }
 

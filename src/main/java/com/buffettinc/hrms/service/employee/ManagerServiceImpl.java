@@ -72,6 +72,15 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Override
+    public Manager createManager(Manager manager){
+        return managerRepository.save(manager);
+    }
+
+    public Manager updateManager(Manager manager) {
+        return this.managerRepository.save(manager);
+    }
+
+    @Override
     public void registerObserver(Observer observer){
         observers.add(observer);
     }

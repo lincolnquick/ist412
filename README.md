@@ -22,7 +22,9 @@ Once the server is running, go to http://localhost:8080 in your web browser. You
 Unit tests are located in the test directory of the project (hrms/src/test). You can run them from IntelliJ IDEA or by running `mvn test` from the project's root directory.
 
 ## Authentication
-Use one of the following sample users with details to login to the application. After logging in with one of the following users, you may Register a new user. New users will be defaulted to the 'Employee' role.
+Use one of the following sample users with details to login to the application. After logging in with one of the following users, you may create add new Employees. Additional users can be registered as long as there are Employees that do not yet have a corresponding User login. 
+
+Before you may "Register" as a new user, please login as an existing user and create a new Employee.
 
 | Role | First Name | Last Name | Username | Password |
 |-------- | -------- | -------- | -------- | -------- |

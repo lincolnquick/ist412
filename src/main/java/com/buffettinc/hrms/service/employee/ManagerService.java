@@ -25,6 +25,10 @@ import java.util.UUID;
  */
 public interface ManagerService {
 
+    Manager createManager(Manager manager);
+
+    Manager updateManager(Manager manager);
+
     /**
      * Gets all Manager employees.
      * @return List of all Managers
