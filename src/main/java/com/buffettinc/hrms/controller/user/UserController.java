@@ -78,6 +78,7 @@ public class UserController {
         int unreadMessageCount = messageService.countByIsReadFalseAndRecipient(loggedInEmployee);
 
         model.addAttribute("loggedInFullName", loggedInFullName);
+        model.addAttribute("user", loggedInUser);
         model.addAttribute("unreadMessageCount", unreadMessageCount);
         model.addAttribute("page", "home");
         return "dashboard";

@@ -40,6 +40,7 @@ public class User {
         this.username = null;
         this.password = null;
         this.employee = new Employee();
+        this.role = determineRole(this.employee);
     }
 
     public User(String username, String password, Employee employee) {
@@ -50,7 +51,16 @@ public class User {
         } else {
             this.employee = new Employee();
         }
+        this.role = determineRole(this.employee);
 
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 
     public Employee getEmployee() {

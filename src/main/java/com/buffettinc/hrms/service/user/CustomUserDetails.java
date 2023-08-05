@@ -2,20 +2,25 @@ package com.buffettinc.hrms.service.user;
 
 import com.buffettinc.hrms.model.user.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Collections;
 
 public class CustomUserDetails implements UserDetails {
 
     private User user;
+    private Collection<? extends GrantedAuthority> authorities;
 
     public CustomUserDetails(User user){
+
         this.user = user;
+        this.authorities = Collections.singletonList(new SimpleGrantedAuthority("" + user.getRole()));
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return authorities;
     }
 
     @Override

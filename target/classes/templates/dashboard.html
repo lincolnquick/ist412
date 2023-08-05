@@ -23,7 +23,10 @@
           <h5 class="card-title">Employees</h5>
           <p class="card-text">Manage employee information</p>
           <a href="/employees/list" class="btn btn-primary">View Employees</a>
-          <a href="/employees/new" class="btn btn-success">Add Employee</a>
+
+          <div sec:authorize="hasAnyRole('MANAGER', 'HRSTAFF')">
+            <a href="/employees/new" class="btn btn-success">Add Employee</a>
+          </div>
         </div>
       </div>
     </div>
