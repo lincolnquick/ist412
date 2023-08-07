@@ -57,8 +57,6 @@ Lincoln Quick - Fixed issues with incorrect operation when the register link was
 ### Navigation Toolbar Refactor
 Lincoln Quick - A code fragment was created and is referenced rather than copying the same code in each HTML file.
 
-### Additional Code Supporting Business Practices Added
-
 ### Service Classes Had Unused Methods
 Abraham Wagner - Removed methods from the Service package that had no usage.
 
@@ -67,10 +65,6 @@ Lincoln Quick - Reimagined employee display and removed redundant code.
 
 ### Employee Listings Split By Type
 Lincoln Quick - Separated employees by type in display and code.
-
-### Employee Permissions Revisited
-
-### Employees Cannot be Created at Registration
 
 ### Random Number Generator Check
 Abraham Wagner - Removed random number generator as the DB is implementing incremental numbering.
