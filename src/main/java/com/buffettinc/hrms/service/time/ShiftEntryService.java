@@ -1,5 +1,6 @@
 package com.buffettinc.hrms.service.time;
 
+import com.buffettinc.hrms.model.employee.Employee;
 import com.buffettinc.hrms.model.time.ShiftEntry;
 
 import java.time.LocalDateTime;
@@ -15,6 +16,27 @@ import java.util.UUID;
  * @since 2023-07-13
  */
 public interface ShiftEntryService {
+
+    /**
+     * Determines if an employee is currently punched in.
+     * @param employee Employee to check
+     * @return true if the employee is currently punched in, else false.
+     */
+    boolean isEmployeePunchedIn(Employee employee);
+
+    /**
+     * Punches the employee in by creating a new ShiftEntry with a start time and adding it to the current timesheet.
+     * @param employee Employee to punch in
+     * @return the new ShiftEntry
+     */
+    ShiftEntry punchIn(Employee employee);
+
+    /**
+     * Punches the employee out by setting the end time for the current ShiftEntry.
+     * @param employee Employee to punch out
+     * @return the updated ShiftEntry
+     */
+    ShiftEntry punchOut(Employee employee);
 
     /**
      * Saves or updates a shift entry.

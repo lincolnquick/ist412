@@ -1,8 +1,12 @@
 package com.buffettinc.hrms.repository.time;
 
+import com.buffettinc.hrms.model.employee.Employee;
+import com.buffettinc.hrms.model.payroll.Payroll;
 import com.buffettinc.hrms.model.time.ShiftEntry;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -16,4 +20,7 @@ import java.util.UUID;
  */
 public interface ShiftEntryRepository extends JpaRepository<ShiftEntry, Long> {
     // custom methods if necessary
-}
+    @Query("SELECT s FROM ShiftEntry s JOIN s.timesheets t WHERE t.payroll = :payroll AND s.end IS NULL")
+    List<ShiftEntry> findOpenShiftsForEmployeePayroll(Payroll payroll);
+    }
+

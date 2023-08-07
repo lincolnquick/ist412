@@ -36,6 +36,7 @@ public interface TimesheetService {
      * @param periodEnd end time of shift
      */
     void logShift(Payroll payroll, LocalDate periodStart, LocalDate periodEnd, ShiftEntry shiftEntry);
+
     /**
      * Gets a timesheet by ID.
      *
@@ -46,6 +47,9 @@ public interface TimesheetService {
 
     /**
      * Finds the appropriate Timesheet based on an Employee's Payroll data and timesheet period start and end dates.
+     * If one doesn't exist, a new one is created.
+     * Enforces payroll to start on Sundays and end six days later on Saturday.
+     *
      * @param payroll
      * @param periodStart
      * @param periodEnd

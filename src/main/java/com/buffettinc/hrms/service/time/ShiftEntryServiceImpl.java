@@ -1,10 +1,15 @@
 package com.buffettinc.hrms.service.time;
 
+import com.buffettinc.hrms.model.employee.Employee;
 import com.buffettinc.hrms.model.time.ShiftEntry;
+import com.buffettinc.hrms.model.time.Timesheet;
 import com.buffettinc.hrms.repository.time.ShiftEntryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,6 +25,53 @@ import java.util.UUID;
 public class ShiftEntryServiceImpl implements ShiftEntryService {
     @Autowired
     private ShiftEntryRepository shiftEntryRepository;
+
+    @Autowired
+    @Lazy
+    private TimesheetService timesheetService;
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isEmployeePunchedIn(Employee employee) {
+        List<ShiftEntry> shifts = shiftEntryRepository.findOpenShiftsForEmployeePayroll(employee.getPayrollInfo());
+        return !shifts.isEmpty();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ShiftEntry punchIn(Employee employee) {
+        ShiftEntry newShift = new ShiftEntry(LocalDateTime.now(), null);
+        shiftEntryRepository.save(newShift);
+
+        // Add the new shift to the current timesheet
+        LocalDate today = LocalDate.now();
+        Timesheet timesheet = timesheetService.findByPayrollAndPeriod(employee.getPayrollInfo(), today,
+                today.plusDays(6)).orElse(null);
+        if (timesheet != null){
+            timesheet.getShifts().add(newShift);
+            timesheetService.saveOrUpdateTimesheet(timesheet);
+        }
+        return newShift;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ShiftEntry punchOut(Employee employee) {
+        List<ShiftEntry> openShifts = shiftEntryRepository.findOpenShiftsForEmployeePayroll(employee.getPayrollInfo());
+        if (openShifts.isEmpty()){
+            return null;
+        }
+
+        ShiftEntry currentShift = openShifts.get(0);
+        currentShift.setEnd(LocalDateTime.now());
+        return shiftEntryRepository.save(currentShift);
+    }
 
     /**
      * {@inheritDoc}

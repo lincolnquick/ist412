@@ -50,7 +50,25 @@ public class TimesheetServiceImpl implements TimesheetService {
 
     @Override
     public Optional<Timesheet> findByPayrollAndPeriod(Payroll payroll, LocalDate periodStart, LocalDate periodEnd) {
-        return Optional.ofNullable(timesheetRepository.findByPayrollAndPeriodStartAndPeriodEnd(payroll, periodStart, periodEnd));
+        // Adjust periodStart to be the nearest preceding Sunday
+        if (periodStart.getDayOfWeek() != DayOfWeek.SUNDAY) {
+            periodStart = periodStart.with(TemporalAdjusters.previous(DayOfWeek.SUNDAY));
+        }
+
+        // Adjust periodEnd to be the Saturday 6 days after periodStart
+        periodEnd = periodStart.plusDays(6);
+
+        // Try to find the existing timesheet
+        Optional<Timesheet> existingTimesheet = Optional.ofNullable(timesheetRepository.findByPayrollAndPeriodStartAndPeriodEnd(payroll, periodStart, periodEnd));
+
+        // If the timesheet doesn't exist, create and save a new one
+        if (!existingTimesheet.isPresent()) {
+            Timesheet newTimesheet = new Timesheet(payroll, periodStart, periodEnd);
+            timesheetRepository.save(newTimesheet);
+            return Optional.of(newTimesheet);
+        }
+
+        return existingTimesheet;
     }
 
     @Autowired
