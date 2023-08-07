@@ -26,7 +26,7 @@ public class Timesheet implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long timesheetID;
     @ManyToOne
-    @JoinColumn(name="payrollID")
+    @JoinColumn(name = "payroll_id")
     private Payroll payroll;
     @Column(name = "start")
     private LocalDate periodStart;

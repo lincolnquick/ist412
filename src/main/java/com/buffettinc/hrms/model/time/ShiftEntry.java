@@ -31,8 +31,9 @@ public class ShiftEntry implements Serializable{
     @Column (name = "end")
     private LocalDateTime end;
 
-    @ManyToMany(mappedBy = "shifts")
-    private List<Timesheet> timesheets = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "timesheet_id")
+    private Timesheet timesheet;
 
     public ShiftEntry(LocalDateTime start, LocalDateTime end) {
         this.start = start;
@@ -62,5 +63,21 @@ public class ShiftEntry implements Serializable{
 
     public long getDurationInHours(){
         return Duration.between(start, end).toHours();
+    }
+
+    public Long getShiftID() {
+        return shiftID;
+    }
+
+    public void setShiftID(Long shiftID) {
+        this.shiftID = shiftID;
+    }
+
+    public Timesheet getTimesheet() {
+        return timesheet;
+    }
+
+    public void setTimesheet(Timesheet timesheet) {
+        this.timesheet = timesheet;
     }
 }

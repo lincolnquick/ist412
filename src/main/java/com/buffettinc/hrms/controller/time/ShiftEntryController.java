@@ -2,14 +2,19 @@ package com.buffettinc.hrms.controller.time;
 
 import com.buffettinc.hrms.model.employee.Employee;
 import com.buffettinc.hrms.model.time.ShiftEntry;
+import com.buffettinc.hrms.model.time.Timesheet;
+import com.buffettinc.hrms.service.employee.EmployeeService;
 import com.buffettinc.hrms.service.time.ShiftEntryService;
 import com.buffettinc.hrms.service.time.TimesheetService;
+import com.buffettinc.hrms.service.user.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
@@ -27,6 +32,27 @@ public class ShiftEntryController {
 
     @Autowired
     private TimesheetService timesheetService;
+
+    @Autowired
+    private EmployeeService employeeService;
+
+    @GetMapping("/page")
+    public String shiftEntryPage(@AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
+        Long employeeID = userDetails.getEmployeeID();
+        Employee loggedInEmployee = employeeService.getEmployeeById(employeeID);
+        LocalDateTime lastPunch = shiftEntryService.getLastPunch(loggedInEmployee);
+        boolean isPunchedIn = shiftEntryService.isEmployeePunchedIn(loggedInEmployee);
+        Timesheet currentTimesheet = timesheetService.getCurrentTimesheetForEmployee(loggedInEmployee).get();
+        long totalHours = timesheetService.getTotalHoursForTimesheet(currentTimesheet);
+
+        model.addAttribute("employee", loggedInEmployee);
+        model.addAttribute("lastPunch", lastPunch);
+        model.addAttribute("isPunchedIn", isPunchedIn);
+        model.addAttribute("totalHours", totalHours);
+
+        return "shiftEntryPage";
+    }
+
 
     // ShiftEntryController
     @PostMapping("/log")

@@ -30,6 +30,27 @@ public interface TimesheetService {
     Timesheet saveOrUpdateTimesheet(Timesheet timesheet);
 
     /**
+     * Calculates the total hours worked for an employee
+     * @param employee
+     * @return
+     */
+    long getTotalHoursForCurrentTimesheet(Employee employee);
+
+    /**
+     * Retrive the current timesheet for a given employee.
+     * @param employee
+     * @return current Timesheet based on today's date
+     */
+    Optional<Timesheet> getCurrentTimesheetForEmployee(Employee employee);
+
+    /**
+     * Calculate the total hours worked by an employee for a given timesheet.
+     * @param timesheet
+     * @return number of hours worked
+     */
+    long getTotalHoursForTimesheet(Timesheet timesheet);
+
+    /**
      * Allows an employee to log a shift to be added to the timesheet.
      * @param payroll data of employee to log the shift
      * @param periodStart start time of shift

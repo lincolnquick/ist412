@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buffett Inc. HRMS Time Sheets</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+</head>
+<body>
+<div th:include="fragments/navbar :: navbar"></div>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shift Entry</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-4">
+  <h2>Shift Entry for [[${employee.name}]]</h2>
+  <p>Last Punch: <span th:text="${lastPunch}"></span></p>
+  <p>Status: <span th:text="${isPunchedIn ? 'Punched In' : 'Punched Out'}"></span></p>
+  <p>Total Hours for Current Timesheet: <span th:text="${totalHours}"></span></p>
+
+  <button th:disabled="${isPunchedIn}" th:onclick="'location.href=\'/shiftEntry/punchIn\''">Punch In</button>
+  <button th:disabled="${!isPunchedIn}" th:onclick="'location.href=\'/shiftEntry/punchOut\''">Punch Out</button>
+</div>
+
+</body>
+</html>

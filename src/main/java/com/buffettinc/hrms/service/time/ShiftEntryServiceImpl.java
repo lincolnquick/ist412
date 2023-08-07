@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
@@ -72,6 +73,24 @@ public class ShiftEntryServiceImpl implements ShiftEntryService {
         currentShift.setEnd(LocalDateTime.now());
         return shiftEntryRepository.save(currentShift);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public LocalDateTime getLastPunch(Employee employee) {
+        List<ShiftEntry> shifts = shiftEntryRepository.findShiftsForEmployeePayroll(employee.getPayrollInfo());
+
+        // Return null if no shifts are found
+        if (shifts.isEmpty()) {
+            return null;
+        }
+
+        // Sort the shifts by their end time in descending order to find the most recent
+        shifts.sort(Comparator.comparing(ShiftEntry::getEnd).reversed());
+        return shifts.get(0).getEnd();
+    }
+
 
     /**
      * {@inheritDoc}

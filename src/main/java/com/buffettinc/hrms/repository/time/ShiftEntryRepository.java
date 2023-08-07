@@ -20,7 +20,10 @@ import java.util.UUID;
  */
 public interface ShiftEntryRepository extends JpaRepository<ShiftEntry, Long> {
     // custom methods if necessary
-    @Query("SELECT s FROM ShiftEntry s JOIN s.timesheets t WHERE t.payroll = :payroll AND s.end IS NULL")
+    @Query("SELECT s FROM ShiftEntry s JOIN s.timesheet t WHERE t.payroll = :payroll AND s.end IS NULL")
     List<ShiftEntry> findOpenShiftsForEmployeePayroll(Payroll payroll);
+
+    @Query("SELECT se FROM ShiftEntry se WHERE se.timesheet.payroll = :payroll")
+    List<ShiftEntry> findShiftsForEmployeePayroll(Payroll payroll);
     }
 

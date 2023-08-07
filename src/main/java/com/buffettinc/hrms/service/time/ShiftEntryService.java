@@ -39,6 +39,13 @@ public interface ShiftEntryService {
     ShiftEntry punchOut(Employee employee);
 
     /**
+     * Returns the date and time of an Employee's last punch in or out.
+     * @param employee Employee to find the last punch
+     * @return the LocalDateTime of the punch
+     */
+    LocalDateTime getLastPunch(Employee employee);
+
+    /**
      * Saves or updates a shift entry.
      *
      * @param shiftEntry The shift entry to be saved or updated.

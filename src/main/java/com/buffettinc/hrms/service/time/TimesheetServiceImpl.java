@@ -85,6 +85,43 @@ public class TimesheetServiceImpl implements TimesheetService {
      * {@inheritDoc}
      */
     @Override
+    public long getTotalHoursForCurrentTimesheet(Employee employee) {
+        Optional<Timesheet> currentTimesheet = getCurrentTimesheetForEmployee(employee);
+
+        if (currentTimesheet.isPresent()) {
+            return getTotalHoursForTimesheet(currentTimesheet.get());
+        }
+
+        return 0L; // Return 0 if no timesheet is found for the current week
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Optional<Timesheet> getCurrentTimesheetForEmployee(Employee employee) {
+        LocalDate today = LocalDate.now();
+        LocalDate periodStart = today.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
+        LocalDate periodEnd = today.with(TemporalAdjusters.nextOrSame(DayOfWeek.SATURDAY));
+
+        return findByPayrollAndPeriod(employee.getPayrollInfo(), periodStart, periodEnd);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public long getTotalHoursForTimesheet(Timesheet timesheet) {
+        return timesheet.getShifts()
+                .stream()
+                .mapToLong(ShiftEntry::getDurationInHours)
+                .sum();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Timesheet getTimesheetById(Long timesheetID) {
         return timesheetRepository.findById(timesheetID).orElse(null);
     }
