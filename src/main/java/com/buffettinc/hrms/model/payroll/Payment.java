@@ -37,7 +37,6 @@ public class Payment implements Serializable {
     private Long employeeID;
 
     public Payment(String institution, String routingNumber, String accountNumber, LocalDate postedDate, float amount, Long employeeID) {
-        this.paymentID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.institution = institution;
         this.routingNumber = routingNumber;
         this.accountNumber = accountNumber;
@@ -47,7 +46,6 @@ public class Payment implements Serializable {
     }
 
     public Payment() {
-        this.paymentID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.institution = null;
         this.routingNumber = null;
         this.accountNumber = null;

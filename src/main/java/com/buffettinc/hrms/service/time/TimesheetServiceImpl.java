@@ -1,12 +1,19 @@
 package com.buffettinc.hrms.service.time;
 
 import com.buffettinc.hrms.model.employee.Employee;
+import com.buffettinc.hrms.model.payroll.Payroll;
+import com.buffettinc.hrms.model.time.ShiftEntry;
 import com.buffettinc.hrms.model.time.Timesheet;
 import com.buffettinc.hrms.repository.time.TimesheetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -22,6 +29,32 @@ public class TimesheetServiceImpl implements TimesheetService {
     @Autowired
     private TimesheetRepository timesheetRepository;
 
+    @Override
+    public void logShift(Payroll payroll, LocalDate periodStart, LocalDate periodEnd, ShiftEntry shiftEntry) {
+        // Get the corresponding timesheet for the given payroll and period dates
+        Optional<Timesheet> optionalTimesheet = findByPayrollAndPeriod(payroll, periodStart, periodEnd);
+
+        if (optionalTimesheet.isPresent()) {
+            Timesheet timesheet = optionalTimesheet.get();
+            // Add the new shift entry to the timesheet
+            timesheet.getShifts().add(shiftEntry);
+            // Save the updated timesheet
+            timesheetRepository.save(timesheet);
+        } else {
+            // Handle the case where no timesheet is found for the given criteria
+            // This could be creating a new timesheet or throwing an exception
+            // For simplicity, let's just throw an exception for now
+            throw new RuntimeException("No timesheet found for the given period and payroll.");
+        }
+    }
+
+    @Override
+    public Optional<Timesheet> findByPayrollAndPeriod(Payroll payroll, LocalDate periodStart, LocalDate periodEnd) {
+        return Optional.ofNullable(timesheetRepository.findByPayrollAndPeriodStartAndPeriodEnd(payroll, periodStart, periodEnd));
+    }
+
+    @Autowired
+    private ShiftEntryService shiftEntryService;
     /**
      * {@inheritDoc}
      */

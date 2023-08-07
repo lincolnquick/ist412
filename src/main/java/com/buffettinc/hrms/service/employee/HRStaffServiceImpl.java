@@ -111,47 +111,8 @@ public class HRStaffServiceImpl implements HRStaffService {
     }
 
     @Override
-    /**
-     * {@inheritDoc}
-     */
-    public JobApplication approveJobApplication(JobApplication application) {
-        return null;
-    }
-
-    @Override
     public List<HRStaff> getAllHRStaff() {
         return this.hrStaffRepository.findAll();
     }
 
-    @Override
-    /**
-     * {@inheritDoc}
-     */
-    public void viewEmployeeData(Employee employee) {
-        // Implement the logic for viewing employee data
-    }
-
-    @Override
-    /**
-     * {@inheritDoc}
-     */
-    public void addEmployee() {
-        // Implement the logic for adding a new employee
-    }
-
-    @Override
-    /**
-     * {@inheritDoc}
-     */
-    public void viewEmployeePTO() {
-        // Implement the logic for viewing employee's PTO
-    }
-
-    @Override
-    /**
-     * {@inheritDoc}
-     */
-    public void viewPTOCalendar() {
-        // Implement the logic for viewing the PTO calendar
-    }
 }

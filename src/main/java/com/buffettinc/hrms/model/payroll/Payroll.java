@@ -41,29 +41,25 @@ public class Payroll implements Serializable {
     private String accountNumber;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="payroll")
-    private List<Timesheet> timesheetList;
+    private List<Timesheet> timesheetList = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="payroll")
     private List<Timesheet> approvedTimesheetList;
 
     public Payroll(Employee employee, float hourlyRate, String institutionName, String routingNumber, String accountNumber) {
-        this.payrollID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.employee = employee;
         this.hourlyRate = hourlyRate;
         this.institutionName = institutionName;
         this.routingNumber = routingNumber;
         this.accountNumber = accountNumber;
-        this.timesheetList = new ArrayList<>();
     }
 
     public Payroll() {
-        this.payrollID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.employee = null;
         this.hourlyRate = 0.0f;
         this.institutionName = null;
         this.routingNumber = null;
         this.accountNumber = null;
-        this.timesheetList = new ArrayList<>();
     }
 
     public Long getPayrollID() {

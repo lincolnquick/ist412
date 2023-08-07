@@ -173,8 +173,8 @@ public class MessageController {
 
     @GetMapping
     public String messagesPage(Model model) {
-        // Add any necessary logic to retrieve the messages or other data for the page
-        return "messages"; // Replace "messages" with the appropriate Thymeleaf template name
+
+        return "messages";
     }
 
 }

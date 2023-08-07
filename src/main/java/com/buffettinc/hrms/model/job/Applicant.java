@@ -44,7 +44,6 @@ public class Applicant implements Serializable {
     private URL resume; // Link of the applicant's resume
 
     public Applicant(String firstName, String lastName, String streetAddress, String city, String state, String zip, String phone, String email, JobApplication.JobApplicationStatus status, Long jobID, URL resume) {
-        this.applicantID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.firstName = firstName;
         this.lastName = lastName;
         this.streetAddress = streetAddress;
@@ -59,7 +58,6 @@ public class Applicant implements Serializable {
     }
 
     public Applicant() {
-        this.applicantID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.firstName = null;
         this.lastName = null;
         this.streetAddress = null;

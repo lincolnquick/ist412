@@ -31,7 +31,6 @@ public class JobApplication implements Serializable {
     private JobApplicationStatus status;
 
     public JobApplication(Long jobOpeningID, Long applicantID, LocalDate applicationDate, JobApplicationStatus status) {
-        this.applicationID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.jobOpeningID = jobOpeningID;
         this.applicantID = applicantID;
         this.applicationDate = applicationDate;
@@ -39,7 +38,6 @@ public class JobApplication implements Serializable {
     }
 
     public JobApplication() {
-        this.applicationID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.jobOpeningID = null;
         this.applicantID = null;
         this.applicationDate = null;

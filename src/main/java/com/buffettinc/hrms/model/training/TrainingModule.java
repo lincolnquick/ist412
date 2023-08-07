@@ -36,7 +36,6 @@ public class TrainingModule implements Serializable {
     private Long authorID;
 
     public TrainingModule(String trainingName, String description, URL trainingURL, Duration estimatedDuration, Long authorID) {
-        this.trainingID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.trainingName = trainingName;
         this.description = description;
         this.trainingURL = trainingURL;
@@ -45,7 +44,6 @@ public class TrainingModule implements Serializable {
     }
 
     public TrainingModule() {
-        this.trainingID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.trainingName = null;
         this.description = null;
         this.trainingURL = null;

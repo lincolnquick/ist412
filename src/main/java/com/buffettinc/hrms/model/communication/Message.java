@@ -36,7 +36,6 @@ public class Message implements Serializable {
     private boolean isRead;
 
     public Message(Employee sender, Employee recipient, String title, String content) {
-        this.messageID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.sender = sender;
         this.recipient = recipient;
         this.title = title;
@@ -46,7 +45,6 @@ public class Message implements Serializable {
     }
 
     public Message() {
-        this.messageID = ThreadLocalRandom.current().nextLong(1, 1000);
         this.sender = null;
         this.recipient = null;
         this.title = null;

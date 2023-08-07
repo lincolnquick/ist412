@@ -86,37 +86,9 @@ public interface HRStaffService {
     JobApplication reviewJobApplication(Long jobID, Long applicantID);
 
     /**
-     * Approves a job application.
-     *
-     * @param application the job application to approve
-     * @return the approved job application
-     */
-    JobApplication approveJobApplication(JobApplication application);
-
-    /**
      * Gets all HRStaff employees
      * @return List of all HRStaff employees
      */
     List<HRStaff> getAllHRStaff();
-    /**
-     * Views employee data for a given employee.
-     *
-     * @param employee the employee to view data for
-     */
-    void viewEmployeeData(Employee employee);
 
-    /**
-     * Adds a new employee.
-     */
-    void addEmployee();
-
-    /**
-     * Views employee's PTO (Paid Time Off) information.
-     */
-    void viewEmployeePTO();
-
-    /**
-     * Views the PTO calendar.
-     */
-    void viewPTOCalendar();
 }

@@ -33,7 +33,6 @@ public class Notification implements Serializable {
     private boolean isRead;
 
     public Notification(Employee employee, String message) {
-        this.notificationID = ThreadLocalRandom.current().nextLong(1000);
         this.employee = employee;
         this.message = message;
         this.timestamp = LocalDateTime.now();
@@ -41,7 +40,6 @@ public class Notification implements Serializable {
     }
 
     public Notification() {
-        this.notificationID = ThreadLocalRandom.current().nextLong(1,1000);
         this.employee = null;
         this.message = null;
         this.timestamp = LocalDateTime.now();
