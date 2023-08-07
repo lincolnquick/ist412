@@ -41,7 +41,7 @@ public class Payroll implements Serializable {
     private String accountNumber;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="payroll")
-    private List<Timesheet> timesheetList;
+    private List<Timesheet> timesheetList = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="payroll")
     private List<Timesheet> approvedTimesheetList;
@@ -52,7 +52,6 @@ public class Payroll implements Serializable {
         this.institutionName = institutionName;
         this.routingNumber = routingNumber;
         this.accountNumber = accountNumber;
-        this.timesheetList = new ArrayList<>();
     }
 
     public Payroll() {
@@ -61,7 +60,6 @@ public class Payroll implements Serializable {
         this.institutionName = null;
         this.routingNumber = null;
         this.accountNumber = null;
-        this.timesheetList = new ArrayList<>();
     }
 
     public Long getPayrollID() {

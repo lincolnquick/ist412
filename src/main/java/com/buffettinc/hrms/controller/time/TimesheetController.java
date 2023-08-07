@@ -31,8 +31,22 @@ public class TimesheetController {
     @GetMapping("/all")
     public String viewAllTimesheets(Model model) {
         model.addAttribute("timesheets", timesheetService.getAllTimesheets());
-        return "displayAllTimesheets";
+        return "timesheets";
     }
+
+
+    @GetMapping("/{timesheetID}/shifts")
+    public String viewShiftsForTimesheet(@PathVariable Long timesheetID, Model model) {
+        Timesheet timesheet = timesheetService.getTimesheetById(timesheetID);
+        if (timesheet != null) {
+            model.addAttribute("timesheet", timesheet);
+            return "displayShiftsInTimesheet";
+        } else {
+            // Handle error (e.g., redirect to error page or back to the list with a message)
+            return "redirect:/timesheets/all";
+        }
+    }
+
 
     /**
      * Retrieves the view for creating or updating a Timesheet.

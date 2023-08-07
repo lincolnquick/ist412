@@ -1,10 +1,14 @@
 package com.buffettinc.hrms.service.time;
 
 import com.buffettinc.hrms.model.employee.Employee;
+import com.buffettinc.hrms.model.payroll.Payroll;
+import com.buffettinc.hrms.model.time.ShiftEntry;
 import com.buffettinc.hrms.model.time.Timesheet;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -26,6 +30,13 @@ public interface TimesheetService {
     Timesheet saveOrUpdateTimesheet(Timesheet timesheet);
 
     /**
+     * Allows an employee to log a shift to be added to the timesheet.
+     * @param payroll data of employee to log the shift
+     * @param periodStart start time of shift
+     * @param periodEnd end time of shift
+     */
+    void logShift(Payroll payroll, LocalDate periodStart, LocalDate periodEnd, ShiftEntry shiftEntry);
+    /**
      * Gets a timesheet by ID.
      *
      * @param timesheetID The ID of the timesheet.
@@ -33,6 +44,14 @@ public interface TimesheetService {
      */
     Timesheet getTimesheetById(Long timesheetID);
 
+    /**
+     * Finds the appropriate Timesheet based on an Employee's Payroll data and timesheet period start and end dates.
+     * @param payroll
+     * @param periodStart
+     * @param periodEnd
+     * @return Timesheet
+     */
+    Optional<Timesheet> findByPayrollAndPeriod(Payroll payroll, LocalDate periodStart, LocalDate periodEnd);
     /**
      * Gets all timesheets.
      *

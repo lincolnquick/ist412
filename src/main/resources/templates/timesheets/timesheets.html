@@ -13,9 +13,44 @@
 </head>
 <body>
 <div th:include="fragments/navbar :: navbar"></div>
-<div class="container">
-    <h1 class="mt-5">Buffett Inc. HRMS Time Sheets</h1>
-    <p>Coming Soon</p>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Timesheets</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2>All Timesheets</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Period Start</th>
+            <th>Period End</th>
+            <th>Approved</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="timesheet : ${timesheets}">
+            <td th:text="${timesheet.timesheetID}"></td>
+            <td th:text="${timesheet.periodStart}"></td>
+            <td th:text="${timesheet.periodEnd}"></td>
+            <td th:text="${timesheet.isApproved ? 'Yes' : 'No'}"></td>
+            <td>
+                <a th:href="@{'/timesheets/edit/' + ${timesheet.timesheetID}}" class="btn btn-primary" th:disabled="${timesheet.isApproved}">Edit</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
+
+</body>
+</html>
+
 </body>
 </html>

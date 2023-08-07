@@ -3,6 +3,7 @@ package com.buffettinc.hrms.controller.job;
 import com.buffettinc.hrms.model.job.Applicant;
 import com.buffettinc.hrms.service.job.ApplicantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.net.URL;
 import java.util.List;
@@ -46,8 +47,9 @@ public class ApplicantController {
      * @return template name
      */
     @GetMapping("/{applicantID}")
-    public String getApplicantByID(@PathVariable Long applicantID) {
+    public String getApplicantByID(Model model, @PathVariable Long applicantID) {
         Applicant applicant = applicantService.getApplicantByID(applicantID);
+        model.addAttribute("applicant", applicant);
         return "applicantDetails"; // Assuming this is the template showing the details of the retrieved applicant
     }
 
@@ -56,8 +58,9 @@ public class ApplicantController {
      * @return template name
      */
     @GetMapping
-    public String getAllApplicants() {
+    public String getAllApplicants(Model model) {
         List<Applicant> applicants = applicantService.getAllApplicants();
+        model.addAttribute("applicants", applicants);
         return "applicantsList"; // Assuming this is the template showing a list of all applicants
     }
 
