@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * This class provides the implementation of the {@link PTORequestService} interface.
@@ -98,6 +97,7 @@ public class PTORequestServiceImpl implements PTORequestService {
 
     @Override
     public List<PTORequest> getPTORequestByEmployee(Long employeeID){
+        System.out.println("here");
         return ptoRequestRepository.getPTORequestByEmployee(employeeID);
     }
 }

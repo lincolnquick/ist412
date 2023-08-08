@@ -24,12 +24,12 @@ import java.util.UUID;
  * @since 2023-07-13
  */
 @Controller
-@RequestMapping("/ptorequests")
+@RequestMapping("/pto")
 public class PTORequestController {
-    private final PTORequestService ptoRequestService;
+    private final PTORequestServiceImpl ptoRequestService;
     private final EmployeeServiceImpl employeeService;
 
-    public PTORequestController(PTORequestService ptoRequestService, EmployeeServiceImpl employeeService) {
+    public PTORequestController(PTORequestServiceImpl ptoRequestService, EmployeeServiceImpl employeeService) {
         this.ptoRequestService = ptoRequestService;
         this.employeeService = employeeService;
     }
@@ -117,12 +117,12 @@ public class PTORequestController {
         Employee ptoEmployee = employeeService.getEmployeeById(userID);
 
 
-        model.addAttribute("PTORequests", ptoRequestService.getPTORequestByEmployee(userID));
+        model.addAttribute("PTORequests", ptoRequestService.getPTORequestByEmployee(ptoEmployee.getEmployeeID()));
         model.addAttribute("employee", ptoEmployee);
         model.addAttribute("userID", userID);
         model.addAttribute("page", "ptorequests");
 
-        return "/ptorequests";
+        return "pto/ptorequests";
     }
 
 }
