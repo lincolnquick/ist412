@@ -97,7 +97,6 @@ public class PTORequestServiceImpl implements PTORequestService {
 
     @Override
     public List<PTORequest> getPTORequestByEmployee(Long employeeID){
-        System.out.println("here");
         return ptoRequestRepository.getPTORequestByEmployee(employeeID);
     }
 }
