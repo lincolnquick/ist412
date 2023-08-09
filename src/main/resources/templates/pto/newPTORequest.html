@@ -17,24 +17,35 @@
     <h1 class="mt-5">Buffett Inc. HRMS Paid Time Off</h1>
     <!DOCTYPE html>
     <html xmlns:th="http://www.thymeleaf.org" lang="en">
-    <body>
-    <div class="container">
-        <div>
-            <label for="pto-date">Time Off Start:</label>
-            <input type="date" th:field="${localDate}" id="pto-date"/>
-        </div>
-        <div>
-            <label for="pto-time-start">From:</label>
-            <input type="time" th:field="${startTime}" id="pto-time-start"/>
-        </div>
-        <div>
-            <label for="pto-time-end">To:</label>
-            <input type="time" th:field="${endTime}" id="pto-time-end"/>
-        </div>
-
-        <p>Note: Functionality Not Implemented Fully.</p>
-    </div>
-    </body>
+        <body>
+            <form th:action="@{/pto/save}" th:object="${ptoRequest}" method="post">
+                <div class="container">
+                    <input type = "hidden" id = "employeeID" name = "employeeID" th:value = "${ptoEmployee.getEmployeeID}">
+                    <div>
+                        <label for="start-Date">Time Off Start:</label>
+                        <input type="date" th:field="*{startDate}" id="start-Date"/>
+                    </div>
+                    <div>
+                        <label for="end-Date">Time Off End:</label>
+                        <input type="date" th:field="*{endDate}" id="end-Date"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="reason">Recipient</label>
+                        <select id="reason" name="reason" class="form-control">
+                            <option value="">Select PTO Reason...</option>
+                            <option value="SICK">Sick</option>
+                            <option value="PERSONAL">Personal</option>
+                            <option value="VACATION">Vacation</option>
+                            <option value="BEREAVEMENT">Bereavement</option>
+                            <option value="JURY_DUTY">Jury Duty</option>
+                            <option value="MILITARY_LEAVE">Military Leave</option>
+                            <option value="LEAVE_OF_ABSENCE">Leave of Absence</option>
+                        </select>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                </div>
+            </form>
+        </body>
     </html>
 </div>
 </body>

@@ -1,6 +1,7 @@
 package com.buffettinc.hrms.controller.pto;
 
 import com.buffettinc.hrms.model.employee.Employee;
+import com.buffettinc.hrms.model.pto.PTOReason;
 import com.buffettinc.hrms.service.employee.EmployeeService;
 import com.buffettinc.hrms.model.pto.PTORequest;
 import com.buffettinc.hrms.service.employee.EmployeeServiceImpl;
@@ -55,11 +56,19 @@ public class PTORequestController {
      * @return The Thymeleaf template "newPtorequestForm".
      */
     @GetMapping("/newPTORequest")
-    public String showNewPTORequestForm(Model model){
+    public String showNewPTORequestForm(@AuthenticationPrincipal CustomUserDetails userDetails, Model model){
 
-        model.addAttribute("localDate", LocalDate.now());
-        model.addAttribute("startTime", LocalDateTime.now());
+        Long userID = userDetails.getEmployeeID();
+        Employee ptoEmployee = employeeService.getEmployeeById(userID);
+
+        model.addAttribute("ptoEmployee", ptoEmployee);
+        model.addAttribute("startDate", LocalDate.now());
+        model.addAttribute("endDate", LocalDate.now());
         model.addAttribute("endTime", LocalDateTime.now());
+        model.addAttribute("reason", "");
+
+        model.addAttribute("ptoRequest", new PTORequest());
+
         return "pto/newPTORequest";
     }
 
@@ -70,9 +79,18 @@ public class PTORequestController {
      * @return The Thymeleaf template "ptorequestDetails".
      */
     @PostMapping("/save")
-    public String saveOrUpdatePTORequest(@ModelAttribute("ptoRequest") PTORequest ptoRequest) {
+    public String saveOrUpdatePTORequest(@RequestParam("startDate") LocalDate startDate,
+                                         @RequestParam("endDate") LocalDate endDate,
+                                         @RequestParam("employeeID") Long employeeID,
+                                         @RequestParam("reason") String ptoReason,
+                                         Model model){
+
+        PTOReason newReason = PTOReason.valueOf(ptoReason);
+        Employee ptoEmployee = employeeService.getEmployeeById(employeeID);
+        PTORequest ptoRequest = new PTORequest(ptoEmployee, startDate, endDate, newReason);
         PTORequest savedPTORequest = ptoRequestService.saveOrUpdatePTORequest(ptoRequest);
-        return "redirect:/ptorequests/" + savedPTORequest.getRequestID();
+
+        return "redirect:/pto/ptorequests";
     }
 
     /**
