@@ -1,11 +1,20 @@
 package com.buffettinc.hrms.controller.pto;
 
+import com.buffettinc.hrms.model.employee.Employee;
+import com.buffettinc.hrms.model.pto.PTOReason;
+import com.buffettinc.hrms.service.employee.EmployeeService;
 import com.buffettinc.hrms.model.pto.PTORequest;
+import com.buffettinc.hrms.service.employee.EmployeeServiceImpl;
 import com.buffettinc.hrms.service.pto.PTORequestService;
+import com.buffettinc.hrms.service.pto.PTORequestServiceImpl;
+import com.buffettinc.hrms.service.user.CustomUserDetails;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
@@ -16,12 +25,14 @@ import java.util.UUID;
  * @since 2023-07-13
  */
 @Controller
-@RequestMapping("/ptorequests")
+@RequestMapping("/pto")
 public class PTORequestController {
-    private final PTORequestService ptoRequestService;
+    private final PTORequestServiceImpl ptoRequestService;
+    private final EmployeeServiceImpl employeeService;
 
-    public PTORequestController(PTORequestService ptoRequestService) {
+    public PTORequestController(PTORequestServiceImpl ptoRequestService, EmployeeServiceImpl employeeService) {
         this.ptoRequestService = ptoRequestService;
+        this.employeeService = employeeService;
     }
 
     /**
@@ -44,10 +55,21 @@ public class PTORequestController {
      * @param model The Model to be used.
      * @return The Thymeleaf template "newPtorequestForm".
      */
-    @GetMapping("/new")
-    public String showNewPTORequestForm(Model model) {
+    @GetMapping("/newPTORequest")
+    public String showNewPTORequestForm(@AuthenticationPrincipal CustomUserDetails userDetails, Model model){
+
+        Long userID = userDetails.getEmployeeID();
+        Employee ptoEmployee = employeeService.getEmployeeById(userID);
+
+        model.addAttribute("ptoEmployee", ptoEmployee);
+        model.addAttribute("startDate", LocalDate.now());
+        model.addAttribute("endDate", LocalDate.now());
+        model.addAttribute("endTime", LocalDateTime.now());
+        model.addAttribute("reason", "");
+
         model.addAttribute("ptoRequest", new PTORequest());
-        return "newPtorequestForm";
+
+        return "pto/newPTORequest";
     }
 
     /**
@@ -57,9 +79,18 @@ public class PTORequestController {
      * @return The Thymeleaf template "ptorequestDetails".
      */
     @PostMapping("/save")
-    public String saveOrUpdatePTORequest(@ModelAttribute("ptoRequest") PTORequest ptoRequest) {
+    public String saveOrUpdatePTORequest(@RequestParam("startDate") LocalDate startDate,
+                                         @RequestParam("endDate") LocalDate endDate,
+                                         @RequestParam("employeeID") Long employeeID,
+                                         @RequestParam("reason") String ptoReason,
+                                         Model model){
+
+        PTOReason newReason = PTOReason.valueOf(ptoReason);
+        Employee ptoEmployee = employeeService.getEmployeeById(employeeID);
+        PTORequest ptoRequest = new PTORequest(ptoEmployee, startDate, endDate, newReason);
         PTORequest savedPTORequest = ptoRequestService.saveOrUpdatePTORequest(ptoRequest);
-        return "redirect:/ptorequests/" + savedPTORequest.getRequestID();
+
+        return "redirect:/pto/ptorequests";
     }
 
     /**
@@ -97,4 +128,19 @@ public class PTORequestController {
         ptoRequestService.denyPTORequest(id);
         return "redirect:/ptorequests";
     }
+
+    @GetMapping("/ptorequests")
+    public String ptoRequestsLandingPage(@AuthenticationPrincipal CustomUserDetails userDetails, Model model){
+        Long userID = userDetails.getEmployeeID();
+        Employee ptoEmployee = employeeService.getEmployeeById(userID);
+
+
+        model.addAttribute("PTORequests", ptoRequestService.getPTORequestByEmployee(ptoEmployee.getEmployeeID()));
+        model.addAttribute("employee", ptoEmployee);
+        model.addAttribute("userID", userID);
+        model.addAttribute("page", "ptorequests");
+
+        return "pto/ptorequests";
+    }
+
 }

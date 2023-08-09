@@ -1,8 +1,10 @@
 package com.buffettinc.hrms.repository.pto;
 
+import com.buffettinc.hrms.model.employee.Employee;
 import com.buffettinc.hrms.model.pto.PTORequest;
 import com.buffettinc.hrms.model.pto.PTOStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,5 +23,8 @@ public interface PTORequestRepository extends JpaRepository<PTORequest, Long> {
     List<PTORequest> findAllByStartDateGreaterThanEqualAndEndDateLessThanEqual(LocalDate startDate, LocalDate endDate);
 
     List<PTORequest> findAllByStatus(PTOStatus status);
+
+    @Query("select u from PTORequest u where u.employee.employeeID = ?1")
+    List <PTORequest> getPTORequestByEmployee(Long employeeid);
     // custom methods if necessary
 }

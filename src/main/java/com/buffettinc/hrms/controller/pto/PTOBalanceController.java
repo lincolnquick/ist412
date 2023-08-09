@@ -93,18 +93,6 @@ public class PTOBalanceController {
         return "redirect:/ptobalance/";
     }
 
-    /**
-     * PTO Landing Page
-     *
-     * @return Sting of Thymeleaf html page to display
-     */
-    @GetMapping("/pto")
-    public String ptoLandingPage(Model model){
 
-        model.addAttribute("localDate", LocalDate.now());
-        model.addAttribute("startTime", LocalDateTime.now());
-        model.addAttribute("endTime", LocalDateTime.now());
-        return "pto/pto";
-    }
 
 }

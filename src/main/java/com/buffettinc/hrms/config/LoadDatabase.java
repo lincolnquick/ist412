@@ -3,6 +3,9 @@ import com.buffettinc.hrms.model.employee.Accountant;
 import com.buffettinc.hrms.model.employee.Employee;
 import com.buffettinc.hrms.model.employee.HRStaff;
 import com.buffettinc.hrms.model.employee.Manager;
+import com.buffettinc.hrms.model.pto.PTOReason;
+import com.buffettinc.hrms.model.pto.PTORequest;
+import com.buffettinc.hrms.model.pto.PTOStatus;
 import com.buffettinc.hrms.model.user.User;
 import com.buffettinc.hrms.repository.communication.MessageRepository;
 import com.buffettinc.hrms.repository.communication.NotificationRepository;
@@ -10,6 +13,7 @@ import com.buffettinc.hrms.repository.employee.AccountantRepository;
 import com.buffettinc.hrms.repository.employee.EmployeeRepository;
 import com.buffettinc.hrms.repository.employee.HRStaffRepository;
 import com.buffettinc.hrms.repository.employee.ManagerRepository;
+import com.buffettinc.hrms.repository.pto.PTORequestRepository;
 import com.buffettinc.hrms.repository.user.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -35,13 +39,15 @@ public class LoadDatabase {
     private final ManagerRepository managerRepository;
     private final HRStaffRepository hrStaffRepository;
     private final AccountantRepository accountantRepository;
+    private final PTORequestRepository ptoRequestRepository;
     private final MessageRepository messageRepository;
     private final NotificationRepository notificationRepository;
 
     public LoadDatabase(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder,
                         EmployeeRepository employeeRepository, ManagerRepository managerRepository,
                         HRStaffRepository hrStaffRepository, AccountantRepository accountantRepository,
-                        MessageRepository messageRepository, NotificationRepository notificationRepository) {
+                        MessageRepository messageRepository, NotificationRepository notificationRepository,
+                        PTORequestRepository ptoRequestRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.employeeRepository = employeeRepository;
@@ -50,6 +56,7 @@ public class LoadDatabase {
         this.accountantRepository = accountantRepository;
         this.messageRepository = messageRepository;
         this.notificationRepository = notificationRepository;
+        this.ptoRequestRepository = ptoRequestRepository;
 
     }
 
@@ -164,12 +171,27 @@ public class LoadDatabase {
 
                     User user = new User(username, password, employee);
 
+                    // create some PTO requests
+                    LocalDate firstStart = LocalDate.parse("2023-08-08");
+                    LocalDate firstEnd = LocalDate.parse("2023-08-15");
+
+                    LocalDate secondStart = LocalDate.parse("2023-10-08");
+                    LocalDate secondEnd = LocalDate.parse("2023-11-15");
+
+                    PTORequest request1 = new PTORequest(employee, firstStart, firstEnd, PTOReason.VACATION);
+                    request1.setStatus(PTOStatus.APPROVED);
+
+                    PTORequest request2 = new PTORequest(employee, secondStart, secondEnd, PTOReason.VACATION);
+                    request2.setStatus(PTOStatus.DENIED);
+
                     // set user to employee and employee to user
                     user.setEmployee(employee);
                     employee.setUser(user);
 
                     // save employee (and thus user because of CascadeType.ALL)
                     employeeRepository.save(employee);
+                    ptoRequestRepository.save(request1);
+                    ptoRequestRepository.save(request2);
                 }
                 if (userRepository.findByUsername("kong") == null) {
                     // Create and save employee before assigning to the user
@@ -195,8 +217,16 @@ public class LoadDatabase {
                     user.setEmployee(employee);
                     employee.setUser(user);
 
+                    // request some time off
+                    LocalDate firstStart = LocalDate.parse("2023-09-17");
+                    LocalDate firstEnd = LocalDate.parse("2023-09-18");
+
+                    PTORequest request1 = new PTORequest(employee, firstStart, firstEnd, PTOReason.JURY_DUTY);
+                    request1.setStatus(PTOStatus.PENDING);
+
                     // save employee (and thus user because of CascadeType.ALL)
                     employeeRepository.save(employee);
+                    ptoRequestRepository.save(request1);
                 }
 
             } catch (Exception e) {

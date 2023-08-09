@@ -16,6 +16,8 @@ import java.util.UUID;
  */
 public interface PTORequestService {
 
+
+
     /**
      * Creates or updates a PTORequest.
      *
@@ -76,4 +78,6 @@ public interface PTORequestService {
      * @return a list of all PTORequests with the specified status.
      */
     List<PTORequest> getAllPTORequestsByStatus(PTOStatus status);
+
+    List<PTORequest> getPTORequestByEmployee(Long empID);
 }
