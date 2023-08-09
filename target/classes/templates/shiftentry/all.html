@@ -20,13 +20,13 @@
 <body>
 
 <div class="container mt-4">
-  <h2>Shift Entry for [[${employee.name}]]</h2>
+  <h2>Shift Entry for [[${employee.getFullName()}]]</h2>
   <p>Last Punch: <span th:text="${lastPunch}"></span></p>
   <p>Status: <span th:text="${isPunchedIn ? 'Punched In' : 'Punched Out'}"></span></p>
   <p>Total Hours for Current Timesheet: <span th:text="${totalHours}"></span></p>
 
-  <button th:disabled="${isPunchedIn}" th:onclick="'location.href=\'/shiftEntry/punchIn\''">Punch In</button>
-  <button th:disabled="${!isPunchedIn}" th:onclick="'location.href=\'/shiftEntry/punchOut\''">Punch Out</button>
+  <button th:disabled="${isPunchedIn}" class="btn btn-success" th:onclick="'location.href=\'/shiftentry/punchIn\''">Punch In</button>
+  <button th:disabled="${!isPunchedIn}" class="btn btn-danger" th:onclick="'location.href=\'/shiftentry/punchOut\''">Punch Out</button>
 </div>
 
 </body>

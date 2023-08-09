@@ -1,13 +1,15 @@
 package com.buffettinc.hrms.controller.time;
 
+import com.buffettinc.hrms.model.employee.Employee;
 import com.buffettinc.hrms.model.time.Timesheet;
+import com.buffettinc.hrms.service.employee.EmployeeService;
 import com.buffettinc.hrms.service.time.TimesheetService;
+import com.buffettinc.hrms.service.user.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.UUID;
 
 /**
  * This class is a Spring MVC Controller for handling Timesheet-related requests.
@@ -22,6 +24,10 @@ public class TimesheetController {
     @Autowired
     private TimesheetService timesheetService;
 
+    @Autowired
+    private EmployeeService employeeService;
+
+
     /**
      * Retrieves the view for displaying all Timesheets.
      *
@@ -29,9 +35,13 @@ public class TimesheetController {
      * @return the view for displaying all Timesheets.
      */
     @GetMapping("/all")
-    public String viewAllTimesheets(Model model) {
+    public String viewAllTimesheets(@AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
+        System.out.println("TimesheetController.viewAllTimesheets(): /index");
+        Long employeeID = userDetails.getEmployeeID();
+        System.out.println("Logged in employee ID: " + employeeID);
+        Employee loggedInEmployee = employeeService.getEmployeeById(employeeID);
         model.addAttribute("timesheets", timesheetService.getAllTimesheets());
-        return "timesheets";
+        return "timesheets/all";
     }
 
 
@@ -86,15 +96,4 @@ public class TimesheetController {
         return "redirect:/timesheet/all";
     }
 
-    /**
-     * Time sheets landing page
-     *
-     * @return Sting of Thymeleaf template file.
-     */
-    @GetMapping("/timesheets")
-    public String timesheetsLanding(Model model){
-        model.addAttribute("page", "timesheets");
-
-        return "timesheets/timesheets";
-    }
 }

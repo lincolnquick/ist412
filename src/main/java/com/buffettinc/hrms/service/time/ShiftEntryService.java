@@ -81,5 +81,5 @@ public interface ShiftEntryService {
      * @param shiftID The ID of the shift entry.
      * @return The duration of the shift in hours.
      */
-    long getShiftDurationInHours(Long shiftID);
+    double getShiftDurationInHours(Long shiftID);
 }

@@ -7,6 +7,7 @@ import com.buffettinc.hrms.service.employee.EmployeeService;
 import com.buffettinc.hrms.service.time.ShiftEntryService;
 import com.buffettinc.hrms.service.time.TimesheetService;
 import com.buffettinc.hrms.service.user.CustomUserDetails;
+import com.buffettinc.hrms.service.user.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 /**
  * This class is a Spring MVC Controller for handling ShiftEntry-related requests.
@@ -25,7 +25,7 @@ import java.util.UUID;
  * @since 2023-07-13
  */
 @Controller
-@RequestMapping("/shiftEntry")
+@RequestMapping("/shiftentry")
 public class ShiftEntryController {
     @Autowired
     private ShiftEntryService shiftEntryService;
@@ -36,58 +36,58 @@ public class ShiftEntryController {
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping("/page")
+    @Autowired
+    private CustomUserDetailsService userDetailsService;
+
+    @GetMapping("/all")
     public String shiftEntryPage(@AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
+        System.out.println("ShiftEntryController.shiftEntryPage(): /index");
         Long employeeID = userDetails.getEmployeeID();
+        System.out.println("Logged in employee ID: " + employeeID);
         Employee loggedInEmployee = employeeService.getEmployeeById(employeeID);
         LocalDateTime lastPunch = shiftEntryService.getLastPunch(loggedInEmployee);
         boolean isPunchedIn = shiftEntryService.isEmployeePunchedIn(loggedInEmployee);
         Timesheet currentTimesheet = timesheetService.getCurrentTimesheetForEmployee(loggedInEmployee).get();
-        long totalHours = timesheetService.getTotalHoursForTimesheet(currentTimesheet);
+        double totalHours = timesheetService.getTotalHoursForTimesheet(currentTimesheet);
 
         model.addAttribute("employee", loggedInEmployee);
         model.addAttribute("lastPunch", lastPunch);
         model.addAttribute("isPunchedIn", isPunchedIn);
         model.addAttribute("totalHours", totalHours);
 
-        return "shiftEntryPage";
+        return "shiftentry/all";
     }
 
 
-    // ShiftEntryController
-    @PostMapping("/log")
-    public String logShift(@ModelAttribute ShiftEntry shiftEntry, @ModelAttribute Employee employee) {
-        // Extract the period start and end dates from the shift entry
-        LocalDate periodStart = shiftEntry.getStart().toLocalDate();
-        LocalDate periodEnd = shiftEntry.getEnd().toLocalDate();
+    @GetMapping("/punchIn")
+    public String punchIn(@ModelAttribute Employee employee) {
 
         try {
-            // Log the shift for the employee's payroll for the given period
-            timesheetService.logShift(employee.getPayrollInfo(), periodStart, periodEnd, shiftEntry);
+            // punch in
+            shiftEntryService.punchIn(employee);
         } catch (RuntimeException e) {
-            // Handle the exception, perhaps by setting a model attribute and displaying an error page
-            // For now, let's just print it (you might want to replace this with proper logging or error handling)
-            System.err.println("Error logging shift: " + e.getMessage());
-            return "errorPage";  // Replace with the name of your error view
+            // Handle the exception
+            System.err.println("Error punching in: " + e.getMessage());
+            return "errorPage";
         }
 
-        // If everything went well, redirect to the current timesheets page
-        return "redirect:/timesheets/current";
+        // If everything went well, redirect to the current shiftentry page
+        return "redirect:/shiftentry/all";
+    }
+
+    @GetMapping("/punchOut")
+    public String punchOut(@ModelAttribute Employee employee){
+        try {
+            shiftEntryService.punchOut(employee);
+        } catch (RuntimeException e){
+            System.err.println("Error punching out: " + e.getMessage());
+            return "errorPage";
+        }
+        return "redirect:/shiftentry/all";
     }
 
 
 
-    /**
-     * Retrieves the view for displaying all ShiftEntries.
-     *
-     * @param model the Model to bind data to the view.
-     * @return the view for displaying all ShiftEntries.
-     */
-    @GetMapping("/all")
-    public String viewAllShiftEntries(Model model) {
-        model.addAttribute("shiftEntries", shiftEntryService.getAllShiftEntries());
-        return "displayAllShiftEntries"; // This should be the path to your view template for listing all ShiftEntries
-    }
 
 
     /**
@@ -101,7 +101,7 @@ public class ShiftEntryController {
     public String viewEditShiftEntry(@PathVariable(value = "id", required = false) Long shiftID, Model model) {
         ShiftEntry shiftEntry = (shiftID != null) ? shiftEntryService.getShiftEntryById(shiftID) : new ShiftEntry();
         model.addAttribute("shiftEntry", shiftEntry);
-        return "editShiftEntry"; // This should be the path to your edit template for ShiftEntry
+        return "redirect:/shiftentry/all"; // return to main shift entry landing
     }
 
 
@@ -114,7 +114,7 @@ public class ShiftEntryController {
     @PostMapping("/edit")
     public String submitEditShiftEntry(@ModelAttribute ShiftEntry shiftEntry) {
         shiftEntryService.saveOrUpdateShiftEntry(shiftEntry);
-        return "redirect:/shiftEntry/all";
+        return "redirect:/shiftentry/all"; // return to main shift entry landing
     }
 
     /**
@@ -126,6 +126,6 @@ public class ShiftEntryController {
     @PostMapping("/delete")
     public String deleteShiftEntry(@RequestParam Long shiftID) {
         shiftEntryService.deleteShiftEntry(shiftID);
-        return "redirect:/shiftEntry/all";
+        return "redirect:/shiftentry/all"; // return to main shift entry landing
     }
 }

@@ -39,6 +39,7 @@ public class SecurityConfiguration {
                     .requestMatchers("/pto").authenticated()
                     .requestMatchers("/tasks").authenticated()
                     .requestMatchers("/timesheets").authenticated()
+                    .requestMatchers("/shiftentry").authenticated()
                     .requestMatchers("/training").authenticated()
                     .requestMatchers("/index").permitAll()
                     .anyRequest().permitAll()

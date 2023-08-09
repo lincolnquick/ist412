@@ -34,7 +34,7 @@ public interface TimesheetService {
      * @param employee
      * @return
      */
-    long getTotalHoursForCurrentTimesheet(Employee employee);
+    double getTotalHoursForCurrentTimesheet(Employee employee);
 
     /**
      * Retrive the current timesheet for a given employee.
@@ -48,7 +48,7 @@ public interface TimesheetService {
      * @param timesheet
      * @return number of hours worked
      */
-    long getTotalHoursForTimesheet(Timesheet timesheet);
+    double getTotalHoursForTimesheet(Timesheet timesheet);
 
     /**
      * Allows an employee to log a shift to be added to the timesheet.

@@ -71,8 +71,6 @@ public class TimesheetServiceImpl implements TimesheetService {
         return existingTimesheet;
     }
 
-    @Autowired
-    private ShiftEntryService shiftEntryService;
     /**
      * {@inheritDoc}
      */
@@ -85,14 +83,14 @@ public class TimesheetServiceImpl implements TimesheetService {
      * {@inheritDoc}
      */
     @Override
-    public long getTotalHoursForCurrentTimesheet(Employee employee) {
+    public double getTotalHoursForCurrentTimesheet(Employee employee) {
         Optional<Timesheet> currentTimesheet = getCurrentTimesheetForEmployee(employee);
 
         if (currentTimesheet.isPresent()) {
             return getTotalHoursForTimesheet(currentTimesheet.get());
         }
 
-        return 0L; // Return 0 if no timesheet is found for the current week
+        return 0.0; // Return 0 if no timesheet is found for the current week
     }
 
     /**
@@ -111,10 +109,10 @@ public class TimesheetServiceImpl implements TimesheetService {
      * {@inheritDoc}
      */
     @Override
-    public long getTotalHoursForTimesheet(Timesheet timesheet) {
+    public double getTotalHoursForTimesheet(Timesheet timesheet) {
         return timesheet.getShifts()
                 .stream()
-                .mapToLong(ShiftEntry::getDurationInHours)
+                .mapToDouble(ShiftEntry::getDurationInHours)
                 .sum();
     }
 

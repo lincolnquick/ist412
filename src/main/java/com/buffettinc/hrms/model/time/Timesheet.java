@@ -116,6 +116,14 @@ public class Timesheet implements Serializable{
         return shifts;
     }
 
+    public double getTotalHours() {
+        double hours = 0.0;
+        for (ShiftEntry shift : this.shifts){
+            hours += shift.getDurationInHours();
+        }
+        return hours;
+    }
+
     public void setShifts(ArrayList<ShiftEntry> shifts) {
         this.shifts = shifts;
     }

@@ -27,6 +27,7 @@
             <th>ID</th>
             <th>Period Start</th>
             <th>Period End</th>
+            <th>Hours</th>
             <th>Approved</th>
             <th>Actions</th>
         </tr>
@@ -36,6 +37,7 @@
             <td th:text="${timesheet.timesheetID}"></td>
             <td th:text="${timesheet.periodStart}"></td>
             <td th:text="${timesheet.periodEnd}"></td>
+            <td th:text="${timesheet.getTotalHours()}"></td>
             <td th:text="${timesheet.isApproved ? 'Yes' : 'No'}"></td>
             <td>
                 <a th:href="@{'/timesheets/edit/' + ${timesheet.timesheetID}}" class="btn btn-primary" th:disabled="${timesheet.isApproved}">Edit</a>
@@ -44,7 +46,7 @@
         </tbody>
     </table>
     <div class="container mt-4">
-        <a href="/timesheets/shiftEntryPage" class="btn btn-primary mt-4">Go to Shift Entry</a>
+        <a href="/shiftentry/all" class="btn btn-primary mt-4">Go to Shift Entry</a>
     </div>
 </div>
 

@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -50,13 +51,15 @@ public class ShiftEntryServiceImpl implements ShiftEntryService {
 
         // Add the new shift to the current timesheet
         LocalDate today = LocalDate.now();
-        Timesheet timesheet = timesheetService.findByPayrollAndPeriod(employee.getPayrollInfo(), today,
-                today.plusDays(6)).orElse(null);
-        if (timesheet != null){
-            timesheet.getShifts().add(newShift);
-            timesheetService.saveOrUpdateTimesheet(timesheet);
+        Optional<Timesheet> optionalTimesheet = timesheetService.findByPayrollAndPeriod(employee.getPayrollInfo(), today,
+                today.plusDays(6));
+        if (optionalTimesheet.isPresent()){
+            optionalTimesheet.get().addShift(newShift);
+            return newShift;
+        } else {
+            throw new RuntimeException("Error punching out: could not locate or create new timesheet");
         }
-        return newShift;
+
     }
 
     /**
@@ -128,8 +131,8 @@ public class ShiftEntryServiceImpl implements ShiftEntryService {
      * {@inheritDoc}
      */
     @Override
-    public long getShiftDurationInHours(Long shiftID) {
+    public double getShiftDurationInHours(Long shiftID) {
         ShiftEntry shiftEntry = getShiftEntryById(shiftID);
-        return shiftEntry != null ? shiftEntry.getDurationInHours() : 0;
+        return shiftEntry != null ? shiftEntry.getDurationInHours() : 0.0;
     }
 }

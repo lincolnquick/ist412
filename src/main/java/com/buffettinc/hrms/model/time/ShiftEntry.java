@@ -61,8 +61,12 @@ public class ShiftEntry implements Serializable{
         this.end = end;
     }
 
-    public long getDurationInHours(){
-        return Duration.between(start, end).toHours();
+    public double getDurationInHours(){
+        if (start == null || end == null || start == LocalDateTime.MIN || end == LocalDateTime.MIN){
+            return 0.0;
+        } else {
+            return Duration.between(start, end).toHours();
+        }
     }
 
     public Long getShiftID() {
