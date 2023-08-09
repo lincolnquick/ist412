@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buffett Inc. HRMS Paid Time Off</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <style type="text/css">
+        .Payroll {
+        }
+    </style>
 </head>
 <body>
+<div th:include="fragments/navbar :: navbar"></div>
+<div class="container">
+    <h1 class="mt-5">Buffett Inc. HRMS Paid Time Off</h1>
+    <!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <body>
+    <div class="container">
+        <div>
+            <label for="pto-date">Time Off Start:</label>
+            <input type="date" th:field="${localDate}" id="pto-date"/>
+        </div>
+        <div>
+            <label for="pto-time-start">From:</label>
+            <input type="time" th:field="${startTime}" id="pto-time-start"/>
+        </div>
+        <div>
+            <label for="pto-time-end">To:</label>
+            <input type="time" th:field="${endTime}" id="pto-time-end"/>
+        </div>
 
+        <p>Note: Functionality Not Implemented Fully.</p>
+    </div>
+    </body>
+    </html>
+</div>
 </body>
 </html>

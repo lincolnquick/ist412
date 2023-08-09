@@ -54,7 +54,7 @@ public class PTORequestController {
      * @param model The Model to be used.
      * @return The Thymeleaf template "newPtorequestForm".
      */
-    @GetMapping("/new")
+    @GetMapping("/newPTORequest")
     public String showNewPTORequestForm(Model model){
 
         model.addAttribute("localDate", LocalDate.now());
