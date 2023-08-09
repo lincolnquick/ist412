@@ -65,7 +65,7 @@ public class ShiftEntry implements Serializable{
         if (start == null || end == null || start == LocalDateTime.MIN || end == LocalDateTime.MIN){
             return 0.0;
         } else {
-            return Duration.between(start, end).toHours();
+            return ((double)Duration.between(start, end).toMinutes()) /60.0;
         }
     }
 
