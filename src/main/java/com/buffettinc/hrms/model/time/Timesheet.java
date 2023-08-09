@@ -32,13 +32,10 @@ public class Timesheet implements Serializable{
     private LocalDate periodStart;
     @Column(name = "end")
     private LocalDate periodEnd;
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(
-            name = "timesheet_shifts",
-            joinColumns = {@JoinColumn(name="timesheet_id", referencedColumnName = "timesheetID")},
-            inverseJoinColumns = {@JoinColumn(name = "shift_id", referencedColumnName = "shiftID")}
-    )
+
+    @OneToMany(mappedBy = "timesheet", cascade = CascadeType.ALL)
     private List<ShiftEntry> shifts;
+
     @Column(name="approved")
     private boolean isApproved;
     @ManyToOne
@@ -142,5 +139,18 @@ public class Timesheet implements Serializable{
 
     public void setApprover(Employee approver) {
         this.approver = approver;
+    }
+
+    @Override
+    public String toString() {
+        return "Timesheet{" +
+                "timesheetID=" + timesheetID +
+                ", payroll=" + payroll +
+                ", periodStart=" + periodStart +
+                ", periodEnd=" + periodEnd +
+                ", shifts=" + shifts +
+                ", isApproved=" + isApproved +
+                ", approver=" + approver +
+                '}';
     }
 }

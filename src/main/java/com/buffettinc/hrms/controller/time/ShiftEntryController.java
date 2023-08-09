@@ -41,9 +41,7 @@ public class ShiftEntryController {
 
     @GetMapping("/all")
     public String shiftEntryPage(@AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
-        System.out.println("ShiftEntryController.shiftEntryPage(): /index");
         Long employeeID = userDetails.getEmployeeID();
-        System.out.println("Logged in employee ID: " + employeeID);
         Employee loggedInEmployee = employeeService.getEmployeeById(employeeID);
         LocalDateTime lastPunch = shiftEntryService.getLastPunch(loggedInEmployee);
         boolean isPunchedIn = shiftEntryService.isEmployeePunchedIn(loggedInEmployee);
@@ -59,9 +57,10 @@ public class ShiftEntryController {
     }
 
 
-    @GetMapping("/punchIn")
-    public String punchIn(@ModelAttribute Employee employee) {
-
+    @PostMapping("/punchIn")
+    public String punchIn(@AuthenticationPrincipal CustomUserDetails userDetails) {
+        Long employeeID = userDetails.getEmployeeID();
+        Employee employee = employeeService.getEmployeeById(employeeID);
         try {
             // punch in
             shiftEntryService.punchIn(employee);
@@ -75,8 +74,10 @@ public class ShiftEntryController {
         return "redirect:/shiftentry/all";
     }
 
-    @GetMapping("/punchOut")
-    public String punchOut(@ModelAttribute Employee employee){
+    @PostMapping("/punchOut")
+    public String punchOut(@AuthenticationPrincipal CustomUserDetails userDetails){
+        Long employeeID = userDetails.getEmployeeID();
+        Employee employee = employeeService.getEmployeeById(employeeID);
         try {
             shiftEntryService.punchOut(employee);
         } catch (RuntimeException e){

@@ -37,7 +37,7 @@ public class ShiftEntryServiceImpl implements ShiftEntryService {
      */
     @Override
     public boolean isEmployeePunchedIn(Employee employee) {
-        List<ShiftEntry> shifts = shiftEntryRepository.findOpenShiftsForEmployeePayroll(employee.getPayrollInfo());
+        List<ShiftEntry> shifts = shiftEntryRepository.findOpenShiftsForEmployee(employee.getEmployeeID());
         return !shifts.isEmpty();
     }
 
@@ -51,10 +51,13 @@ public class ShiftEntryServiceImpl implements ShiftEntryService {
 
         // Add the new shift to the current timesheet
         LocalDate today = LocalDate.now();
-        Optional<Timesheet> optionalTimesheet = timesheetService.findByPayrollAndPeriod(employee.getPayrollInfo(), today,
+        Optional<Timesheet> optionalTimesheet = timesheetService.findByEmployeeAndPeriod(employee, today,
                 today.plusDays(6));
+        System.out.println("Timesheet retrieved during punch in: " + optionalTimesheet.get().toString());
         if (optionalTimesheet.isPresent()){
             optionalTimesheet.get().addShift(newShift);
+            newShift.setTimesheet(optionalTimesheet.get());
+            timesheetService.saveOrUpdateTimesheet(optionalTimesheet.get());
             return newShift;
         } else {
             throw new RuntimeException("Error punching out: could not locate or create new timesheet");
@@ -67,7 +70,7 @@ public class ShiftEntryServiceImpl implements ShiftEntryService {
      */
     @Override
     public ShiftEntry punchOut(Employee employee) {
-        List<ShiftEntry> openShifts = shiftEntryRepository.findOpenShiftsForEmployeePayroll(employee.getPayrollInfo());
+        List<ShiftEntry> openShifts = shiftEntryRepository.findOpenShiftsForEmployee(employee.getEmployeeID());
         if (openShifts.isEmpty()){
             return null;
         }
@@ -82,7 +85,7 @@ public class ShiftEntryServiceImpl implements ShiftEntryService {
      */
     @Override
     public LocalDateTime getLastPunch(Employee employee) {
-        List<ShiftEntry> shifts = shiftEntryRepository.findShiftsForEmployeePayroll(employee.getPayrollInfo());
+        List<ShiftEntry> shifts = shiftEntryRepository.findShiftsForEmployee(employee.getEmployeeID());
 
         // Return null if no shifts are found
         if (shifts.isEmpty()) {

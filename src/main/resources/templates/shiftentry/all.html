@@ -25,8 +25,12 @@
   <p>Status: <span th:text="${isPunchedIn ? 'Punched In' : 'Punched Out'}"></span></p>
   <p>Total Hours for Current Timesheet: <span th:text="${totalHours}"></span></p>
 
-  <button th:disabled="${isPunchedIn}" class="btn btn-success" th:onclick="'location.href=\'/shiftentry/punchIn\''">Punch In</button>
-  <button th:disabled="${!isPunchedIn}" class="btn btn-danger" th:onclick="'location.href=\'/shiftentry/punchOut\''">Punch Out</button>
+  <form th:action="@{/shiftentry/punchIn}" th:object="${employee}" method="post">
+    <button th:disabled="${isPunchedIn}" class="btn btn-success" type="submit">Punch In</button>
+  </form><form th:action="@{/shiftentry/punchOut}" th:object="${employee}" method="post">
+    <button th:disabled="${!isPunchedIn}" class="btn btn-danger" type="submit">Punch Out</button>
+  </form>
+
 </div>
 
 </body>

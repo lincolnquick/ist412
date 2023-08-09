@@ -30,9 +30,9 @@ public class TimesheetServiceImpl implements TimesheetService {
     private TimesheetRepository timesheetRepository;
 
     @Override
-    public void logShift(Payroll payroll, LocalDate periodStart, LocalDate periodEnd, ShiftEntry shiftEntry) {
+    public void logShift(Employee employee, LocalDate periodStart, LocalDate periodEnd, ShiftEntry shiftEntry) {
         // Get the corresponding timesheet for the given payroll and period dates
-        Optional<Timesheet> optionalTimesheet = findByPayrollAndPeriod(payroll, periodStart, periodEnd);
+        Optional<Timesheet> optionalTimesheet = findByEmployeeAndPeriod(employee, periodStart, periodEnd);
 
         if (optionalTimesheet.isPresent()) {
             Timesheet timesheet = optionalTimesheet.get();
@@ -49,7 +49,7 @@ public class TimesheetServiceImpl implements TimesheetService {
     }
 
     @Override
-    public Optional<Timesheet> findByPayrollAndPeriod(Payroll payroll, LocalDate periodStart, LocalDate periodEnd) {
+    public Optional<Timesheet> findByEmployeeAndPeriod(Employee employee, LocalDate periodStart, LocalDate periodEnd) {
         // Adjust periodStart to be the nearest preceding Sunday
         if (periodStart.getDayOfWeek() != DayOfWeek.SUNDAY) {
             periodStart = periodStart.with(TemporalAdjusters.previous(DayOfWeek.SUNDAY));
@@ -59,9 +59,15 @@ public class TimesheetServiceImpl implements TimesheetService {
         periodEnd = periodStart.plusDays(6);
 
         // Try to find the existing timesheet
-        Optional<Timesheet> existingTimesheet = Optional.ofNullable(timesheetRepository.findByPayrollAndPeriodStartAndPeriodEnd(payroll, periodStart, periodEnd));
+        Optional<Timesheet> existingTimesheet = Optional.ofNullable(timesheetRepository.findByPayrollAndPeriodStartAndPeriodEnd(employee.getPayrollInfo(), periodStart, periodEnd));
 
         // If the timesheet doesn't exist, create and save a new one
+        Payroll payroll = employee.getPayrollInfo();
+        if (payroll == null){
+            payroll = new Payroll(employee, 15.00f, "ABC Bank", "123456789", "1234");
+            employee.setPayrollInfo(payroll);
+        }
+
         if (!existingTimesheet.isPresent()) {
             Timesheet newTimesheet = new Timesheet(payroll, periodStart, periodEnd);
             timesheetRepository.save(newTimesheet);
@@ -102,7 +108,7 @@ public class TimesheetServiceImpl implements TimesheetService {
         LocalDate periodStart = today.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
         LocalDate periodEnd = today.with(TemporalAdjusters.nextOrSame(DayOfWeek.SATURDAY));
 
-        return findByPayrollAndPeriod(employee.getPayrollInfo(), periodStart, periodEnd);
+        return findByEmployeeAndPeriod(employee, periodStart, periodEnd);
     }
 
     /**
