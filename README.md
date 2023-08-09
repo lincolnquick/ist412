@@ -48,6 +48,20 @@ The Dashboard View UI pattern is implemented in our system to present the main v
 ### Tabbed Navigation UI Pattern
 The Tabbed Navigation UI pattern is implemented on every HTML page of our system.  Within the HTML for each tab are HREF links that indicate the target page.  Every controller file has a mapping that corresponds to the link for each page listed in the tabbed navigation.
 
+## Use Cases
+
+### 1.  Create a New Employee
+Login to the system, navigate to the employees tab to see existing employees.  From there add employees via the "Add New Employee Button"
+
+### 2. Create and send Messages
+Navigate to the Messages tab and view messages sent to the logged in individual.  Create messages to send to others.
+
+### 3. View and Create Time Off Requests
+Navigate to the Paid Time Off tab and view the time off requested by the logged in individual.  Then click the "New Request" button to ask for time off.
+
+### 4. View Time Worked and Punch In and Out
+Navigate to the Time Sheets tab to see total time worked during a specific time period.  Click "Go To Shift Entry" to punch in and out.
+
 ## Code Refactoring
 The following code refactors were implemented for the Two Use Case Assignment
 
