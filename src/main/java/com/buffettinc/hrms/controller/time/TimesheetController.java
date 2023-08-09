@@ -40,7 +40,7 @@ public class TimesheetController {
         Long employeeID = userDetails.getEmployeeID();
         System.out.println("Logged in employee ID: " + employeeID);
         Employee loggedInEmployee = employeeService.getEmployeeById(employeeID);
-        model.addAttribute("timesheets", timesheetService.getAllTimesheets());
+        model.addAttribute("timesheets", timesheetService.getAllTimesheetsForEmployee(employeeID));
         return "timesheets/all";
     }
 

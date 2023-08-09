@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * This class is a Spring MVC Controller for handling ShiftEntry-related requests.
@@ -44,12 +45,15 @@ public class ShiftEntryController {
         Long employeeID = userDetails.getEmployeeID();
         Employee loggedInEmployee = employeeService.getEmployeeById(employeeID);
         LocalDateTime lastPunch = shiftEntryService.getLastPunch(loggedInEmployee);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm:ss");
+
+        String lastPunchFormatted = lastPunch.format(formatter);
         boolean isPunchedIn = shiftEntryService.isEmployeePunchedIn(loggedInEmployee);
         Timesheet currentTimesheet = timesheetService.getCurrentTimesheetForEmployee(loggedInEmployee).get();
         double totalHours = timesheetService.getTotalHoursForTimesheet(currentTimesheet);
 
         model.addAttribute("employee", loggedInEmployee);
-        model.addAttribute("lastPunch", lastPunch);
+        model.addAttribute("lastPunch", lastPunchFormatted);
         model.addAttribute("isPunchedIn", isPunchedIn);
         model.addAttribute("totalHours", totalHours);
 

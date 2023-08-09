@@ -98,4 +98,6 @@ public interface TimesheetService {
      * @param manager The employee who is approving the timesheet.
      */
     void approveTimesheet(Long timesheetID, Employee manager);
+
+    List<Timesheet> getAllTimesheetsForEmployee(long employeeID);
 }

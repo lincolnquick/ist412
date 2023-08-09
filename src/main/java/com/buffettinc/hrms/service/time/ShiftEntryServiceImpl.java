@@ -93,8 +93,12 @@ public class ShiftEntryServiceImpl implements ShiftEntryService {
         }
 
         // Sort the shifts by their end time in descending order to find the most recent
-        shifts.sort(Comparator.comparing(ShiftEntry::getEnd).reversed());
-        return shifts.get(0).getEnd();
+        shifts.sort(Comparator.comparing(ShiftEntry::getStart).reversed());
+        if (shifts.get(0).getEnd() == null){
+            return shifts.get(0).getStart();
+        } else {
+            return shifts.get(0).getEnd();
+        }
     }
 
 

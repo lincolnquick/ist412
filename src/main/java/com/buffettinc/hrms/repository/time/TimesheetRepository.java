@@ -4,6 +4,8 @@ import com.buffettinc.hrms.model.employee.Employee;
 import com.buffettinc.hrms.model.payroll.Payroll;
 import com.buffettinc.hrms.model.time.Timesheet;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -28,4 +30,6 @@ public interface TimesheetRepository extends JpaRepository<Timesheet, Long> {
     // Find a timesheet by payroll and specific period start and end dates
     Timesheet findByPayrollAndPeriodStartAndPeriodEnd(Payroll payroll, LocalDate periodStart, LocalDate periodEnd);
 
+    @Query("SELECT t FROM Timesheet t JOIN t.payroll p JOIN p.employee e WHERE e.employeeID = :employeeId")
+    List<Timesheet> findAllByEmployee(@Param("employeeId") Long employeeId);
 }

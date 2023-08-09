@@ -157,4 +157,9 @@ public class TimesheetServiceImpl implements TimesheetService {
             timesheetRepository.save(timesheet);
         }
     }
+
+    @Override
+    public List<Timesheet> getAllTimesheetsForEmployee(long employeeID){
+        return timesheetRepository.findAllByEmployee(employeeID);
+    }
 }
