@@ -46,8 +46,10 @@ public class ShiftEntryController {
         Employee loggedInEmployee = employeeService.getEmployeeById(employeeID);
         LocalDateTime lastPunch = shiftEntryService.getLastPunch(loggedInEmployee);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm:ss");
-
-        String lastPunchFormatted = lastPunch.format(formatter);
+        String lastPunchFormatted = "NONE";
+        if (lastPunch != null){
+            lastPunchFormatted = lastPunch.format(formatter);
+        }
         boolean isPunchedIn = shiftEntryService.isEmployeePunchedIn(loggedInEmployee);
         Timesheet currentTimesheet = timesheetService.getCurrentTimesheetForEmployee(loggedInEmployee).get();
         double totalHours = timesheetService.getTotalHoursForTimesheet(currentTimesheet);
